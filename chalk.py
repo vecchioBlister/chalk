@@ -17,6 +17,10 @@ def exitCmd(command):
     state = False
     return "bye"
 
+def helpCmd(command):
+    
+    return
+
 def letCmd(command):
     var = command[0]
 
