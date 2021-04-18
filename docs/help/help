@@ -6,10 +6,10 @@ For more in-depth information on chalk syntax and commands, read the documentati
 COMMANDS:
 
 exit
-	closes chalk
+	closes chalk.
 help *<command>
 	prints this help page or a specific <command> help page.
-	*optional argument
+	*optional argument.
 let <var> be <value>
 	assigns <value> to a variable <var>.
 set <var> to <value>
