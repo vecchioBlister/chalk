@@ -1,0 +1,2 @@
+set <var> to <value>
+	forces <value> to variable <var>.
