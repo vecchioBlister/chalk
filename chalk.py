@@ -62,7 +62,12 @@ def cmdParser(command):
             k = command.index(i)
             command[k : k + 1] = j
 
-    return globals()[operator + "Cmd"](command)
+    try:
+        result = globals()[operator + "Cmd"](command)
+    except:
+        print(f"error: command '{operator}' does not exist")
+        return
+    return result
 
 state = True
 
