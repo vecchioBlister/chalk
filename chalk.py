@@ -8,39 +8,82 @@ pi = math.pi
 ans = 0
 
 free_vars = set(("", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"))
-used_vars = set(("a"))
+vars = dict([
+        ("a", 0),
+    ])
 
-def letOp(var, value):
-    if (var in used_vars): return "variable is already set"
+def exitCmd(command):
+    global state
+    state = False
+    return "bye"
+
+def letCmd(command):
+    var = command[0]
+
+    if (var in vars):
+        print(f"let error: variable {var} is already set to {vars.get(var)}")
+        return
     else:
-        return setOp(var, value)
+        return setCmd(command)
 
-def setOp(var, value):
-    used_vars.add(var)
-    exec(f"{var} = {value}")
-    return 
+def setCmd(command):
+    var = command[0]
+
+    #if ("=" in command[1]):
+    #    command[1] = command[1].replace("=", " ")
+    #    command[1] = command[1].split()
+    #    value = command[1][1]
+    if (command[1].lower() == "be" or command[1].lower() == "="): command.pop(1)
+    else:
+        print("set/let error: missing 'be' / '=' keyword")
+        return
+
+    value = command[1]
+
+    vars[var] = value
+    return f"{var} = {value}"
+
+def varsCmd(command):
+    print(f"system variables: {const_vars}\nuser variables: {vars}")
+    return
 
 def cmdParser(command):
-    command = command.split()
-    operator = command[0]
-    if (operator == "let"):
-        print(letOp(command[1], command[3]))
-    elif (operator == "set"):
-        print(setOp(command[1], command[3]))
-    elif (operator == "vars"):
-        print(f"system variables: {const_vars}\nused variables: {used_vars}")
+    command = command.split() # splits command given into a list
+    operator = command[0].lower() # sets operator var to the first keyword
+    command.pop(0) # removes operator from commmand
+
+    for i in command:
+        if (
+            "=" in i and
+            len(i) > 1
+        ):
+            j = i.replace("=", " = ")
+            j = j.split()
+            k = command.index(i)
+            command[k : k + 1] = j
+
+    return globals()[operator + "Cmd"](command)
+
+state = True
 
 def CLI():
-    print(f"### Welcome to chalk.py v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
+    print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
 
-    command = ""
-    while (command != "exit"):
+    while (state == True):
         try:
             command = input("~> ") # command input
-            cmdParser(command)
+            if (len(command) == 0): print ("CLI error: no command was given")
+
+            if (command[-1] == ";"): # if command ends with ';' execute command without printing
+                command = command.rstrip(";")
+                cmdParser(command)
+            else: # otherwise print command result
+                result = cmdParser(command)
+                if (result != None):
+                    print(result)
+
         except IndexError as error:
             print(f"{error}")
-    print("bye")
 
 if __name__ == "__main__":
     CLI()
