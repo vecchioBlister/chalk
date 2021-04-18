@@ -19,8 +19,49 @@ def exitCmd(command):
     state = False
     return "bye"
 
+def printHelp(helpfile):
+    # prints each line of helpfile, formatting the variables
+    for i in helpfile:
+        print(i.format(
+            VERSION = VERSION,
+            ))
+    return
+
 def helpCmd(command):
-    
+    # calls printHelp() with the chosen helpfile
+
+    if (len(command) == 0): # prints the main help page (no argument given)
+        with open("./docs/help/help") as helpfile:
+            printHelp(helpfile)
+        return
+    else: command = command[0] # otherwise chooses the first argument
+
+    if (command == "me"): # :)
+        print("oh no")
+        return
+    elif (command == "exit"):
+        print("exit")
+        print("\tcloses chalk.")
+        return
+    elif (command == "help"):
+        print("help *<command>")
+        print("\tprints the main help page or a specific <command> help page.")
+        print("\t*optional argument")
+        return
+    elif (command == "let"):
+        with open("./docs/help/let") as helpfile:
+            printHelp(helpfile)
+        return
+    elif (command == "set"):
+        with open("./docs/help/set") as helpfile:
+            printHelp(helpfile)
+        return
+    elif (command == "vars"):
+        with open("./docs/help/vars") as helpfile:
+            printHelp(helpfile)
+        return
+    else: print(f"'{command}' help does not exist")
+
     return
 
 def letCmd(command):
