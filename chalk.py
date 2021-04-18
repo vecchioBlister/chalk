@@ -14,6 +14,7 @@ vars = dict([
     ])
 
 def exitCmd(command):
+    # closes chalk by setting state to False
     global state
     state = False
     return "bye"
