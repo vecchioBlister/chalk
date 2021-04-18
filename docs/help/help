@@ -1,16 +1,18 @@
 Welcome to chalk v{VERSION} help!
 
 To get help for a specific command, type 'help <command>'.
-For more in-depth information on chalk syntax and commands, read the documentation (./docs/)
+For more in-depth information on chalk syntax and commands, read the documentation (./docs/).
 
 COMMANDS:
+
 exit
 	closes chalk
 help *<command>
-	prints this help page or a specific <command> help page
+	prints this help page or a specific <command> help page.
+	*optional argument
 let <var> be <value>
-	assigns <value> to a variable <var>
+	assigns <value> to a variable <var>.
 set <var> to <value>
-	forces <value> to variable <var>
+	forces <value> to variable <var>.
 vars
-	lists the current variables and their values
+	lists the current variables and their values.
