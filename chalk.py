@@ -2,10 +2,11 @@ import math
 
 VERSION = "0dev"
 
-const_vars = set(("e", "pi", "ans"))
-e = math.e
-pi = math.pi
-ans = 0
+sys_vars = dict([
+    ("e", math.e),
+    ("pi", math.pi),
+    ("ans", 0),
+    ])
 
 free_vars = set(("", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"))
 vars = dict([
@@ -48,7 +49,7 @@ def setCmd(command):
     return f"{var} = {value}"
 
 def varsCmd(command):
-    print(f"system variables: {const_vars}\nuser variables: {vars}")
+    print(f"system variables: {sys_vars}\nuser variables: {vars}")
     return
 
 def cmdParser(command):
