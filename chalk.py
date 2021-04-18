@@ -79,20 +79,16 @@ def CLI():
     print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
 
     while (state == True):
-        try:
-            command = input("~> ") # command input
-            if (len(command) == 0): print ("CLI error: no command was given")
+        command = input("~> ") # command input
+        if (len(command) == 0): print ("CLI error: no command was given")
 
-            if (command[-1] == ";"): # if command ends with ';' execute command without printing
-                command = command.rstrip(";")
-                cmdParser(command)
-            else: # otherwise print command result
-                result = cmdParser(command)
-                if (result != None):
-                    print(result)
-
-        except IndexError as error:
-            print(f"{error}")
+        if (command[-1] == ";"): # if command ends with ';' execute command without printing
+            command = command.rstrip(";")
+            cmdParser(command)
+        else: # otherwise print command result
+            result = cmdParser(command)
+            if (result != None):
+                print(result)
 
 if __name__ == "__main__":
     CLI()
