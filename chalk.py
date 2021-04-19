@@ -3,7 +3,7 @@ import math
 VERSION = "0dev"
 
 sys_vars = dict([
-    ("ans", None),
+    ("ans", 0),
     ("e", math.e),
     ("pi", math.pi),
     ])
@@ -128,7 +128,6 @@ def varManUpd(): # updates the manipulated var string
             manip_value = user_vars.get(manip_var)
     else: manip_value = manip_var
 
-    if (manip_value is None): manip_value = "" # if the var is None ("ans" when not initialized)
     return
 
 def manCmd(command):
