@@ -15,6 +15,23 @@ manip_var = "ans" # currently manipulated variable
 manip_value = "" # currently manipulated variable value
 
 def calcCmd(command):
+    command = "".join(command) # concatenates command bac into a string
+    if (command[0] == "="): command = command.lstrip("=") # strips "=" from command beginning
+    #command = command.strip(" ") # strips whitespaces from command
+
+    allowed_chars = "0123456789+-*(). /"
+    for char in command:
+        if char not in allowed_chars:
+            errorMsg("calc", f"{char} is not a valid operator")
+
+    if (manip_var in user_vars): # checks if it is a user var
+        user_vars[manip_var] = eval(command)
+    elif (manip_var in sys_vars): # checks if it is a system var
+        sys_vars[manip_var] = eval(command)
+    else: # gives an error
+        errorMsg("calc", f"'{manip_var}' is not a valid variable")
+        return
+
 
     return
 
