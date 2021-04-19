@@ -182,8 +182,8 @@ def manCmd(command):
     global manip_var
 
     if (len(command) == 0):
-        errorMsg("man", "no variable was given")
-        return
+        manip_var = "ans"
+        return "[ans] is manipulated"
     var = command[0]
 
     if (not var.isdigit()): # checks if "var" contains chars other than numbers
@@ -196,7 +196,7 @@ def manCmd(command):
             return
     else: manip_var = var
 
-    return
+    return f"[{var}] is manipulated"
 
 def cmdParser(command):
     command = command.split() # splits command given into a list
