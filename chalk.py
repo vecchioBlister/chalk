@@ -77,6 +77,9 @@ def letCmd(command):
 
 def setCmd(command):
     var = command[0]
+    if (var.isdigit()):
+        print("set/let error: cannot assign value to a number")
+        return
 
     #if ("=" in command[1]):
     #    command[1] = command[1].replace("=", " ")
