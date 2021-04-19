@@ -82,9 +82,9 @@ def setCmd(command):
     #    command[1] = command[1].replace("=", " ")
     #    command[1] = command[1].split()
     #    value = command[1][1]
-    if (command[1].lower() == "be" or command[1].lower() == "="): command.pop(1)
+    if (command[1].lower() == "be" or command[1].lower() == "=" or command[1].lower() == "to"): command.pop(1)
     else:
-        print("set/let error: missing 'be' / '=' keyword")
+        print("set/let error: missing 'be' / '=' / 'to' keyword")
         return
 
     value = command[1]
