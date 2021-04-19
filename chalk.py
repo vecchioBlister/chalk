@@ -3,13 +3,13 @@ import math
 VERSION = "0dev"
 
 sys_vars = dict([
+    ("ans", 0),
     ("e", math.e),
     ("pi", math.pi),
-    ("ans", 0),
     ])
 
 free_vars = set(("", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"))
-vars = dict([
+user_vars = dict([
         ("a", 0),
     ])
 
@@ -69,8 +69,8 @@ def helpCmd(command):
 def letCmd(command):
     var = command[0]
 
-    if (var in vars):
-        print(f"let error: variable {var} is already set to {vars.get(var)}")
+    if (var in user_vars):
+        print(f"let error: variable {var} is already set to {user_vars.get(var)}")
         return
     else:
         return setCmd(command)
@@ -89,11 +89,16 @@ def setCmd(command):
 
     value = command[1]
 
-    vars[var] = value
+    user_vars[var] = value
     return f"{var} = {value}"
 
 def varsCmd(command):
-    print(f"system variables: {sys_vars}\nuser variables: {vars}")
+    print("system variables:")
+    for i in sys_vars:
+        print(f"\t{i}\t=\t{sys_vars.get(i)}")
+    print("\nuser variables:")
+    for j in user_vars:
+        print(f"\t{j}\t=\t{user_vars.get(j)}")
     return
 
 def cmdParser(command):
