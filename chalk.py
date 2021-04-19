@@ -89,6 +89,14 @@ def setCmd(command):
         return
 
     value = command[1]
+    if (not value.isdigit()): # checks if "value" contains chars other than numbers
+        if (value in user_vars): # checks if it is a user var
+            value = user_vars.get(value)
+        elif (value in sys_vars): # checks if it is a system var
+            value = sys_vars.get(value)
+        else: # gives an error
+            errorMsg("let/set", f"'{value}' is not a number or a variable")
+            return
 
     user_vars[var] = value
     return f"{var} = {value}"
