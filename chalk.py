@@ -79,10 +79,6 @@ def setCmd(command):
         print("let/set error: cannot assign value to a number")
         return
 
-    #if ("=" in command[1]):
-    #    command[1] = command[1].replace("=", " ")
-    #    command[1] = command[1].split()
-    #    value = command[1][1]
     if (command[1].lower() == "be" or command[1].lower() == "=" or command[1].lower() == "to"): command.pop(1)
     else:
         print("let/set error: missing 'be' / '=' / 'to' keyword")
