@@ -77,6 +77,17 @@ def letCmd(command):
     if (len(command) == 0):
         errorMsg("let/set", "no variable was given")
         return
+
+    for i in command:
+        if (
+            "=" in i and
+            len(i) > 1
+        ):
+            j = i.replace("=", " = ")
+            j = j.split()
+            k = command.index(i)
+            command[k : k + 1] = j
+
     var = command[0]
 
     if (var in user_vars):
@@ -89,7 +100,19 @@ def setCmd(command):
     if (len(command) == 0):
         errorMsg("let/set", "no variable was given")
         return
+
+    for i in command:
+        if (
+            "=" in i and
+            len(i) > 1
+        ):
+            j = i.replace("=", " = ")
+            j = j.split()
+            k = command.index(i)
+            command[k : k + 1] = j
+
     var = command[0]
+
     if (var.isdigit()):
         errorMsg("let/set", "cannot assign value to a number")
         return
@@ -165,16 +188,6 @@ def cmdParser(command):
 
     if (operator[0] == "="):
         return calcCmd(command)
-
-    for i in command:
-        if (
-            "=" in i and
-            len(i) > 1
-        ):
-            j = i.replace("=", " = ")
-            j = j.split()
-            k = command.index(i)
-            command[k : k + 1] = j
 
     try:
         return globals()[operator + "Cmd"](command)
