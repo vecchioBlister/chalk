@@ -1,5 +1,7 @@
 check man help
+let no arguments
 calc command
+calc help
 var command
 assign multiple variables
 
