@@ -184,10 +184,11 @@ def manCmd(command):
 def cmdParser(command):
     command = command.split() # splits command given into a list
     operator = command[0] # sets operator var to the first keyword
-    command.pop(0) # removes operator from commmand
 
     if (operator[0] == "="):
         return calcCmd(command)
+
+    command.pop(0) # removes operator from commmand
 
     try:
         return globals()[operator + "Cmd"](command)
