@@ -140,14 +140,14 @@ def manCmd(command):
 
     if (not var.isdigit()): # checks if "var" contains chars other than numbers
         if (var in user_vars): # checks if it is a user var
-            var = user_vars.get(var)
+            manip_var = var
         elif (var in sys_vars): # checks if it is a system var
-            var = sys_vars.get(var)
+            manip_var = var
         else: # gives an error
             errorMsg("man", f"'{var}' is not a number or a variable")
             return
+    else: manip_var = var
 
-    manip_var = var
     return
 
 def cmdParser(command):
