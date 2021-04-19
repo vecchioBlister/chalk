@@ -11,7 +11,7 @@ sys_vars = dict([
 free_vars = set(("", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"))
 user_vars = dict([])
 
-var_manip = ""
+manip_var = "" # currently manipulated variable
 
 def exitCmd(command):
     # closes chalk by setting state to False
@@ -110,6 +110,38 @@ def varsCmd(command):
         print(f"\t{j}\t=\t{user_vars.get(j)}")
     return
 
+manip_ans = True # true if the manipulated var is "ans"
+
+def varManUpd(): # updates the manipulated var string
+    global manip_var
+    global manip_ans
+
+    if (manip_ans): # manipulates "ans"
+        manip_var = sys_vars.get("ans")
+
+    if (manip_var == None): manip_var = "" # if the var is None ("ans" when not initialized)
+    return
+
+def manCmd(command):
+    global manip_var
+    global manip_ans
+
+    if (len(command) == 0): errorMsg("man", "no variable was given")
+    var = command[0]
+
+    if (not var.isdigit()): # checks if "var" contains chars other than numbers
+        if (var in user_vars): # checks if it is a user var
+            var = user_vars.get(var)
+        elif (var in sys_vars): # checks if it is a system var
+            var = sys_vars.get(var)
+        else: # gives an error
+            errorMsg("man", f"'{var}' is not a number or a variable")
+            return
+
+    manip_var = var
+    manip_ans = False
+    return
+
 def cmdParser(command):
     command = command.split() # splits command given into a list
     operator = command[0].lower() # sets operator var to the first keyword
@@ -142,7 +174,8 @@ def CLI():
     print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
 
     while (state == True):
-        command = input(var_manip + "\n> ") # command input
+        varManUpd()
+        command = input(f"\n[{manip_var}]" + "> ") # command input
         if (len(command) == 0): errorMsg("CLI", "no command was given")
 
         if (command[-1] == ";"): # if command ends with ';' execute command without printing
