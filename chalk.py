@@ -11,7 +11,8 @@ sys_vars = dict([
 free_vars = set(("", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"))
 user_vars = dict([])
 
-manip_var = "" # currently manipulated variable
+manip_var = "ans" # currently manipulated variable
+manip_value = "" # currently manipulated variable value
 
 def exitCmd(command):
     # closes chalk by setting state to False
@@ -116,21 +117,22 @@ def varsCmd(command):
         print(f"\t{j}\t=\t{user_vars.get(j)}")
     return
 
-manip_ans = True # true if the manipulated var is "ans"
-
 def varManUpd(): # updates the manipulated var string
     global manip_var
-    global manip_ans
+    global manip_value
 
-    if (manip_ans): # manipulates "ans"
-        manip_var = sys_vars.get("ans")
+    if (not manip_var.isdigit()): # checks if "var" contains chars other than numbers
+        if (manip_var in sys_vars):
+            manip_value = sys_vars.get(manip_var)
+        elif (manip_var in user_vars):
+            manip_value = user_vars.get(manip_var)
+    else: manip_value = manip_var
 
-    if (manip_var == None): manip_var = "" # if the var is None ("ans" when not initialized)
+    if (manip_value is None): manip_value = "" # if the var is None ("ans" when not initialized)
     return
 
 def manCmd(command):
     global manip_var
-    global manip_ans
 
     if (len(command) == 0):
         errorMsg("man", "no variable was given")
@@ -147,7 +149,6 @@ def manCmd(command):
             return
 
     manip_var = var
-    manip_ans = False
     return
 
 def cmdParser(command):
@@ -183,7 +184,7 @@ def CLI():
 
     while (state == True):
         varManUpd()
-        command = input(f"\n[{manip_var}]" + "> ") # command input
+        command = input(f"\n[{manip_value}]" + "> ") # command input
         if (len(command) == 0): errorMsg("CLI", "no command was given")
 
         if (command[-1] == ";"): # if command ends with ';' execute command without printing
