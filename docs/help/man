@@ -1,0 +1,6 @@
+man <var>
+	selects <var> for manipulation
+
+By default, the manipulated variable is 'ans'.
+
+When manipulating a variable, you can operate on it without explicitly referring to it.

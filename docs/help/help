@@ -12,6 +12,8 @@ help *<command>
 	*optional argument.
 let <var> be <value>
 	assigns <value> to a variable <var>.
+man <var>
+	selects <var> for manipulation
 set <var> to <value>
 	forces <value> to variable <var>.
 vars

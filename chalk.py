@@ -53,6 +53,10 @@ def helpCmd(command):
         with open("./docs/help/let") as helpfile:
             printHelp(helpfile)
         return
+    elif (command == "man"):
+        with open("./docs/help/man") as helpfile:
+            printHelp(helpfile)
+        return
     elif (command == "set"):
         with open("./docs/help/set") as helpfile:
             printHelp(helpfile)
