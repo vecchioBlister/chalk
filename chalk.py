@@ -78,6 +78,10 @@ def setCmd(command):
     if (var.isdigit()):
         errorMsg("let/set", "cannot assign value to a number")
         return
+    if (var in sys_vars):
+        errorMsg("let/set", f"variable {var} is a system variable set to {sys_vars.get(var)}")
+        return
+
 
     if (command[1].lower() == "be" or command[1].lower() == "=" or command[1].lower() == "to"): command.pop(1)
     else:
