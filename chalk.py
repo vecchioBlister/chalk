@@ -3,7 +3,7 @@ import math
 VERSION = "0dev"
 
 sys_vars = dict([
-    ("ans", 0),
+    ("ans", None),
     ("e", math.e),
     ("pi", math.pi),
     ])
