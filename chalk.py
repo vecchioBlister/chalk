@@ -65,7 +65,9 @@ def helpCmd(command):
     return
 
 def letCmd(command):
-    if (len(command) == 0): errorMsg("let/set", "no variable was given")
+    if (len(command) == 0):
+        errorMsg("let/set", "no variable was given")
+        return
     var = command[0]
 
     if (var in user_vars):
@@ -75,7 +77,9 @@ def letCmd(command):
         return setCmd(command)
 
 def setCmd(command):
-    if (len(command) == 0): errorMsg("let/set", "no variable was given")
+    if (len(command) == 0):
+        errorMsg("let/set", "no variable was given")
+        return
     var = command[0]
     if (var.isdigit()):
         errorMsg("let/set", "cannot assign value to a number")
@@ -128,7 +132,9 @@ def manCmd(command):
     global manip_var
     global manip_ans
 
-    if (len(command) == 0): errorMsg("man", "no variable was given")
+    if (len(command) == 0):
+        errorMsg("man", "no variable was given")
+        return
     var = command[0]
 
     if (not var.isdigit()): # checks if "var" contains chars other than numbers
