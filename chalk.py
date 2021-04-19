@@ -9,9 +9,7 @@ sys_vars = dict([
     ])
 
 free_vars = set(("", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"))
-user_vars = dict([
-        ("a", 0),
-    ])
+user_vars = dict([])
 
 var_manip = ""
 
