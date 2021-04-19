@@ -60,7 +60,7 @@ def helpCmd(command):
         with open("./docs/help/vars") as helpfile:
             printHelp(helpfile)
         return
-    else: print(f"'{command}' help does not exist")
+    else: errorMsg("help", f"'{command}' help does not exist")
 
     return
 
@@ -68,7 +68,7 @@ def letCmd(command):
     var = command[0]
 
     if (var in user_vars):
-        print(f"let error: variable {var} is already set to {user_vars.get(var)}")
+        errorMsg("let", f"variable {var} is already set to {user_vars.get(var)}")
         return
     else:
         return setCmd(command)
@@ -76,12 +76,12 @@ def letCmd(command):
 def setCmd(command):
     var = command[0]
     if (var.isdigit()):
-        print("let/set error: cannot assign value to a number")
+        errorMsg("let/set", "cannot assign value to a number")
         return
 
     if (command[1].lower() == "be" or command[1].lower() == "=" or command[1].lower() == "to"): command.pop(1)
     else:
-        print("let/set error: missing 'be' / '=' / 'to' keyword")
+        errorMsg("let/set", "missing 'be' / '=' / 'to' keyword")
         return
 
     value = command[1]
@@ -116,9 +116,13 @@ def cmdParser(command):
     try:
         result = globals()[operator + "Cmd"](command)
     except KeyError:
-        print(f"error: command '{operator}' does not exist")
+        errorMsg("cmdParser", f"command '{operator}' does not exist")
         return
     return result
+
+def errorMsg(module, message):
+    print(f"<!> {module} error: {message}")
+    return
 
 state = True
 
@@ -127,7 +131,7 @@ def CLI():
 
     while (state == True):
         command = input(var_manip + "\n> ") # command input
-        if (len(command) == 0): print ("CLI error: no command was given")
+        if (len(command) == 0): errorMsg("CLI", "no command was given")
 
         if (command[-1] == ";"): # if command ends with ';' execute command without printing
             command = command.rstrip(";")
