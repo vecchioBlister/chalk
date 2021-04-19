@@ -181,7 +181,7 @@ state = True
 def CLI():
     print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
 
-    while (state == True):
+    while (state is True):
         varManUpd()
         command = input(f"\n[{manip_value}]" + "> ") # command input
         if (len(command) == 0): errorMsg("CLI", "no command was given")
