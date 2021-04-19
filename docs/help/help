@@ -9,10 +9,9 @@ exit
 	closes chalk.
 help *<command>
 	prints this help page or a specific <command> help page.
-	*optional argument.
 let <var> be <value>
 	assigns <value> to a variable <var>.
-man <var>
+man *<var>
 	selects <var> for manipulation
 set <var> to <value>
 	forces <value> to variable <var>.

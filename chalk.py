@@ -68,7 +68,6 @@ def helpCmd(command):
     elif (command == "help"):
         print("help *<command>")
         print("\tprints the main help page or a specific <command> help page.")
-        print("\t*optional argument")
         return
     elif (command == "let"):
         with open("./docs/help/let") as helpfile:
