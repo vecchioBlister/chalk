@@ -22,7 +22,7 @@ def exitCmd(command):
 def printHelp(helpfile):
     # prints each line of helpfile, formatting the variables
     for i in helpfile:
-        print(i.format(
+        print(i.rstrip().format(
             VERSION = VERSION,
             ))
     return
