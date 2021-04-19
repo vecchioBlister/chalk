@@ -13,6 +13,8 @@ vars = dict([
         ("a", 0),
     ])
 
+var_manip = ""
+
 def exitCmd(command):
     # closes chalk by setting state to False
     global state
@@ -122,7 +124,7 @@ def CLI():
     print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
 
     while (state == True):
-        command = input("\n\u2219 ") # command input
+        command = input(var_manip + "\n> ") # command input
         if (len(command) == 0): print ("CLI error: no command was given")
 
         if (command[-1] == ";"): # if command ends with ';' execute command without printing
