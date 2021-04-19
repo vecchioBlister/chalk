@@ -188,15 +188,15 @@ def CLI():
     while (state is True):
         varManUpd()
         command = input(f"\n[{manip_value}]" + "> ") # command input
-        if (len(command) == 0): errorMsg("CLI", "no command was given")
-
-        if (command[-1] == ";"): # if command ends with ';' execute command without printing
-            command = command.rstrip(";")
-            cmdParser(command)
-        else: # otherwise print command result
-            result = cmdParser(command)
-            if (result != None):
-                print(result)
+        if (len(command) == 0 or command.split() == []): errorMsg("CLI", "no command was given")
+        else:
+            if (command[-1] == ";"): # if command ends with ';' execute command without printing
+                command = command.rstrip(";")
+                cmdParser(command)
+            else: # otherwise print command result
+                result = cmdParser(command)
+                if (result != None):
+                    print(result)
 
 if __name__ == "__main__":
     CLI()
