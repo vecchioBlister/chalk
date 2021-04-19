@@ -14,6 +14,10 @@ user_vars = dict([])
 manip_var = "ans" # currently manipulated variable
 manip_value = "" # currently manipulated variable value
 
+def calcCmd(command):
+
+    return
+
 def exitCmd(command):
     # closes chalk by setting state to False
     global state
@@ -156,8 +160,11 @@ def manCmd(command):
 
 def cmdParser(command):
     command = command.split() # splits command given into a list
-    operator = command[0].lower() # sets operator var to the first keyword
+    operator = command[0] # sets operator var to the first keyword
     command.pop(0) # removes operator from commmand
+
+    if (operator[0] == "="):
+        return calcCmd(command)
 
     for i in command:
         if (
@@ -170,11 +177,10 @@ def cmdParser(command):
             command[k : k + 1] = j
 
     try:
-        result = globals()[operator + "Cmd"](command)
+        return globals()[operator + "Cmd"](command)
     except KeyError:
         errorMsg("cmdParser", f"command '{operator}' does not exist")
         return
-    return result
 
 def errorMsg(module, message):
     print(f"<!> {module} error: {message}")
