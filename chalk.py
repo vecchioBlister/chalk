@@ -76,7 +76,7 @@ def letCmd(command):
 def setCmd(command):
     var = command[0]
     if (var.isdigit()):
-        print("set/let error: cannot assign value to a number")
+        print("let/set error: cannot assign value to a number")
         return
 
     #if ("=" in command[1]):
@@ -85,7 +85,7 @@ def setCmd(command):
     #    value = command[1][1]
     if (command[1].lower() == "be" or command[1].lower() == "=" or command[1].lower() == "to"): command.pop(1)
     else:
-        print("set/let error: missing 'be' / '=' / 'to' keyword")
+        print("let/set error: missing 'be' / '=' / 'to' keyword")
         return
 
     value = command[1]
