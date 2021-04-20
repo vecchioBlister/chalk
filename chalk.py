@@ -13,6 +13,7 @@ man_value = "" # currently manipulated variable value
 def calculate(command):
     operators = "+-*(). /"
 
+    if (len(command) == 0): return 0
     if (command[0][0] == "="): command[0] = command[0].lstrip("=") # strips "=" from command beginning
 
     for i in range(len(command)):
