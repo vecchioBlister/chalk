@@ -10,28 +10,43 @@ variables = dict([
 man_var = "ans" # currently manipulated variable
 man_value = "" # currently manipulated variable value
 
-def calculate(equation):
+def calculate(command):
+    operators = "+-*(). /"
 
-    return eval(equation)
+    if (command[0][0] == "="): command[0] = command[0].lstrip("=") # strips "=" from command beginning
+
+    for i in range(len(command)):
+        if (command[i] in variables): # replaces variables with their values
+            command[i] = str(variables.get(command[i]))
+
+    command = "".join(command) # concatenates command back into a string
+    equation = []
+    for i in command:
+        if (i in variables): # replaces variables with their values
+            equation.append(str(variables.get(i)))
+        elif (not i.isdigit() and not i in operators):
+            errorMsg("calc", "symbol error / variable name ambiguity: please use whitespaces")
+            return None
+        else:
+            equation.append(i)
+
+    equation = "".join(equation) # concatenates equation back into a string
+    equation = equation.strip(" ") # strips whitespaces from equation
+
+    try:
+        return eval(equation)
+    except SyntaxError:
+        errorMsg("calc", "cannot understand operation")
+        return None
 
 def calcCmd(command):
-    command = "".join(command) # concatenates command bac into a string
-    if (command[0] == "="): command = command.lstrip("=") # strips "=" from command beginning
-    #command = command.strip(" ") # strips whitespaces from command
-
-    #allowed_chars = "0123456789+-*(). /"
-    #for char in command:
-    #    if char not in allowed_chars:
-    #        errorMsg("calc", f"{char} is not a valid operator")
-    #        return
-
     if (man_var in variables):
-        variables[man_var] = calculate(command)
+        result = calculate(command)
+        if (result is None): return
+        else: variables[man_var] = result
     else: # gives an error
-        errorMsg("calc", f"'{man_var}' is not a valid variable")
+        errorMsg("calc", f"'{man_var}' is not a valid variable (man)")
         return
-
-
     return
 
 def exitCmd(command):
@@ -137,7 +152,9 @@ def setCmd(command):
         value = man_value
     elif (command[1].lower() == "be" or command[1].lower() == "=" or command[1].lower() == "to"):
         command.pop(1)
-        value = calculate(command[1])
+        value = calculate(command[1 : None])
+        if (value is None):
+            return
     else:
         errorMsg("let/set", "missing 'be' / '=' / 'to' keyword")
         return
