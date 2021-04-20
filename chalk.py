@@ -195,13 +195,6 @@ def setCmd(command):
             errorMsg("let/set", "variable names cannot contain digits or symbols")
             return
 
-    if (var.isdigit()):
-        errorMsg("let/set", "cannot assign value to a number")
-        return
-
-    if (var in free_vars): # removes var from free_vars when it is assigned
-        free_vars.remove(var)
-
     if (len(command) == 1): # if no value is given, man_value is taken
         value = man_value
     elif (command[1].lower() != "be" and command[1].lower() != "=" and command[1].lower() != "to"):
@@ -223,6 +216,9 @@ def setCmd(command):
         if (value is None):
             errorMsg("let/set", "cannot assign empty variable")
             return
+
+    if (var in free_vars): # removes var from free_vars when it is assigned
+        free_vars.remove(var)
 
     variables[var] = value
     return f"{var} = {value}"
