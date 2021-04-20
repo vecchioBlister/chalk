@@ -110,8 +110,8 @@ def helpCmd(command):
         print("oh no")
         return
     elif (command == "exit"):
-        print("exit")
-        print("\tcloses chalk.")
+        with open("./docs/help/exit") as helpfile:
+            printHelp(helpfile)
         return
     elif (command == "help"):
         print("help *<command>")
