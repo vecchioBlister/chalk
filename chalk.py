@@ -265,16 +265,15 @@ def clsCmd(command):
 
 def cmdParser(command):
     command = command.split() # splits command given into a list
-    operator = command[0] # sets operator var to the first keyword
 
-    if (operator[0] == "="):
+    if (command[0][0] == "="): # calc chortcut
         command[0] = command[0].lstrip("=") # strips "=" from command beginning
         return calcCmd(command)
-    elif (operator[0] == "?"):
-        command[0] = command[0].lstrip("?") # strips "=" from command beginning
+    elif (command[0][0] == "?"): # calc without assign to man_var
+        command[0] = command[0].lstrip("?") # strips "?" from command beginning
         return calcCmd(command, False)
 
-    command.pop(0) # removes operator from commmand
+    operator = command.pop(0) # sets operator var to the first keyword
 
     try:
         return globals()[operator + "Cmd"](command)

@@ -1,6 +1,4 @@
 fix array multiplication
-cmdParser() strip
-move command.pop(0)
 del command
 order list of vars
 
