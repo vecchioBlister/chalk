@@ -2,3 +2,6 @@ set <var> to <value>
 	forces <value> to variable <var>.
 
 If no value is given, the currently manipulated variable value is taken.
+If no name is given, a random one will be provided.
+
+If <value> is preceded by '&', lazy assignment will be used.
