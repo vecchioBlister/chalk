@@ -18,5 +18,6 @@ man *<var>
 	selects <var> for manipulation
 set <var> to <value>
 	forces <value> to variable <var>.
-vars
-	lists the current variables and their values.
+var *<var>
+	prints <var> value.
+	If no <var> is given, prints all assigned variables.

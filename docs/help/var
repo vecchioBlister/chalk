@@ -1,0 +1,3 @@
+var *<var>
+	prints <var> value.
+	If no <var> is given, prints all assigned variables.

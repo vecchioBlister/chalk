@@ -100,8 +100,8 @@ def helpCmd(command):
         with open("./docs/help/set") as helpfile:
             printHelp(helpfile)
         return
-    elif (command == "vars"):
-        with open("./docs/help/vars") as helpfile:
+    elif (command == "var"):
+        with open("./docs/help/var") as helpfile:
             printHelp(helpfile)
         return
     else: errorMsg("help", f"'{command}' help does not exist")
@@ -167,11 +167,20 @@ def setCmd(command):
     variables[var] = value
     return f"{var} = {value}"
 
-def varsCmd(command):
-    print("assigned variables:")
-    for i in variables:
-        print(f"\t{i}\t=\t{variables.get(i)}")
-    return
+def varCmd(command):
+    if (len(command) == 0):
+        print("assigned variables:")
+        for i in variables:
+            print(f"\t{i}\t=\t{variables.get(i)}")
+        return
+    else:
+        for i in range(len(command)):
+            command[i].split(",")
+        for i in command:
+            if (i in variables):
+                print(f"\t{i}\t=\t{variables.get(i)}")
+            else:
+                print(f"{i} is not an assigned variable")
 
 def varManUpd(): # updates the manipulated var string
     global man_var
