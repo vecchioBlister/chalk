@@ -7,8 +7,8 @@ variables = dict([
     ("ans", 0)
 ])
 
-manip_var = "ans" # currently manipulated variable
-manip_value = "" # currently manipulated variable value
+man_var = "ans" # currently manipulated variable
+man_value = "" # currently manipulated variable value
 
 def calculate(equation):
 
@@ -25,10 +25,10 @@ def calcCmd(command):
     #        errorMsg("calc", f"{char} is not a valid operator")
     #        return
 
-    if (manip_var in variables):
-        variables[manip_var] = calculate(command)
+    if (man_var in variables):
+        variables[man_var] = calculate(command)
     else: # gives an error
-        errorMsg("calc", f"'{manip_var}' is not a valid variable")
+        errorMsg("calc", f"'{man_var}' is not a valid variable")
         return
 
 
@@ -155,27 +155,27 @@ def varsCmd(command):
     return
 
 def varManUpd(): # updates the manipulated var string
-    global manip_var
-    global manip_value
+    global man_var
+    global man_value
 
-    if (manip_var in variables):
-        manip_value = variables.get(manip_var)
+    if (man_var in variables):
+        man_value = variables.get(man_var)
     else:
-        errorMsg("varManUpd", f"CRITICAL the variable {manip_var} doesn't exist")
+        errorMsg("varManUpd", f"CRITICAL the variable {man_var} doesn't exist")
         return
 
     return
 
 def manCmd(command):
-    global manip_var
+    global man_var
 
     if (len(command) == 0):
-        manip_var = "ans"
+        man_var = "ans"
         return "[ans] is now manipulated"
     var = command[0]
 
     if (var in variables):
-        manip_var = var
+        man_var = var
     else: # gives an error
         errorMsg("man", f"'{var}' is not a variable")
         return
@@ -208,7 +208,7 @@ def CLI():
 
     while (state is True):
         varManUpd()
-        command = input(f"\n[{manip_var}]({manip_value})> ") # command input
+        command = input(f"\n[{man_var}]({man_value})> ") # command input
         if (len(command) == 0 or command.split() == []): errorMsg("CLI", "no command was given")
         else:
             if (command[-1] == ";"): # if command ends with ';' execute command without printing
