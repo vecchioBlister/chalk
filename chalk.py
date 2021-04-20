@@ -11,7 +11,7 @@ manip_var = "ans" # currently manipulated variable
 manip_value = "" # currently manipulated variable value
 
 def calculate(equation):
-    
+
     return eval(equation)
 
 def calcCmd(command):
@@ -137,13 +137,13 @@ def setCmd(command):
         errorMsg("let/set", "missing 'be' / '=' / 'to' keyword")
         return
 
-    value = command[1]
-    if (not value.isdigit()): # checks if "value" contains chars other than numbers
-        if (value in variables):
-            value = variables.get(value)
-        else: # gives an error
-            errorMsg("let/set", f"'{value}' is not a number or a variable")
-            return
+    value = calculate(command[1])
+    #if (not value.isdigit()): # checks if "value" contains chars other than numbers
+    #    if (value in variables):
+    #        value = variables.get(value)
+    #    else: # gives an error
+    #        errorMsg("let/set", f"'{value}' is not a number or a variable")
+    #        return
 
     variables[var] = value
     return f"{var} = {value}"
