@@ -12,6 +12,8 @@ calc <equation>
 	evaluates the equation and assigns it to the currently manipulated variable.
 cls
 	clears the console screen.
+del <var>
+	deletes <var>.
 exit
 	closes chalk.
 help *<command>

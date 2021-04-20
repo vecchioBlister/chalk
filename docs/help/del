@@ -1,0 +1,5 @@
+del <var>
+	deletes <var>.
+	Can delete multiple <var> at the same time.
+
+	If the deleted <var> was manipulated, 'ans' gets now manipulated.

@@ -83,6 +83,18 @@ def calcCmd(command, man_assign=True):
         return
     return
 
+def delCmd(command):
+    if (len(command) == 0): # if no argument is given
+        errorMsg("del", "no variable specified")
+        return
+    for i in command:
+        if (i == man_var): print(manCmd([])) # if the variable was manipulated, man_var goes back to ans
+        if (i in variables and i != "ans"): variables.pop(i) # removes variables
+        elif (i == "ans"): errorMsg("del", "cannot delete 'ans' variable")
+        else: errorMsg("del", f"{i} is not an assigned variable")
+
+    return
+
 def exitCmd(command):
     # closes chalk by setting state to False
     global state
@@ -108,6 +120,10 @@ def helpCmd(command):
 
     if (command == "me"): # :)
         print("oh no")
+        return
+    elif (command == "del"):
+        with open("./docs/help/del") as helpfile:
+            printHelp(helpfile)
         return
     elif (command == "exit"):
         with open("./docs/help/exit") as helpfile:
