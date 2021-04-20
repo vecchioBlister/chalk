@@ -2,7 +2,7 @@ import math
 
 VERSION = "0dev"
 
-free_vars = set(("", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"))
+free_vars = set(("a", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"))
 variables = dict([
     ("ans", 0)
 ])
@@ -89,9 +89,8 @@ def helpCmd(command):
     return
 
 def letCmd(command):
-    if (len(command) == 0):
-        errorMsg("let/set", "no variable was given")
-        return
+    if (len(command) == 0): # if no variable is given, calls setCmd() to assign a new one
+        return setCmd(command)
 
     for i in command:
         if (
@@ -112,9 +111,8 @@ def letCmd(command):
         return setCmd(command)
 
 def setCmd(command):
-    if (len(command) == 0):
-        errorMsg("let/set", "no variable was given")
-        return
+    if (len(command) == 0): # if no variable is given, a free one is assigned
+        command.append(free_vars.pop())
 
     for i in command:
         if (

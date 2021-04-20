@@ -2,3 +2,5 @@ let <var> be <value>
 	assigns <value> to a variable <var>.
 
 If the variable is already assigned, it will give an error and display <var>'s current value.
+
+If no value is given, the currently manipulated variable value is taken.
