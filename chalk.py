@@ -32,24 +32,30 @@ def calculate(command):
             command[i] = str(math.e)
         elif (command[i] in variables): # replaces long-name variables with their values
             try:
-                command[i] = calculate(variables.get(command[i]))
+                command[i] = str(
+                    calculate(
+                        list(
+                            str(
+                                variables.get(command[i])
+                                )
+                            )
+                        )
+                    ).strip()
             except RecursionError as error: # when a lazy var is assigned to itself
                 errorMsg("calc", "cannot calculate a variable with self assignment")
                 print(error)
                 return None
-            if (type(command[i]) == list):
-                if (len(command) == 1): command[i] = command[i][0] # if item is a list with one element, takes first
-                else:
-                    errorMsg("calc", "cannot multiply for an array")
-            elif (command[i] is None): return None # in case of calculate() error
+            #if (type(command[i]) == list):
+            #    if (len(command) == 1): command[i] = command[i][0] # if item is a list with one element, takes first
+            #    else:
+            #        errorMsg("calc", "cannot multiply for an array")
+            if (command[i] is None): return None # in case of calculate() error
             command[i] = str(command[i])
 
     command = "".join(str(j) for j in command) # concatenates command back into a string
     #//print(command)
     equation = ""
     for i in command:
-        #if (i in variables): # replaces variables with their values
-        #    equation.append(str(calculate(variables.get(i))))
         if (i.isalpha() and not i in operators):
             errorMsg("calc", f"{i} symbol / variable name ambiguity")
             return None
@@ -60,7 +66,9 @@ def calculate(command):
     #//print(equation)
     #equation = "".join(str(j) for j in equation) # concatenates equation back into a string
     #equation = equation.format_map(variables) # replaces variables with their values
-    equation = equation.strip() # strips whitespaces from equation
+    equation = equation.strip(" ") # strips whitespaces from equation
+
+    if (equation == ""): equation = "0" # user input '=' results 0
 
     try:
         #//print(equation)
