@@ -5,6 +5,9 @@ For more in-depth information on chalk syntax and commands, read the documentati
 
 COMMANDS:
 
+calc <equation>
+	(also called with '=')
+	evaluates the equation and assigns it to the currently manipulated variable.
 exit
 	closes chalk.
 help *<command>

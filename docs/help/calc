@@ -1,0 +1,7 @@
+calc <equation>
+	(also called with '=')
+	evaluates the equation and assigns it to the currently manipulated variable.
+
+	Variables can be used in the equation, as well as math (python module) constants.
+
+	In case of variable name ambiguity, the calculation will not be executed. It is mandatory, when a variable name of more than a single character is used, to separate it with whitespaces.
