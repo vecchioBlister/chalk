@@ -15,10 +15,11 @@ def calcCmd(command):
     if (command[0] == "="): command = command.lstrip("=") # strips "=" from command beginning
     #command = command.strip(" ") # strips whitespaces from command
 
-    allowed_chars = "0123456789+-*(). /"
-    for char in command:
-        if char not in allowed_chars:
-            errorMsg("calc", f"{char} is not a valid operator")
+    #allowed_chars = "0123456789+-*(). /"
+    #for char in command:
+    #    if char not in allowed_chars:
+    #        errorMsg("calc", f"{char} is not a valid operator")
+    #        return
 
     if (manip_var in variables):
         variables[manip_var] = eval(command)
