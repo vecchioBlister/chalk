@@ -130,6 +130,9 @@ def setCmd(command):
         errorMsg("let/set", "cannot assign value to a number")
         return
 
+    if (var in free_vars): # removes var from free_vars when it is assigned
+        free_vars.remove(var)
+
     if (len(command) == 1): # if no value is given, man_value is taken
         value = man_value
     elif (command[1].lower() == "be" or command[1].lower() == "=" or command[1].lower() == "to"):
