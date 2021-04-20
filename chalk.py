@@ -11,7 +11,7 @@ man_var = "ans" # currently manipulated variable
 man_value = "" # currently manipulated variable value
 
 def calculate(command):
-    operators = "+-*(). /"
+    operators = "+-*().,; /[]"
 
     if (len(command) == 0): return 0
     if (command[0][0] == "="): command[0] = command[0].lstrip("=") # strips "=" from command beginning
@@ -29,8 +29,8 @@ def calculate(command):
     for i in command:
         if (i in variables): # replaces variables with their values
             equation.append(str(variables.get(i)))
-        elif (not i.isdigit() and not i in operators):
-            errorMsg("calc", "symbol error / variable name ambiguity: please use whitespaces")
+        elif (i.isalpha() and not i in operators):
+            errorMsg("calc", "symbol error / variable name ambiguity")
             return None
         else:
             equation.append(i)
