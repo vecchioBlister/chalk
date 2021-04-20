@@ -145,6 +145,10 @@ def setCmd(command):
             command[k : k + 1] = j
 
     var = command[0]
+    for i in var:
+        if (i.isdigit()):
+            errorMsg("let/set", "variable names cannot contain digits")
+            return
 
     if (var.isdigit()):
         errorMsg("let/set", "cannot assign value to a number")
