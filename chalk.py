@@ -219,14 +219,10 @@ def setCmd(command):
             value = value.rstrip()
             variables[var] = value
             return f"(lazy) {var} = {value}"
-        #if (command[1] != "("): #?????
-        #    value = calculate(command[1 : None])
-        #    if (value is None):
-        #        return
-    value = calculate(command[1 : None])
-    if (value is None):
-        errorMsg("let/set", "cannot assign empty variable")
-        return
+        value = calculate(command[1 : None])
+        if (value is None):
+            errorMsg("let/set", "cannot assign empty variable")
+            return
 
     variables[var] = value
     return f"{var} = {value}"
