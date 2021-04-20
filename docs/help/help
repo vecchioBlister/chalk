@@ -5,6 +5,8 @@ For more in-depth information on chalk syntax and commands, read the documentati
 
 COMMANDS:
 
+* are optional arguments
+
 calc <equation>
 	(also called with '=')
 	evaluates the equation and assigns it to the currently manipulated variable.
@@ -20,6 +22,7 @@ man *<var>
 	selects <var> for manipulation
 set <var> to <value>
 	forces <value> to variable <var>.
-var *<var>
+var *<var> *-a
 	prints <var> value.
 	If no <var> is given, prints all assigned variables.
+	*-a for alphabetical order.

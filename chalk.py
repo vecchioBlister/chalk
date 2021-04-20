@@ -216,19 +216,28 @@ def setCmd(command):
     return f"{var} = {value}"
 
 def varCmd(command):
-    if (len(command) == 0):
-        print("assigned variables:")
+    vars_to_print = []
+    alph_order = False
+
+    for i in command:
+        if (i == "-a"):
+            command.remove(i)
+            alph_order = True
+
+    if (len(command) == 0): # no arguments given, appends all variables
         for i in variables:
-            print(f"\t{i}\t=\t{variables.get(i)}")
-        return
-    else:
-        for i in range(len(command)):
-            command[i].split(",")
+            vars_to_print.append(i)
+    else: # var arguments are given and appended
         for i in command:
-            if (i in variables):
-                print(f"\t{i}\t=\t{variables.get(i)}")
-            else:
-                print(f"{i} is not an assigned variable")
+            vars_to_print.append(i)
+
+    if (alph_order is True): vars_to_print = sorted(vars_to_print)
+
+    for i in vars_to_print:
+        if (i not in variables): print(f"{i} is not an assigned variable")
+        else: print(f"\t{i}\t=\t{variables.get(i)}")
+
+    return
 
 def varManUpd(): # updates the manipulated var string
     global man_var
