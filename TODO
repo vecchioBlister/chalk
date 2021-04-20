@@ -1,3 +1,11 @@
+cmdParser() strip
+move command.pop(0)
+command to calculate without saving
+fix math.*
+del command
+cls command
+order list of vars
+
 man help
 var command
 assign multiple variables
