@@ -2,7 +2,6 @@ fix array multiplication
 cmdParser() strip
 move command.pop(0)
 del command
-cls command
 order list of vars
 
 man help

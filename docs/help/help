@@ -8,6 +8,8 @@ COMMANDS:
 calc <equation>
 	(also called with '=')
 	evaluates the equation and assigns it to the currently manipulated variable.
+cls
+	clears the console screen.
 exit
 	closes chalk.
 help *<command>

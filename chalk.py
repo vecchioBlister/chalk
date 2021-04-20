@@ -1,3 +1,4 @@
+import os
 import math
 
 VERSION = "0dev"
@@ -256,6 +257,11 @@ def manCmd(command):
         return
 
     return f"[{var}] is now manipulated"
+
+def clsCmd(command):
+    os.system("cls" if os.name=="nt" else "clear") # clears console screen
+    print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands")
+    return
 
 def cmdParser(command):
     command = command.split() # splits command given into a list
