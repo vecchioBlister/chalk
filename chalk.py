@@ -71,10 +71,11 @@ def calculate(command):
         errorMsg("calc", f"{error}")
         return None
 
-def calcCmd(command):
+def calcCmd(command, man_assign=True):
     if (man_var in variables):
         result = calculate(command)
         if (result is None): return
+        elif (man_assign is False): print(result)
         else: variables[man_var] = result
     else: # gives an error
         errorMsg("calc", f"'{man_var}' is not a valid variable (man)")
@@ -263,6 +264,9 @@ def cmdParser(command):
     if (operator[0] == "="):
         command[0] = command[0].lstrip("=") # strips "=" from command beginning
         return calcCmd(command)
+    elif (operator[0] == "?"):
+        command[0] = command[0].lstrip("?") # strips "=" from command beginning
+        return calcCmd(command, False)
 
     command.pop(0) # removes operator from commmand
 

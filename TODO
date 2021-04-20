@@ -1,7 +1,6 @@
 fix array multiplication
 cmdParser() strip
 move command.pop(0)
-command to calculate without saving
 del command
 cls command
 order list of vars
