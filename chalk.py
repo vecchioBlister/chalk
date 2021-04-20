@@ -158,8 +158,8 @@ def setCmd(command):
 
     var = command[0]
     for i in var:
-        if (i.isdigit()):
-            errorMsg("let/set", "variable names cannot contain digits")
+        if (not i.isalpha()):
+            errorMsg("let/set", "variable names cannot contain digits or symbols")
             return
 
     if (var.isdigit()):
@@ -174,18 +174,18 @@ def setCmd(command):
     elif (command[1].lower() != "be" and command[1].lower() != "=" and command[1].lower() != "to"):
         errorMsg("let/set", "missing 'be' / '=' / 'to' keyword")
         return
-
-    command.pop(1)
-    if (command[1][0] == "&"):
-        command[1] = command[1].lstrip("&")
-        variables[var] = command[1]
-        return f"lazy assignment {var} = {command[1]}"
-    if (command[1] != "("):
-        value = calculate(command[1 : None])
-        if (value is None):
-            return
     else:
-        return
+        command.pop(1)
+        if (command[1][0] == "&"):
+            command[1] = command[1].lstrip("&")
+            variables[var] = command[1]
+            return f"lazy assignment {var} = {command[1]}"
+        if (command[1] != "("):
+            value = calculate(command[1 : None])
+            if (value is None):
+                return
+        else:
+            return
 
     variables[var] = value
     return f"{var} = {value}"
