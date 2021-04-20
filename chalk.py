@@ -158,13 +158,11 @@ def varManUpd(): # updates the manipulated var string
     global manip_var
     global manip_value
 
-    if (not manip_var.isdigit()): # checks if "var" contains chars other than numbers
-        if (manip_var in variables):
-            manip_value = variables.get(manip_var)
-        else:
-            errorMsg("varManUpd", f"CRITICAL the variable {manip_var} doesn't exist")
-            return
-    else: manip_value = manip_var
+    if (manip_var in variables):
+        manip_value = variables.get(manip_var)
+    else:
+        errorMsg("varManUpd", f"CRITICAL the variable {manip_var} doesn't exist")
+        return
 
     return
 
@@ -176,13 +174,11 @@ def manCmd(command):
         return "[ans] is now manipulated"
     var = command[0]
 
-    if (not var.isdigit()): # checks if "var" contains chars other than numbers
-        if (var in variables):
-            manip_var = var
-        else: # gives an error
-            errorMsg("man", f"'{var}' is not a number or a variable")
-            return
-    else: manip_var = var
+    if (var in variables):
+        manip_var = var
+    else: # gives an error
+        errorMsg("man", f"'{var}' is not a variable")
+        return
 
     return f"[{var}] is now manipulated"
 
