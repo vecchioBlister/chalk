@@ -208,7 +208,7 @@ def CLI():
 
     while (state is True):
         varManUpd()
-        command = input(f"\n[{manip_var}]<{manip_value}> ") # command input
+        command = input(f"\n[{manip_var}]({manip_value})> ") # command input
         if (len(command) == 0 or command.split() == []): errorMsg("CLI", "no command was given")
         else:
             if (command[-1] == ";"): # if command ends with ';' execute command without printing
