@@ -16,7 +16,11 @@ def calculate(command):
     if (command[0][0] == "="): command[0] = command[0].lstrip("=") # strips "=" from command beginning
 
     for i in range(len(command)):
-        if (command[i] in variables): # replaces variables with their values
+        if (command[i] == "math.pi"):
+            command[i] = str(math.pi)
+        elif (command[i] == "math.e"):
+            command[i] = str(math.e)
+        elif (command[i] in variables): # replaces variables with their values
             command[i] = str(variables.get(command[i]))
 
     command = "".join(command) # concatenates command back into a string
