@@ -132,18 +132,14 @@ def setCmd(command):
         errorMsg("let/set", "cannot assign value to a number")
         return
 
-    if (command[1].lower() == "be" or command[1].lower() == "=" or command[1].lower() == "to"): command.pop(1)
+    if (len(command) == 1): # if no value is given, man_value is taken
+        value = man_value
+    elif (command[1].lower() == "be" or command[1].lower() == "=" or command[1].lower() == "to"):
+        command.pop(1)
+        value = calculate(command[1])
     else:
         errorMsg("let/set", "missing 'be' / '=' / 'to' keyword")
         return
-
-    value = calculate(command[1])
-    #if (not value.isdigit()): # checks if "value" contains chars other than numbers
-    #    if (value in variables):
-    #        value = variables.get(value)
-    #    else: # gives an error
-    #        errorMsg("let/set", f"'{value}' is not a number or a variable")
-    #        return
 
     variables[var] = value
     return f"{var} = {value}"

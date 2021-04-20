@@ -1,2 +1,4 @@
 set <var> to <value>
 	forces <value> to variable <var>.
+
+If no value is given, the currently manipulated variable value is taken.
