@@ -10,6 +10,10 @@ variables = dict([
 manip_var = "ans" # currently manipulated variable
 manip_value = "" # currently manipulated variable value
 
+def calculate(equation):
+    
+    return eval(equation)
+
 def calcCmd(command):
     command = "".join(command) # concatenates command bac into a string
     if (command[0] == "="): command = command.lstrip("=") # strips "=" from command beginning
@@ -22,7 +26,7 @@ def calcCmd(command):
     #        return
 
     if (manip_var in variables):
-        variables[manip_var] = eval(command)
+        variables[manip_var] = calculate(command)
     else: # gives an error
         errorMsg("calc", f"'{manip_var}' is not a valid variable")
         return

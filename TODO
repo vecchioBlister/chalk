@@ -1,4 +1,3 @@
-separate eval calculation function from calcCmd()
 integrate eval calc in let/set etc.
 let no arguments crash
 calc command
