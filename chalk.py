@@ -13,26 +13,39 @@ man_value = "" # currently manipulated variable value
 def calculate(command):
     operators = "+-*().,; /[]"
 
-    if (type(command) == list):
-        if (len(command) == 1): command = command[0] # if input is a list with one element, takes first
-    command = list(str(command)) # turns input equation into a string
-    if (len(command) == 0): return 0
-    if (command[0][0] == "="): command[0] = command[0].lstrip("=") # strips "=" from command beginning
+    #if (type(command) == list):
+    #    for i in range(len(command)): # turns every element in command list and makes it a string
+    #        command[i] = str(command[i])
+    #else: command = list(str(command)) # if input is not list, makes it a list of string
+
+    if (type(command) is int):
+        command = str(command)
+    command = list(command)
+
+    if (len(command) == 0): return 0 # if input is empty, returns 0
 
     for i in range(len(command)):
-        if (command[i] == "math.pi"):
+        if (command[i] == "math.pi"): # replaces math.py variables
             command[i] = str(math.pi)
         elif (command[i] == "math.e"):
             command[i] = str(math.e)
         elif (command[i] in variables): # replaces long-name variables with their values
-            command[i] = calculate(variables.get(command[i]))
+            try:
+                command[i] = calculate(variables.get(command[i]))
+            except RecursionError as error: # when a lazy var is assigned to itself
+                errorMsg("calc", "cannot calculate a variable with self assignment")
+                print(error)
+                return None
             if (type(command[i]) == list):
                 if (len(command) == 1): command[i] = command[i][0] # if item is a list with one element, takes first
+                else:
+                    errorMsg("calc", "cannot multiply for an array")
             elif (command[i] is None): return None # in case of calculate() error
             command[i] = str(command[i])
 
-    command = "".join(command) # concatenates command back into a string
-    equation = []
+    command = "".join(str(j) for j in command) # concatenates command back into a string
+    #//print(command)
+    equation = ""
     for i in command:
         #if (i in variables): # replaces variables with their values
         #    equation.append(str(calculate(variables.get(i))))
@@ -40,14 +53,16 @@ def calculate(command):
             errorMsg("calc", f"{i} symbol / variable name ambiguity")
             return None
         else:
-            equation.append(i)
+            #//print(i)
+            equation += i
 
-    equation = "".join(equation) # concatenates equation back into a string
-    equation = equation.format_map(variables) # replaces variables with their values
-    equation = equation.strip(" ") # strips whitespaces from equation
+    #//print(equation)
+    #equation = "".join(str(j) for j in equation) # concatenates equation back into a string
+    #equation = equation.format_map(variables) # replaces variables with their values
+    equation = equation.strip() # strips whitespaces from equation
 
     try:
-        #print(equation)
+        #//print(equation)
         return eval(equation)
     except SyntaxError as error:
         errorMsg("calc", f"cannot understand operation. \n{error}")
@@ -177,15 +192,23 @@ def setCmd(command):
     else:
         command.pop(1)
         if (command[1][0] == "&"):
+            value = ""
             command[1] = command[1].lstrip("&")
-            variables[var] = command[1]
-            return f"lazy assignment {var} = {command[1]}"
-        if (command[1] != "("):
-            value = calculate(command[1 : None])
-            if (value is None):
-                return
-        else:
-            return
+            for i in range(1, len(command)):
+                if (command[i] != ""):
+                    value += str(command[i]) + " "
+                #value = " ".join(command[i])
+            value = value.rstrip()
+            variables[var] = value
+            return f"(lazy) {var} = {value}"
+        #if (command[1] != "("): #?????
+        #    value = calculate(command[1 : None])
+        #    if (value is None):
+        #        return
+    value = calculate(command[1 : None])
+    if (value is None):
+        errorMsg("let/set", "cannot assign empty variable")
+        return
 
     variables[var] = value
     return f"{var} = {value}"
@@ -238,14 +261,16 @@ def cmdParser(command):
     operator = command[0] # sets operator var to the first keyword
 
     if (operator[0] == "="):
+        command[0] = command[0].lstrip("=") # strips "=" from command beginning
         return calcCmd(command)
 
     command.pop(0) # removes operator from commmand
 
     try:
         return globals()[operator + "Cmd"](command)
-    except KeyError:
+    except KeyError as error:
         errorMsg("cmdParser", f"command '{operator}' does not exist")
+        print(error)
         return
 
 def errorMsg(module, message):
