@@ -92,16 +92,25 @@ def calcCmd(command, man_assign=True):
     return
 
 def delCmd(command):
+    deleted_variables = "variables deleted: "
+
     if (len(command) == 0): # if no argument is given
         errorMsg("del", "no variable specified")
         return
+    if (len(command) == 1 and command[0] == "*"): # deletes all variables
+        command.pop()
+        for var in variables:
+            if (var != "ans"):
+                command.append(var)
     for var in command:
         if (var == man_var): print(manCmd([])) # if the variable was manipulated, man_var goes back to ans
-        if (var in variables and var != "ans"): variables.pop(var) # removes variables
+        if (var in variables and var != "ans"):
+            variables.pop(var) # removes variables
+            deleted_variables += var + " "
         elif (var == "ans"): errorMsg("del", "cannot delete 'ans' variable")
         else: errorMsg("del", f"{var} is not an assigned variable")
 
-    return
+    return deleted_variables
 
 def exitCmd(command):
     # closes chalk by setting state to False
