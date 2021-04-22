@@ -311,6 +311,21 @@ def errorMsg(module, message):
     print(f"<!> {module} error: {message}")
     return
 
+def runCmd(command):
+    filename = command[0]
+
+    try:
+        with open(filename) as script:
+            for line in script:
+                output = cmdParser(line)
+                if (output is not None):
+                    print(output)
+        return
+    except FileNotFoundError as error:
+        errorMsg("run", "script file not found")
+        print(error)
+        return
+
 state = True
 
 def CLI():
