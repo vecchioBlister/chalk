@@ -1,3 +1,12 @@
+del all variables
+
+run command (scripts)
+run help
+
+save variables to file
+
+helpCmd() exceptions
+
 more commands
 
 helpfiles
