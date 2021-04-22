@@ -25,18 +25,18 @@ def calculate(command):
 
     if (len(command) == 0): return 0 # if input is empty, returns 0
 
-    for i in range(len(command)):
-        if (command[i] == "math.pi"): # replaces math.py variables
-            command[i] = str(math.pi)
-        elif (command[i] == "math.e"):
-            command[i] = str(math.e)
-        elif (command[i] in variables): # replaces long-name variables with their values
+    for word in range(len(command)):
+        if (command[word] == "math.pi"): # replaces math.py variables
+            command[word] = str(math.pi)
+        elif (command[word] == "math.e"):
+            command[word] = str(math.e)
+        elif (command[word] in variables): # replaces long-name variables with their values
             try:
-                command[i] = str(
+                command[word] = str(
                     calculate(
                         list(
                             str(
-                                variables.get(command[i])
+                                variables.get(command[word])
                                 )
                             )
                         )
@@ -49,19 +49,19 @@ def calculate(command):
             #    if (len(command) == 1): command[i] = command[i][0] # if item is a list with one element, takes first
             #    else:
             #        errorMsg("calc", "cannot multiply for an array")
-            if (command[i] is None): return None # in case of calculate() error
-            command[i] = str(command[i])
+            if (command[word] is None): return None # in case of calculate() error
+            command[word] = str(command[word])
 
-    command = "".join(str(j) for j in command) # concatenates command back into a string
+    command = "".join(str(word) for word in command) # concatenates command back into a string
     #//print(command)
     equation = ""
-    for i in command:
-        if (i.isalpha() and not i in operators):
-            errorMsg("calc", f"{i} symbol / variable name ambiguity")
+    for char in command:
+        if (char.isalpha() and not char in operators):
+            errorMsg("calc", f"{char} symbol / variable name ambiguity")
             return None
         else:
             #//print(i)
-            equation += i
+            equation += char
 
     #//print(equation)
     #equation = "".join(str(j) for j in equation) # concatenates equation back into a string
@@ -95,11 +95,11 @@ def delCmd(command):
     if (len(command) == 0): # if no argument is given
         errorMsg("del", "no variable specified")
         return
-    for i in command:
-        if (i == man_var): print(manCmd([])) # if the variable was manipulated, man_var goes back to ans
-        if (i in variables and i != "ans"): variables.pop(i) # removes variables
-        elif (i == "ans"): errorMsg("del", "cannot delete 'ans' variable")
-        else: errorMsg("del", f"{i} is not an assigned variable")
+    for var in command:
+        if (var == man_var): print(manCmd([])) # if the variable was manipulated, man_var goes back to ans
+        if (var in variables and var != "ans"): variables.pop(var) # removes variables
+        elif (var == "ans"): errorMsg("del", "cannot delete 'ans' variable")
+        else: errorMsg("del", f"{var} is not an assigned variable")
 
     return
 
@@ -111,8 +111,8 @@ def exitCmd(command):
 
 def printHelp(helpfile):
     # prints each line of helpfile, formatting the variables
-    for i in helpfile:
-        print(i.rstrip().format(
+    for line in helpfile:
+        print(line.rstrip().format(
             VERSION = VERSION,
             ))
     return
@@ -165,15 +165,15 @@ def letCmd(command):
     if (len(command) == 0): # if no variable is given, calls setCmd() to assign a new one
         return setCmd(command)
 
-    for i in command:
+    for word in command:
         if (
-            "=" in i and
-            len(i) > 1
+            "=" in word and
+            len(word) > 1
         ):
-            j = i.replace("=", " = ")
-            j = j.split()
-            k = command.index(i)
-            command[k : k + 1] = j
+            spaced_equals = word.replace("=", " = ")
+            spaced_equals = spaced_equals.split()
+            equals_pos = command.index(word)
+            command[equals_pos : equals_pos + 1] = spaced_equals
 
     var = command[0]
 
@@ -187,19 +187,19 @@ def setCmd(command):
     if (len(command) == 0): # if no variable is given, a free one is assigned
         command.append(free_vars.pop())
 
-    for i in command:
+    for word in command:
         if (
-            "=" in i and
-            len(i) > 1
+            "=" in word and
+            len(word) > 1
         ):
-            j = i.replace("=", " = ")
-            j = j.split()
-            k = command.index(i)
-            command[k : k + 1] = j
+            spaced_equals = word.replace("=", " = ")
+            spaced_equals = spaced_equals.split()
+            equals_pos = command.index(word)
+            command[equals_pos : equals_pos + 1] = spaced_equals
 
     var = command[0]
-    for i in var:
-        if (not i.isalpha()):
+    for char in var:
+        if (not char.isalpha()):
             errorMsg("let/set", "variable names cannot contain digits or symbols")
             return
 
@@ -213,9 +213,9 @@ def setCmd(command):
         if (command[1][0] == "&"):
             value = ""
             command[1] = command[1].lstrip("&")
-            for i in range(1, len(command)):
-                if (command[i] != ""):
-                    value += str(command[i]) + " "
+            for char in range(1, len(command)):
+                if (command[char] != ""):
+                    value += str(command[char]) + " "
                 #value = " ".join(command[i])
             value = value.rstrip()
             variables[var] = value
@@ -235,23 +235,23 @@ def varCmd(command):
     vars_to_print = []
     alph_order = False
 
-    for i in command:
-        if (i == "-a"):
-            command.remove(i)
+    for word in command:
+        if (word == "-a"):
+            command.remove(word)
             alph_order = True
 
     if (len(command) == 0): # no arguments given, appends all variables
-        for i in variables:
-            vars_to_print.append(i)
+        for var in variables:
+            vars_to_print.append(var)
     else: # var arguments are given and appended
-        for i in command:
-            vars_to_print.append(i)
+        for var in command:
+            vars_to_print.append(var)
 
     if (alph_order is True): vars_to_print = sorted(vars_to_print)
 
-    for i in vars_to_print:
-        if (i not in variables): print(f"{i} is not an assigned variable")
-        else: print(f"\t{i}\t=\t{variables.get(i)}")
+    for var in vars_to_print:
+        if (var not in variables): print(f"{var} is not an assigned variable")
+        else: print(f"\t{var}\t=\t{variables.get(var)}")
 
     return
 
