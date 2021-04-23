@@ -327,6 +327,10 @@ def errorMsg(module, message):
     return
 
 def runCmd(command):
+    if (len(command) == 0):
+        errorMsg("run", "no script file was given")
+        return
+
     filename = command[0]
 
     try:
