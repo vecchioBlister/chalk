@@ -133,42 +133,48 @@ def helpCmd(command):
         with open("./docs/help/help") as helpfile:
             printHelp(helpfile)
         return
-    else: command = command[0] # otherwise chooses the first argument
+    command = command[0] # first argument is <command> help
 
     if (command == "me"): # :)
         print("oh no")
-        return
-    elif (command == "del"):
-        with open("./docs/help/del") as helpfile:
-            printHelp(helpfile)
-        return
-    elif (command == "exit"):
-        with open("./docs/help/exit") as helpfile:
-            printHelp(helpfile)
         return
     elif (command == "help"):
         print("help *<command>")
         print("\tprints the main help page or a specific <command> help page.")
         return
-    elif (command == "let"):
-        with open("./docs/help/let") as helpfile:
-            printHelp(helpfile)
-        return
-    elif (command == "man"):
-        with open("./docs/help/man") as helpfile:
-            printHelp(helpfile)
-        return
-    elif (command == "set"):
-        with open("./docs/help/set") as helpfile:
-            printHelp(helpfile)
-        return
-    elif (command == "var"):
-        with open("./docs/help/var") as helpfile:
-            printHelp(helpfile)
-        return
-    else: errorMsg("help", f"'{command}' help does not exist")
 
-    return
+    try:
+        if (command == "del"):
+            with open("./docs/help/del") as helpfile:
+                printHelp(helpfile)
+            return
+        elif (command == "exit"):
+            with open("./docs/help/exit") as helpfile:
+                printHelp(helpfile)
+            return
+        elif (command == "let"):
+            with open("./docs/help/let") as helpfile:
+                printHelp(helpfile)
+            return
+        elif (command == "man"):
+            with open("./docs/help/man") as helpfile:
+                printHelp(helpfile)
+            return
+        elif (command == "set"):
+            with open("./docs/help/set") as helpfile:
+                printHelp(helpfile)
+            return
+        elif (command == "var"):
+            with open("./docs/help/var") as helpfile:
+                printHelp(helpfile)
+            return
+        else:
+            errorMsg("help", f"'{command}' help does not exist")
+            return
+    except FileNotFoundError as error:
+        errorMsg("help", "help file not found, ./docs/help/ folder may be missing")
+        print(error)
+        return
 
 def letCmd(command):
     if (len(command) == 0): # if no variable is given, calls setCmd() to assign a new one
