@@ -20,8 +20,18 @@ help *<command>
 	prints this help page or a specific <command> help page.
 let <var> be <value>
 	assigns <value> to a variable <var>.
+load <file.csv> *-s
+	loads saved variables from file.
+	*-s forces 'set' if variables exist already.
 man *<var>
 	selects <var> for manipulation
+run <filename>
+	runs the file as a script file, executing every line as a command.
+save <filename> *<var> *-d *-f
+	writes variables to a csv file.
+	If no variable is specified, all variables will be written.
+	*-d deletes variables after they have been written.
+	*-f forces appending to the file if it already exists.
 set <var> to <value>
 	forces <value> to variable <var>.
 var *<var> *-a

@@ -1,0 +1,2 @@
+run <filename>
+	runs the file as a script file, executing every line as a command.

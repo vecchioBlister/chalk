@@ -156,8 +156,20 @@ def helpCmd(command):
             with open("./docs/help/let") as helpfile:
                 printHelp(helpfile)
             return
+        elif (command == "load"):
+            with open("./docs/help/load") as helpfile:
+                printHelp(helpfile)
+            return
         elif (command == "man"):
             with open("./docs/help/man") as helpfile:
+                printHelp(helpfile)
+            return
+        elif (command == "run"):
+            with open("./docs/help/run") as helpfile:
+                printHelp(helpfile)
+            return
+        elif (command == "save"):
+            with open("./docs/help/save") as helpfile:
                 printHelp(helpfile)
             return
         elif (command == "set"):
