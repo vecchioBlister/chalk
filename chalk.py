@@ -308,12 +308,18 @@ def saveCmd(command):
             if (write_header is True): # writes header if not present already
                 file.write("variable, value\n")
             for var in vars_to_save:
-                file.write(f"{var}, {variables.get(var)}\n")
+                if (type(variables.get(var)) != str): # if value is string, adds "&" for lazy assignments
+                    file.write(f"{var}, {variables.get(var)}\n")
+                else:
+                    file.write(f"{var}, &{variables.get(var)}\n")
     except FileNotFoundError: # creates file if it doesn't exist
         with open(filename, "x") as file:
             file.write("variable, value\n")
             for var in vars_to_save:
-                file.write(f"{var}, {variables.get(var)}\n")
+                if (type(variables.get(var)) != str): # if value is string, adds "&" for lazy assignments
+                    file.write(f"{var}, {variables.get(var)}\n")
+                else:
+                    file.write(f"{var}, &{variables.get(var)}\n")
 
     if (delete_vars is True): # deletes variables if requested
         saved_vars += "(and deleted)"
