@@ -135,7 +135,6 @@ def printHelp(helpfile):
 
 def helpCmd(command):
     # calls printHelp() with the chosen helpfile
-
     if (len(command) == 0): # prints the main help page (no argument given)
         with open("./docs/help/help") as helpfile:
             printHelp(helpfile)
@@ -196,6 +195,7 @@ def helpCmd(command):
         return
 
 def letCmd(command):
+    # assigns new variables, without overwriting
     if (len(command) == 0): # if no variable is given, calls setCmd() to assign a new one
         return setCmd(command)
 
@@ -218,6 +218,7 @@ def letCmd(command):
         return setCmd(command)
 
 def loadCmd(command):
+    # loads variables from file
     if (len(command) == 0):
         errorMsg("load", "no filename was given")
         return
@@ -259,6 +260,7 @@ def loadCmd(command):
     return loaded_vars
 
 def saveCmd(command):
+    # saves variables to file
     if (len(command) == 0):
         errorMsg("save", "no filename was given")
         return
@@ -319,6 +321,7 @@ def saveCmd(command):
     return saved_vars
 
 def setCmd(command):
+    # assigns variables overwriting
     if (len(command) == 0): # if no variable is given, a free one is assigned
         command.append(free_vars.pop())
 
@@ -367,6 +370,7 @@ def setCmd(command):
     return f"{var} = {value}"
 
 def varCmd(command):
+    # prints variables values
     vars_to_print = []
     alph_order = False
 
@@ -390,7 +394,8 @@ def varCmd(command):
 
     return
 
-def varManUpd(): # updates the manipulated var string
+def varManUpd():
+    # updates the manipulated var string
     global man_var
     global man_value
 
@@ -403,6 +408,7 @@ def varManUpd(): # updates the manipulated var string
     return
 
 def manCmd(command):
+    # selects the variable for manipulation
     global man_var
 
     if (len(command) == 0):
@@ -419,11 +425,13 @@ def manCmd(command):
     return f"[{var}] is now manipulated"
 
 def clsCmd(command):
+    # clears console screen
     os.system("cls" if os.name=="nt" else "clear") # clears console screen
     print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands")
     return
 
 def cmdParser(command):
+    # parses input commands
     command = command.split() # splits command given into a list
 
     if (command[0][0] == "="): # calc chortcut
@@ -443,10 +451,12 @@ def cmdParser(command):
         return
 
 def errorMsg(module, message):
+    # prints error messages
     print(f"<!> {module} error: {message}")
     return
 
 def runCmd(command):
+    # runs given script file
     if (len(command) == 0):
         errorMsg("run", "no script file was given")
         return
@@ -468,6 +478,7 @@ def runCmd(command):
 state = True
 
 def CLI():
+    # command line function
     print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
 
     while (state is True):
