@@ -417,7 +417,14 @@ def sayCmd(command):
     echo = ""
 
     for word in command:
-        echo += word + " "
+        if (word[0] == "&"): # evaluates that variable
+            echo += str(
+                calculate(
+                    [word.lstrip("&")]
+                    )
+                ) + " "
+        else:
+            echo += word + " "
 
     return echo
 
