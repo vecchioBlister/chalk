@@ -252,7 +252,7 @@ def saveCmd(command):
     filename = command.pop(0) # takes first argument as filename
     filename += ".csv"
 
-    for word in command: # check if vars should be deleted
+    for word in command: # check if vars should be deleted and/or file overwritten
         if (word == "-d"):
             command.remove(word)
             delete_vars = True
