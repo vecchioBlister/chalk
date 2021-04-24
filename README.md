@@ -53,6 +53,6 @@ When you want to delete a variable, you can use the 'del' command, followed by h
 - 'load' imports saved variables from a chalk csv variables file.
 - 'run' runs a script file, executing each line as a command.
 
-- 'help' displays the main help page; you can add the name of a command afterwards to print its specific help page.
-- 'exit' closes chalk.
 - 'cls' clears the console screen.
+- 'exit' closes chalk.
+- 'help' displays the main help page; you can add the name of a command afterwards to print its specific help page.
