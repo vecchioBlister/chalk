@@ -3,4 +3,4 @@ var *<var> *-a
 	If no <var> is given, prints all assigned variables.
 	You can give more than one <var> argument, separated by whitespaces.
 
-	The *-a argument prints the variables in alphabetical order.
+	*-a to print variables in alphabetical order.

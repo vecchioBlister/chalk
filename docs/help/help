@@ -37,4 +37,4 @@ set <var> to <value>
 var *<var> *-a
 	prints <var> value.
 	If no <var> is given, prints all assigned variables.
-	*-a for alphabetical order.
+	*-a to print variables in alphabetical order.
