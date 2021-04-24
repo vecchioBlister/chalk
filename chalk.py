@@ -205,14 +205,19 @@ def saveCmd(command):
 
     vars_to_save = []
     delete_vars = False
+    force_overwrite = False
     saved_vars = "written variables: "
 
     filename = command.pop(0) # takes first argument as filename
+    filename += ".csv"
 
     for word in command: # check if vars should be deleted
         if (word == "-d"):
             command.remove(word)
             delete_vars = True
+        if (word == "-f"):
+            command.remove(word)
+            force_overwrite = True
 
     if (len(command) == 0): # check if all vars should be saved
         for var in variables:
@@ -225,12 +230,27 @@ def saveCmd(command):
                 saved_vars += var + " "
             else: errorMsg("del", f"{var} is not an assigned variable")
 
-
-
-    with open(filename, "a+") as file: # writes variables to file
-        file.write("variable, value\n")
-        for var in vars_to_save:
-            file.write(f"{var}, {variables.get(var)}\n")
+    try:
+        write_header = False
+        with open(filename) as file: # check if file exists
+            if (force_overwrite is True): # continues if -f
+                errorMsg("save", f"'{filename}' already exists, data will be appended")
+                if (file.readline() != "variable, value\n"): # if first line is different
+                    errorMsg("save", f"'{filename}' is not a chalk variables csv file")
+                    write_header = True
+            else: # error and stops if not -f
+                errorMsg("save", f"'{filename}' already exists, save aborted")
+                return
+        with open(filename, "a+") as file: # reopens file to append
+            if (write_header is True): # writes header if not present already
+                file.write("variable, value\n")
+            for var in vars_to_save:
+                file.write(f"{var}, {variables.get(var)}\n")
+    except FileNotFoundError: # creates file if it doesn't exist
+        with open(filename, "x") as file:
+            file.write("variable, value\n")
+            for var in vars_to_save:
+                file.write(f"{var}, {variables.get(var)}\n")
 
     if (delete_vars is True): # deletes variables if requested
         saved_vars += "(and deleted)"
