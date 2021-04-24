@@ -19,6 +19,11 @@ Within ./docs/ you'll find all of the documentation, and ./docs/help/ is where c
 The ./scripts/ folder contains some useful functions and script templates; feel free to check them out and edit them.
 The ./variables/ folder contains variable files, and is the default path for chalk's save-and-exit feature (try 'help exit' for more information).
 
+### Documentation
+
+- [Interface](https://github.com/LionSpeck/chalk/blob/main/docs/Interface.md#chalk-documentation-the-command-line-interface)
+- [Commands](https://github.com/LionSpeck/chalk/blob/main/docs/Commands.md#chalk-documentation-commands)
+
 ### Basic operation
 
 In order to quickly evaluate expressions, you can type them preceded by '=', or by the 'calc' command. The result will be stored in the currently manipulated variable ('ans' by default), that you can see on the left of your command line. If you want an operation result, without it being stored, you can type your calculation preceded by '?'.
