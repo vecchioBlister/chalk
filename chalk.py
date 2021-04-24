@@ -231,7 +231,7 @@ def loadCmd(command):
         for var in vars_to_load:
             loaded_vars += var[0] + " "
             setCmd([var[0], "to", var[1]])
-        loaded_vars += "(forced)"
+        loaded_vars += "('set' forced)"
     else:
         for var in vars_to_load:
             loaded_vars += var[0] + " "
