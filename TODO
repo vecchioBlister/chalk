@@ -1,11 +1,8 @@
 run command (scripts)
-    -s to force set
 run help
 
 load command
-
-review varCmd()
-review delCmd()
+    -s to force set
 
 more commands
 
