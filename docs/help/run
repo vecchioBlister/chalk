@@ -1,2 +1,5 @@
 run <filename>
 	runs the file as a script file, executing every line as a command.
+
+When reading commands, ignores empty lines and comments (lines that begin with '#').
+Commands ending with ';' will not be printed.

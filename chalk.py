@@ -527,7 +527,8 @@ def runCmd(command):
     try:
         with open(filename) as script:
             for line in script:
-                commands.append(line.strip())
+                if (line[0] != "#" and len(line.strip()) != 0): # ignores comments and empty lines
+                    commands.append(line.strip())
     except FileNotFoundError as error:
         errorMsg("run", "script file not found")
         print(error)
