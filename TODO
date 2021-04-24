@@ -1,9 +1,6 @@
 run command (scripts)
 run help
 
-load command
-    -s to force set
-
 more commands
 
 helpfiles

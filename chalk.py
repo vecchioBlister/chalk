@@ -198,6 +198,47 @@ def letCmd(command):
     else:
         return setCmd(command)
 
+def loadCmd(command):
+    if (len(command) == 0):
+        errorMsg("load", "no filename was given")
+        return
+
+    vars_to_load = []
+    force_set = False
+    loaded_vars = "loaded variables: "
+
+    filename = command.pop(0) # takes first argument as filename
+
+    for word in command:
+        if (word == "-s" or word == "-f"):
+            command.remove(word)
+            force_set = True
+
+    try:
+        with open(filename) as file:
+            if (file.readline() != "variable, value\n"): # if first line is different
+                errorMsg("load", f"'{filename}' is not a chalk variables csv file. Missing 'variable, value' header")
+                return
+            for line in file:
+                var = line.strip().split(", ")
+                vars_to_load.append(var)
+    except FileNotFoundError as error:
+        errorMsg("load", f"'{filename}' not found")
+        print(error)
+        return
+
+    if (force_set is True):
+        for var in vars_to_load:
+            loaded_vars += var[0] + " "
+            setCmd([var[0], "to", var[1]])
+        loaded_vars += "(forced)"
+    else:
+        for var in vars_to_load:
+            loaded_vars += var[0] + " "
+            letCmd([var[0], "be", var[1]])
+
+    return loaded_vars
+
 def saveCmd(command):
     if (len(command) == 0):
         errorMsg("save", "no filename was given")
