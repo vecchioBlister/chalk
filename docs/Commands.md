@@ -29,7 +29,7 @@ will print the result '9' without assigning it.
 
 You can also use variables and math (python module) constants in your calculations.
 
-###### Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, '1+ a + b \*8+6'.
+##### Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, '1+ a + b \*8+6'.
 
 ## Variables
 
