@@ -1,7 +1,8 @@
 del <var>
 	deletes <var>.
-	Can delete multiple <var> at the same time.
 
-	You can delete all variables by typing 'del *'
+You can delete multiple <var> at the same time, separeted by whitespaces.
 
-	If the deleted <var> was manipulated, 'ans' gets now manipulated.
+You can delete all variables by typing 'del *'
+
+If the deleted <var> was manipulated, 'ans' gets now manipulated.

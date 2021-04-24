@@ -1,7 +1,8 @@
 save <filename> *<var> *-d *-f
 	writes <var> to a csv file.
-	You can give more than one <var> argument, separated by whitespaces.
-	If no variable is specified, all variables will be written.
 
 	*-d deletes variables after they have been written.
 	*-f forces appending to the file if it already exists.
+
+You can give more than one <var> argument, separated by whitespaces.
+If no variable is specified, all variables will be written.

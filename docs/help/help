@@ -14,6 +14,7 @@ cls
 	clears the console screen.
 del <var>
 	deletes <var>.
+	Deletes all variables with '*'.
 exit
 	closes chalk.
 help *<command>
@@ -29,12 +30,10 @@ run <filename>
 	runs the file as a script file, executing every line as a command.
 save <filename> *<var> *-d *-f
 	writes variables to a csv file.
-	If no variable is specified, all variables will be written.
 	*-d deletes variables after they have been written.
 	*-f forces appending to the file if it already exists.
 set <var> to <value>
 	forces <value> to variable <var>.
 var *<var> *-a
 	prints <var> value.
-	If no <var> is given, prints all assigned variables.
 	*-a to print variables in alphabetical order.

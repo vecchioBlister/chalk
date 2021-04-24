@@ -2,7 +2,7 @@ calc <equation>
 	(also called with '=')
 	evaluates the equation and assigns it to the currently manipulated variable.
 
-	If calc is called with '?', the result will not be assigned to the manipulated variable.
+If calc is called with '?', the result will not be assigned to the manipulated variable.
 
-	Variables can be used in the equation, as well as math (python module) constants.
-	Variables should be separated by whitespaces, to avoid ambiguity.
+Variables can be used in the equation, as well as math (python module) constants.
+Variables should be separated by whitespaces, to avoid ambiguity.

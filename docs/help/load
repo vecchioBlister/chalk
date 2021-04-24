@@ -1,3 +1,4 @@
 load <file.csv> *-s
 	loads saved variables from file.
+
 	*-s forces 'set' if variables exist already.
