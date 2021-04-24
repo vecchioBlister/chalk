@@ -534,11 +534,11 @@ def runCmd(command):
         return
 
     for line in commands:
-        if (line[-1] != ";"): # doesn't print commands ending with ";"
+        if (line[-1] != ";"): # check if command ends with ";"
             output = cmdParser(line)
             if (output is not None):
                 print(output)
-        else: cmdParser(line)
+        else: cmdParser(line.rstrip(";"))
 
 if __name__ == "__main__":
     CLI()
