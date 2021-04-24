@@ -1,4 +1,4 @@
-save <filename> *<var> *-d *-f
+save *<filename> *<var> *-d *-f
 	writes <var> to a csv file.
 
 	*-d deletes variables after they have been written.
@@ -6,3 +6,5 @@ save <filename> *<var> *-d *-f
 
 You can give more than one <var> argument, separated by whitespaces.
 If no variable is specified, all variables will be written.
+
+If no filename is specified, current date and time will be used.

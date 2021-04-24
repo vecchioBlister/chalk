@@ -262,8 +262,9 @@ def loadCmd(command):
 def saveCmd(command):
     # saves variables to file
     if (len(command) == 0):
-        errorMsg("save", "no filename was given")
-        return
+        print("save warning: no filename was given, current date and time will be used")
+        year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
+        command = [f"./variables/{year}-{month}-{day}_{hour}-{min}"]
 
     vars_to_save = []
     delete_vars = False

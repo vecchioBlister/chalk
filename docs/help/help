@@ -29,7 +29,7 @@ man *<var>
 	selects <var> for manipulation
 run <filename>
 	runs the file as a script file, executing every line as a command.
-save <filename> *<var> *-d *-f
+save *<filename> *<var> *-d *-f
 	writes variables to a csv file.
 	*-d deletes variables after they have been written.
 	*-f forces appending to the file if it already exists.
