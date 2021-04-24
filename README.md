@@ -14,9 +14,9 @@ The easiest way to get your hands on some chalk, since it's still in developemen
 
 The main executable file is chalk.py; it contains all of the required functions and the CLI. It does **not** contain neither documentation, nor helpfiles, so it's recommended that you bring along all of the attached folders.
 
-Within ./docs/ you'll find all of the documentation, and ./docs/help/ is where chalk keeps all of its helpfiles. It's not advised to edit any of these files.
+Within [./docs/](https://github.com/LionSpeck/chalk/tree/main/docs) you'll find all of the documentation, and [./docs/help/](https://github.com/LionSpeck/chalk/tree/main/docs/help) is where chalk keeps all of its helpfiles. It's not advised to edit any of these files.
 
-The ./scripts/ folder contains some useful functions and script templates; feel free to check them out and edit them.
+The [./scripts/](https://github.com/LionSpeck/chalk/tree/main/scripts) folder contains some useful functions and script templates; feel free to check them out and edit them.
 The ./variables/ folder contains variable files, and is the default path for chalk's save-and-exit feature (try 'help exit' for more information).
 
 ### Documentation
