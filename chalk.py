@@ -412,6 +412,15 @@ def saveCmd(command):
 
     return saved_vars
 
+def sayCmd(command):
+    # prints on screen all the arguments given
+    echo = ""
+
+    for word in command:
+        echo += word + " "
+
+    return echo
+
 def setCmd(command):
     # assigns variables overwriting
     if (len(command) == 0): # if no variable is given, a free one is assigned
