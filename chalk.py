@@ -14,6 +14,24 @@ man_value = "" # currently manipulated variable value
 
 state = True # CLI "on" state
 
+def askCmd(command):
+    # asks the user for a value, given a variable name (useful for scripting)
+    if (len(command) == 0):
+        errorMsg("ask", "no variable name was given")
+        return
+
+    var = command.pop(0) # takes variable name
+    input_phrase = ""
+
+    for word in command: # assembles input phrase with the other arguments
+        input_phrase += word + " "
+
+    value = input(input_phrase + f"[{var}]: ")
+
+    if (value == ""): value = "0"
+
+    return letCmd([var, "be", value])
+
 def calcCmd(command, man_assign=True):
     if (man_var in variables):
         result = calculate(command)
