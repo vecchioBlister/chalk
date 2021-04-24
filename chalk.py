@@ -12,6 +12,19 @@ variables = dict([
 man_var = "ans" # currently manipulated variable
 man_value = "" # currently manipulated variable value
 
+state = True # CLI "on" state
+
+def calcCmd(command, man_assign=True):
+    if (man_var in variables):
+        result = calculate(command)
+        if (result is None): return
+        elif (man_assign is False): print(result)
+        else: variables[man_var] = result
+    else: # gives an error
+        errorMsg("calc", f"'{man_var}' is not a valid variable (man)")
+        return
+    return
+
 def calculate(command):
     operators = "+-*().,; /[]"
 
@@ -81,16 +94,48 @@ def calculate(command):
         errorMsg("calc", f"{error}")
         return None
 
-def calcCmd(command, man_assign=True):
-    if (man_var in variables):
-        result = calculate(command)
-        if (result is None): return
-        elif (man_assign is False): print(result)
-        else: variables[man_var] = result
-    else: # gives an error
-        errorMsg("calc", f"'{man_var}' is not a valid variable (man)")
-        return
+def CLI():
+    # command line function
+    print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
+
+    while (state is True):
+        varManUpd()
+        command = input(f"\n[{man_var}]({man_value})> ") # command input
+        if (len(command) == 0 or command.split() == []): errorMsg("CLI", "no command was given")
+        else:
+            if (command[-1] == ";"): # if command ends with ';' execute command without printing
+                command = command.rstrip(";")
+                cmdParser(command)
+            else: # otherwise print command result
+                result = cmdParser(command)
+                if (result != None):
+                    print(result)
+
+def clsCmd(command):
+    # clears console screen
+    os.system("cls" if os.name=="nt" else "clear") # clears console screen
+    print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands")
     return
+
+def cmdParser(command):
+    # parses input commands
+    command = command.split() # splits command given into a list
+
+    if (command[0][0] == "="): # calc chortcut
+        command[0] = command[0].lstrip("=") # strips "=" from command beginning
+        return calcCmd(command)
+    elif (command[0][0] == "?"): # calc without assign to man_var
+        command[0] = command[0].lstrip("?") # strips "?" from command beginning
+        return calcCmd(command, False)
+
+    operator = command.pop(0) # sets operator var to the first keyword
+
+    try:
+        return globals()[operator + "Cmd"](command)
+    except KeyError as error:
+        errorMsg("cmdParser", f"command '{operator}' does not exist")
+        print(error)
+        return
 
 def delCmd(command):
     deleted_variables = "variables deleted: "
@@ -113,6 +158,11 @@ def delCmd(command):
 
     return deleted_variables
 
+def errorMsg(module, message):
+    # prints error messages
+    print(f"<!> {module} error: {message}")
+    return
+
 def exitCmd(command):
     #closes chalk by setting "state" to False
 
@@ -124,14 +174,6 @@ def exitCmd(command):
     global state
     state = False
     return "bye"
-
-def printHelp(helpfile):
-    # prints each line of helpfile, formatting the variables
-    for line in helpfile:
-        print(line.rstrip().format(
-            VERSION = VERSION,
-            ))
-    return
 
 def helpCmd(command):
     # calls printHelp() with the chosen helpfile
@@ -258,6 +300,31 @@ def loadCmd(command):
             letCmd([var[0], "be", var[1]])
 
     return loaded_vars
+
+def manCmd(command):
+    # selects the variable for manipulation
+    global man_var
+
+    if (len(command) == 0):
+        man_var = "ans"
+        return "[ans] is now manipulated"
+    var = command[0]
+
+    if (var in variables):
+        man_var = var
+    else: # gives an error
+        errorMsg("man", f"'{var}' is not a variable")
+        return
+
+    return f"[{var}] is now manipulated"
+
+def printHelp(helpfile):
+    # prints each line of helpfile, formatting the variables
+    for line in helpfile:
+        print(line.rstrip().format(
+            VERSION = VERSION,
+            ))
+    return
 
 def saveCmd(command):
     # saves variables to file
@@ -414,54 +481,6 @@ def varManUpd():
 
     return
 
-def manCmd(command):
-    # selects the variable for manipulation
-    global man_var
-
-    if (len(command) == 0):
-        man_var = "ans"
-        return "[ans] is now manipulated"
-    var = command[0]
-
-    if (var in variables):
-        man_var = var
-    else: # gives an error
-        errorMsg("man", f"'{var}' is not a variable")
-        return
-
-    return f"[{var}] is now manipulated"
-
-def clsCmd(command):
-    # clears console screen
-    os.system("cls" if os.name=="nt" else "clear") # clears console screen
-    print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands")
-    return
-
-def cmdParser(command):
-    # parses input commands
-    command = command.split() # splits command given into a list
-
-    if (command[0][0] == "="): # calc chortcut
-        command[0] = command[0].lstrip("=") # strips "=" from command beginning
-        return calcCmd(command)
-    elif (command[0][0] == "?"): # calc without assign to man_var
-        command[0] = command[0].lstrip("?") # strips "?" from command beginning
-        return calcCmd(command, False)
-
-    operator = command.pop(0) # sets operator var to the first keyword
-
-    try:
-        return globals()[operator + "Cmd"](command)
-    except KeyError as error:
-        errorMsg("cmdParser", f"command '{operator}' does not exist")
-        print(error)
-        return
-
-def errorMsg(module, message):
-    # prints error messages
-    print(f"<!> {module} error: {message}")
-    return
-
 def runCmd(command):
     # runs given script file
     if (len(command) == 0):
@@ -481,25 +500,6 @@ def runCmd(command):
         errorMsg("run", "script file not found")
         print(error)
         return
-
-state = True
-
-def CLI():
-    # command line function
-    print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
-
-    while (state is True):
-        varManUpd()
-        command = input(f"\n[{man_var}]({man_value})> ") # command input
-        if (len(command) == 0 or command.split() == []): errorMsg("CLI", "no command was given")
-        else:
-            if (command[-1] == ";"): # if command ends with ';' execute command without printing
-                command = command.rstrip(";")
-                cmdParser(command)
-            else: # otherwise print command result
-                result = cmdParser(command)
-                if (result != None):
-                    print(result)
 
 if __name__ == "__main__":
     CLI()
