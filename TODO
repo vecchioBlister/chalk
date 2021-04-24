@@ -1,7 +1,15 @@
 run command (scripts)
+    -s to force set
 run help
 
 save variables to file
+    check for variable format
+    warn if otherwise
+
+load command
+
+review varCmd()
+review delCmd()
 
 more commands
 
