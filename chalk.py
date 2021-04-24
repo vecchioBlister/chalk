@@ -198,6 +198,46 @@ def letCmd(command):
     else:
         return setCmd(command)
 
+def saveCmd(command):
+    if (len(command) == 0):
+        errorMsg("save", "no filename was given")
+        return
+
+    vars_to_save = []
+    delete_vars = False
+    saved_vars = "written variables: "
+
+    filename = command.pop(0) # takes first argument as filename
+
+    for word in command: # check if vars should be deleted
+        if (word == "-d"):
+            command.remove(word)
+            delete_vars = True
+
+    if (len(command) == 0): # check if all vars should be saved
+        for var in variables:
+            vars_to_save.append(var)
+            saved_vars += var + " "
+    else:
+        for var in command: # appends all vars to be saved
+            if (var in variables):
+                vars_to_save.append(var)
+                saved_vars += var + " "
+            else: errorMsg("del", f"{var} is not an assigned variable")
+
+
+
+    with open(filename, "a+") as file: # writes variables to file
+        file.write("variable, value\n")
+        for var in vars_to_save:
+            file.write(f"{var}, {variables.get(var)}\n")
+
+    if (delete_vars is True): # deletes variables if requested
+        saved_vars += "(and deleted)"
+        delCmd(vars_to_save)
+
+    return saved_vars
+
 def setCmd(command):
     if (len(command) == 0): # if no variable is given, a free one is assigned
         command.append(free_vars.pop())
