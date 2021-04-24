@@ -522,18 +522,23 @@ def runCmd(command):
         return
 
     filename = command[0]
+    commands = []
 
     try:
         with open(filename) as script:
             for line in script:
-                output = cmdParser(line)
-                if (output is not None):
-                    print(output)
-        return
+                commands.append(line.strip())
     except FileNotFoundError as error:
         errorMsg("run", "script file not found")
         print(error)
         return
+
+    for line in commands:
+        if (line[-1] != ";"): # doesn't print commands ending with ";"
+            output = cmdParser(line)
+            if (output is not None):
+                print(output)
+        else: cmdParser(line)
 
 if __name__ == "__main__":
     CLI()
