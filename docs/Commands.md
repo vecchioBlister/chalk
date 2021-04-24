@@ -6,6 +6,9 @@
 2. [Variables](#variables)
 	1. [Assignment](#assignment)
 	2. [Display](#print-variables)
+	3. [Manipulation](#manipulation)
+	4. [Deletion](#deletion)
+	5. [Saving and loading](#saving-and-loading)
 3. [Scripting](#scripting)
 4. [Useful commands](#useful-commands)
 
