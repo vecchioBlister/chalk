@@ -119,7 +119,7 @@ def exitCmd(command):
     if (len(command) != 0):
         if (command[0] == "-s"): # saves variables to a file
             year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
-            saveCmd([f"./variables/{year}-{month}-{day}_{hour}-{min}"])
+            saveCmd([f"./variables/{year}-{month}-{day}_{hour}-{min} -f"])
 
     global state
     state = False
