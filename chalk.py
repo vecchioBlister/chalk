@@ -1,4 +1,5 @@
 import os
+import time
 import math
 
 VERSION = "0dev"
@@ -113,7 +114,13 @@ def delCmd(command):
     return deleted_variables
 
 def exitCmd(command):
-    # closes chalk by setting state to False
+    #closes chalk by setting "state" to False
+
+    if (len(command) != 0):
+        if (command[0] == "-s"): # saves variables to a file
+            year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
+            saveCmd([f"./variables/{year}-{month}-{day}_{hour}-{min}"])
+
     global state
     state = False
     return "bye"

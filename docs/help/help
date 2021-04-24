@@ -15,8 +15,9 @@ cls
 del <var>
 	deletes <var>.
 	Deletes all variables with '*'.
-exit
+exit *-s
 	closes chalk.
+	*-s saves the variables in a file.
 help *<command>
 	prints this help page or a specific <command> help page.
 let <var> be <value>
