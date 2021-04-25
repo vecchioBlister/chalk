@@ -180,7 +180,7 @@ def cmdParser(command):
     try:
         return globals()[operator + "Cmd"](command)
     except KeyError as error:
-        errorMsg("cmdParser", f"command '{operator}' does not exist")
+        errorMsg("cmdParser", f"command '{operator}' exception")
         print(error)
         return
 
