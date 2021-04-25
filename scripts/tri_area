@@ -2,6 +2,6 @@ say ### triangle area calculator ###
 say
 ask h triangle height;
 ask b triangle base;
-=b * h /2
+let area be b * h /2;
 say
-say triangle area: &ans
+say triangle area: &area

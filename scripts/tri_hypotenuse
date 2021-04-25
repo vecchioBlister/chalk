@@ -2,6 +2,6 @@ say ### triangle hypotenuse ###
 say
 ask a first leg;
 ask b second leg;
-=:( a **2 + b **2)
+let hyp be :( a **2 + b **2);
 say
-say hypotenuse: &ans
+say hypotenuse: &hyp
