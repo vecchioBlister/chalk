@@ -6,7 +6,10 @@
 2. [Calculations](#calculations)
 	1. [`calc` command](#calc)
 	2. [Additional operations](#additional-operations)
-	3. [Algebra (vectors and matrices)](#vectors-and-matrices)
+	3. [Algebra (tuples, vectors and matrices)](#algebra)
+		1. [Indices and length](#indices-and-length)
+		2. [Tuples](#tuples)
+		3. [Arrays](#arrays)
 3. [Variables](#variables)
 	1. [Assignment](#assignment)
 	2. [Printing](#print-variables)
@@ -50,7 +53,7 @@ You can also get results without storing the value, by calling `calc` with `?`:
 	?5+4
 will print the result `9` without assigning it.
 
-You can also use variables and math (python module) constants in your calculations.
+You can also use variables and `math` (python module) constants in your calculations.
 
 ---
 ### Additional operations
@@ -67,7 +70,41 @@ calculates the square root of 2.
 > Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, `1+ a + b *8+6`.
 
 ---
-### Vectors and matrices
+### Algebra
+
+Within chalk, you can make operations with variable types other than floats, like for instance tuples and vectors.
+
+#### Indices and length
+
+Both of these types can contain more than one value, and they can be accessed through indices.
+Indices inside a tuple or an array, start from `0`, up to the length of the object - 1.
+
+To access a value inside a tuple / array, type the index within `[ ]` square brackets; for example:
+
+	> let a be (1,2)
+	a = (1, 2)
+	> let a0 be a [0]
+	a0 = 1
+To know the length of a tuple / array, you can use the operator `#`, giving the object (of which you want to know the length) within `( )` brackets.
+
+	> ?#( a )
+	2
+
+#### Tuples
+
+Tuples are, in a way, lists of floats, which are "grouped" together in `( )` brackets. They are useful to store in one variable multiple values, like coefficients, conjugate square roots, etc.
+
+Operations like subtraction and division don't work with tuples, but other operands do:
+- `+` adds items to the tuple; for instance: `(1, 2) + 3 ==> (1, 2, 3)` and `(1, 2) + (1, 4) ==> (1, 2, 1, 4)`.
+- `*` multiplies the number of values inside the tuple; for example: `(1, 2) * 3 ==> (1, 2, 1, 2, 1, 2)`.
+Most of other operations are not allowed, and will simply output an error.
+
+#### Arrays
+
+Arrays are very useful algebraic tools: they're lists of values, within `[ ]` square brackets.
+
+#### Matrices
+
 
 
 ## Variables
