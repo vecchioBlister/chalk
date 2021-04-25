@@ -180,7 +180,7 @@ For scripting purpose, there exist some commands that will make it possilbe to e
 This command allows you to ask for a variable value, and automatically assign it to a name, that can later be used for calculations.
 The syntax is very simple:
 
-	ask <var> <phrase>
+	ask <var> *<phrase>
 
 where `<var>` is the variable name, and `<phrase>` is the text that will be presented to the user when the value is asked.
 By default, if no value is entered, `0` will be taken.

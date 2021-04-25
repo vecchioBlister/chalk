@@ -220,7 +220,11 @@ def helpCmd(command):
         return
 
     try:
-        if (command == "del"):
+        if (command == "ask"):
+            with open("./docs/help/ask") as helpfile:
+                printHelp(helpfile)
+            return
+        elif (command == "del"):
             with open("./docs/help/del") as helpfile:
                 printHelp(helpfile)
             return
@@ -246,6 +250,10 @@ def helpCmd(command):
             return
         elif (command == "save"):
             with open("./docs/help/save") as helpfile:
+                printHelp(helpfile)
+            return
+        elif (command == "say"):
+            with open("./docs/help/say") as helpfile:
                 printHelp(helpfile)
             return
         elif (command == "set"):

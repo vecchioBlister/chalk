@@ -1,0 +1,7 @@
+ask <var> *<phrase>
+	(for scripting) asks the user for a value and assigns it to a variable.
+
+All words subsequent to the variable name will be interpreted as a phrase, and will only be printed on screen.
+
+The default value, if the user doesn't enter one, is 0.
+Uses the 'let' command for assignment.

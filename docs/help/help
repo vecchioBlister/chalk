@@ -7,6 +7,8 @@ COMMANDS:
 
 * are optional arguments
 
+ask <var> *<phrase>
+	(for scripting) asks the user for a value and assigns it to a variable.
 calc <equation>
 	(also called with '=')
 	evaluates the equation and assigns it to the currently manipulated variable.
@@ -33,6 +35,8 @@ save *<filename> *<var> *-d *-f
 	writes variables to a csv file.
 	*-d deletes variables after they have been written.
 	*-f forces appending to the file if it already exists.
+say <phrase>
+	(for scripting) prints the phrase, solves variable values with '&'.
 set <var> to <value>
 	forces <value> to variable <var>.
 var *<var> *-a
