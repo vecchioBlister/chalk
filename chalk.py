@@ -64,7 +64,7 @@ def calculate(command):
             command[word] = str(math.e)
         elif (command[word] in variables): # replaces long-name variables with their values
             try:
-                command[word] = str(
+                command[word] = "(" + str(
                     calculate(
                         list(
                             str(
@@ -72,7 +72,7 @@ def calculate(command):
                                 )
                             )
                         )
-                    ).strip()
+                    ).strip() + ")"
             except RecursionError as error: # when a lazy var is assigned to itself
                 errorMsg("calc", "cannot calculate a variable with self assignment")
                 print(error)
