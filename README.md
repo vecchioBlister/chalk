@@ -12,6 +12,8 @@ Its key features are:
 
 The easiest way to get your hands on some chalk, since it's still in development, is to clone this repository in its current state. There may be bugs and WIP features, but you'll definitely be on the bleeding edge.
 
+chalk requires Python 3.x and `numpy` installed in order to work.
+
 The main executable file is chalk.py; it contains all of the required functions and the CLI. It does **not** contain neither documentation, nor helpfiles, so it's recommended that you bring along all of the attached folders.
 
 Within [./docs/](https://github.com/LionSpeck/chalk/tree/main/docs) you'll find all of the documentation, and [./docs/help/](https://github.com/LionSpeck/chalk/tree/main/docs/help) is where chalk keeps all of its helpfiles. It's not advised to edit any of these files.
