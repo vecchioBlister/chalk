@@ -177,10 +177,13 @@ def defCmd(command):
         errorMsg("def", "no function variables given")
         return
 
+    aliases_created = ""
+
     for var in command:
         new_var = letCmd([])[0]
         aliases[var] = new_var
-    return
+        aliases_created += var + "\t=\t" + new_var + "\n"
+    return aliases_created
 
 def delCmd(command):
     deleted_variables = "variables deleted: "
