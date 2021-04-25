@@ -455,8 +455,8 @@ def setCmd(command):
 
     var = command[0]
     for char in var:
-        if (not char.isalpha()):
-            errorMsg("let/set", f"variable names cannot contain digits or symbols '{char}'")
+        if (not char.isalnum()):
+            errorMsg("let/set", f"variable names must be alphanumeric - '{char}'")
             return
 
     if (len(command) == 1): # if no value is given, man_value is taken
