@@ -109,7 +109,7 @@ def calculate(command):
     equation = ""
     for char in command:
         if (char.isalpha() and not char in operators):
-            errorMsg("calc", f"{char} symbol / variable name ambiguity")
+            errorMsg("calc", f"'{char}' symbol / variable name ambiguity")
             return None
         elif (char == ":"): # square root symbol
             equation += "math.sqrt"
