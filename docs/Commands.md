@@ -4,7 +4,7 @@
 
 1. [Syntax](#syntax)
 2. [Calculations](#calculations)
-	1. ['calc' command](#calc)
+	1. [`calc` command](#calc)
 	2. [Algebra (vectors and matrices)](#vectors-and-matrices)
 	3. [Additional operations](#additional-operations)
 3. [Variables](#variables)
@@ -20,10 +20,10 @@
 ## Syntax
 
 To input commands in chalk, you simply type the command, followed by the arguments, all separated by whitespaces.
-To learn more information about the specific syntax of each command, you can use 'help'.
-Some commands, such as 'help', do not require arguments, but can accept some.
+To learn more information about the specific syntax of each command, you can use `help`.
+Some commands, such as `help`, do not require arguments, but can accept some.
 
-Many commands will output the result of the actions after you've executed them: if you wish to hide the output of some particular commands, you simply add ';' to the end of the line; for instance:
+Many commands will output the result of the actions after you've executed them: if you wish to hide the output of some particular commands, you simply add `;` to the end of the line; for instance:
 
 	let a be 5;
 will not print in the console the line
@@ -37,17 +37,17 @@ will not print in the console the line
 ### calc
 
 This command solves arithmetic expressions.
-You can also call it more quickly with '='.
+You can also call it more quickly with `=`.
 	
 	calc 5+4
 
 	=5+4
-will store '9' in the currently manipulated variable.
+will store `9` in the currently manipulated variable.
 
-You can also get results without storing the value, by calling 'calc' with '?':
+You can also get results without storing the value, by calling `calc` with `?`:
 
 	?5+4
-will print the result '9' without assigning it.
+will print the result `9` without assigning it.
 
 You can also use variables and math (python module) constants in your calculations.
 
@@ -58,15 +58,15 @@ You can also use variables and math (python module) constants in your calculatio
 ### Additional operations
 
 Here's symbolic shortcuts for some operations you might frequently use:
-- ':' square root
-- '!' factorial
+- `:` square root
+- `!` factorial
 
 In order to use these shortcuts, you must use parentheses to specify the arguments. For instance:
 
 	=:(2)
 calculates the square root of 2.
 
-##### Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, '1+ a + b \*8+6'.
+##### Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, `1+ a + b *8+6`.
 
 
 ## Variables
@@ -78,10 +78,10 @@ calculates the square root of 2.
 Allows you to create a new variable, without replacing an existing value.
 
 	let <var> be <value>
-stores a new variable \<var> with the value \<value>. If it exists already, you will get an error.
+stores a new variable `<var>` with the value `<value>`. If it exists already, you will get an error.
 
 	let <var>
-stores a new variable \<var> with the currently manipulated value.
+stores a new variable `<var>` with the currently manipulated value.
 
 	let
 stores a new variable, with a random one-letter name that isn't being used, with the currently manipulated value.
@@ -92,10 +92,10 @@ stores a new variable, with a random one-letter name that isn't being used, with
 Allows you to create a new variable, overwriting an exising one with the same name if it exists.
 
 	set <var> to <value>
-stores a new variable \<var> with the value \<value>.
+stores a new variable `<var>` with the value `<value>`.
 
 	set <var>
-stores a new variable \<var> with the currently manipulated value.
+stores a new variable `<var>` with the currently manipulated value.
 
 	set
 stores a new variable, with a random one-letter name that isn't being used, with the currently manipulated value.
@@ -104,7 +104,7 @@ stores a new variable, with a random one-letter name that isn't being used, with
 #### Lazy assignment
 
 You can assign expressions to variables, that will be evaluated when the variables are called, instead of when they're assigned.
-To use lazy assignment, you can type '&' followed by your expression, which will be stored as a string as the value of that variable.
+To use lazy assignment, you can type `&` followed by your expression, which will be stored as a string as the value of that variable.
 
 	let a be &5+ b
 will result in:
@@ -116,8 +116,8 @@ When the variable is used in calculations, the value will be solved in real time
 
 ### Print variables
 
-The 'var' command prints the list of currently stored variables.
-By default, they're ordered chronologically; you can order them alphabetically by adding '-a'.
+The `var` command prints the list of currently stored variables.
+By default, they're ordered chronologically; you can order them alphabetically by adding `-a`.
 
 You can give as arguments the names of the variables you want to display, separated by whitespaces.
 
@@ -125,22 +125,23 @@ You can give as arguments the names of the variables you want to display, separa
 ### Manipulation
 
 Variable manipulation is a key feature of chalk which allows you to have a variable always-at-hand, to store all of your results.
-Whenever you type a calculation (with the 'calc' command or its alias '='), the result is stored in the manipulated variable ('ans' by default).
+Whenever you type a calculation (with the `calc` command or its alias `=`), the result is stored in the manipulated variable (`ans` by default).
 
-The 'man' command lets you select the variable you want to manipulate. If you want to go back to 'ans', you can just type 'man' without any arguments.
+The `man` command lets you select the variable you want to manipulate. If you want to go back to `ans`, you can just type `man` without any arguments.
 
 
 ### Deletion
 
-The 'del' command lets you delete one or more variables.
-If the currently manipulated variable is deleted, 'man' will automatically revert the manipulation to 'ans'.
+The `del` command lets you delete one or more variables.
+To delete all variables, simply type `del *`.
 
-Note that you can't delete the 'ans' variable, and remember that all variable deletions are permanent.
+If the currently manipulated variable is deleted, `man` will automatically revert the manipulation to `ans`.
+Note that you can't delete the `ans` variable, and remember that all variable deletions are permanent.
 
 
 ### Saving and loading
 
-The 'save' command allows you to write variables to a file.
+The `save` command allows you to write variables to a file.
 The file will be formatted as csv, as:
 
 	variable, value
@@ -153,15 +154,15 @@ If no filename is given, the current date and time will be used.
 You can choose to save only some variables, typing them as arguments.
 
 Optional arguments:
-'-d' deletes the variables after they've been saved
-'-f' forces overwriting in case the filename already exists
+`-d` deletes the variables after they've been saved
+`-f` forces overwriting in case the filename already exists
 
 
 
-The 'load' command is used to read variables from a csv file and store them in your current environment.
+The `load` command is used to read variables from a csv file and store them in your current environment.
 To avoid errors, it is best to only load variable files created by chalk.
 
-The '-s' argument is used to force 'set' when importing, which will overwrite existing variables with conflicting names.
+The `-s` argument is used to force `set` when importing, which will overwrite existing variables with conflicting names.
 
 
 ## Scripting
@@ -169,6 +170,6 @@ The '-s' argument is used to force 'set' when importing, which will overwrite ex
 
 ## Useful commands
 
-- 'cls' clears the console screen.
-- 'exit' closes chalk.
-- 'help' displays the main help page; you can add the name of a command afterwards to print its specific help page.
+- `cls` clears the console screen.
+- `exit` closes chalk.
+- `help` displays the main help page; you can add the name of a command afterwards to print its specific help page.
