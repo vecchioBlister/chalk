@@ -17,6 +17,7 @@
 	1. [`run` command](#the-run-command-allows-you-to-run-script-files-in-chalk)
 	2. [`ask` command](#ask)
 	3. [`say` command](#say)
+	4. [`def` command and aliases](#def)
 5. [Useful commands](#useful-commands)
 
 ## Syntax
@@ -199,6 +200,21 @@ For instance, given a variable `a` of value `5`:
 will print
 
 	the result is 5
+
+### def
+
+This command lets you to give temporary names to variables, calles aliases, that can be parsed by preceding them with `@`.
+This feature is especially useful in scripting, as it allows for the use of the same names, without overwriting any of the user variables.
+For instance:
+
+	def a b c
+creates three new variables, with *real* names assigned by the `let` command, having as aliases `a`, `b` and `c` respectively.
+Let's say that the names given by `let` were `h`, `T` and `g`: `def` will output
+
+	@a    =    h
+	@b    =    T
+	@c    =    g
+and from then on, at every occurrence of the alias `@b`, the variable `T` will be called.
 
 ## Useful commands
 
