@@ -85,9 +85,9 @@ To access a value inside a tuple / array, type the index within `[ ]` square bra
 	a = (1, 2)
 	> let a0 be a [0]
 	a0 = 1
-To know the length of a tuple / array, you can use the operator `#`, giving the object (of which you want to know the length) within `( )` brackets.
+To know the length of a tuple / array, you can use the operator `$`, giving the object (of which you want to know the length) within `( )` brackets.
 
-	> ?#( a )
+	> ?$( a )
 	2
 
 #### Tuples

@@ -61,7 +61,7 @@ def calcCmd(command, man_assign=True):
     return
 
 def calculate(command):
-    operators = "+-*().,; /[]!:#"
+    operators = "+-*().,; /[]%!:$#"
 
     #if (type(command) == list):
     #    for i in range(len(command)): # turns every element in command list and makes it a string
@@ -115,8 +115,10 @@ def calculate(command):
             equation += "math.sqrt"
         elif (char == "!"): # factorial symbol
             equation += "math.factorial"
-        elif (char == "#"): # length symbol
+        elif (char == "$"): # length symbol
             equation += "len"
+        elif (char == "#"): # array symbol
+            equation += "np.array"
         else:
             #//print(i)
             equation += char
