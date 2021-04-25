@@ -8,6 +8,7 @@ free_vars = set(("a", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n"
 variables = dict([
     ("ans", 0)
 ])
+aliases = dict()
 
 man_var = "ans" # currently manipulated variable
 man_value = "" # currently manipulated variable value
@@ -21,6 +22,9 @@ def askCmd(command):
         return
 
     var = command.pop(0) # takes variable name
+    if (var[0] == "@"): # checks for aliases
+        var = aliases[var.lstrip("@")]
+
     input_phrase = ""
 
     for word in command: # assembles input phrase with the other arguments
@@ -30,7 +34,7 @@ def askCmd(command):
 
     if (value == ""): value = "0"
 
-    return letCmd([var, "be", value])
+    return setCmd([var, "be", value])
 
 def calcCmd(command, man_assign=True):
     if (man_var in variables):
@@ -58,6 +62,9 @@ def calculate(command):
     if (len(command) == 0): return 0 # if input is empty, returns 0
 
     for word in range(len(command)):
+        if (len(command[word]) > 0):
+            if (command[word][0] == "@"): # checks for aliases
+                command[word] = aliases[command[word].lstrip("@")]
         if (command[word] == "math.pi"): # replaces math.py variables
             command[word] = str(math.pi)
         elif (command[word] == "math.e"):
@@ -165,6 +172,16 @@ def cmdParser(command):
         print(error)
         return
 
+def defCmd(command):
+    if (len(command) == 0):
+        errorMsg("def", "no function variables given")
+        return
+
+    for var in command:
+        new_var = letCmd([])[0]
+        aliases[var] = new_var
+    return
+
 def delCmd(command):
     deleted_variables = "variables deleted: "
 
@@ -177,6 +194,8 @@ def delCmd(command):
             if (var != "ans"):
                 command.append(var)
     for var in command:
+        if (var[0] == "@"): # checks for aliases
+            var = aliases[var.lstrip("@")]
         if (var == man_var): print(manCmd([])) # if the variable was manipulated, man_var goes back to ans
         if (var in variables and var != "ans"):
             variables.pop(var) # removes variables
@@ -288,6 +307,8 @@ def letCmd(command):
             command[equals_pos : equals_pos + 1] = spaced_equals
 
     var = command[0]
+    if (var[0] == "@"): # checks for aliases
+        var = aliases[var.lstrip("@")]
 
     if (var in variables):
         errorMsg("let", f"variable {var} is already set to {variables.get(var)}")
@@ -462,6 +483,9 @@ def setCmd(command):
             command[equals_pos : equals_pos + 1] = spaced_equals
 
     var = command[0]
+    if (var[0] == "@"): # checks for aliases
+        var = aliases[var.lstrip("@")]
+
     for char in var:
         if (not char.isalnum()):
             errorMsg("let/set", f"variable names must be alphanumeric - '{char}'")
@@ -510,6 +534,8 @@ def varCmd(command):
             vars_to_print.append(var)
     else: # var arguments are given and appended
         for var in command:
+            if (var[0] == "@"): # checks for aliases
+                var = aliases[var.lstrip("@")]
             vars_to_print.append(var)
 
     if (alph_order is True): vars_to_print = sorted(vars_to_print)
@@ -553,6 +579,7 @@ def runCmd(command):
         return
 
     for line in commands:
+        varManUpd()
         if (line[-1] != ";"): # check if command ends with ";"
             output = cmdParser(line)
             if (output is not None):

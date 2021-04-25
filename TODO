@@ -1,3 +1,11 @@
+change "ask" docs and help
+
+def cmd
+    help
+    documentation
+
+aliases documentation
+
 documentation
     tuples and indices
     algebra
