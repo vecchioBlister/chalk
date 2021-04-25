@@ -1,7 +1,9 @@
 say ### triangle hypotenuse ###
 say
-ask a first leg;
-ask b second leg;
-let hyp be :( a **2 + b **2);
+def a b h;
+ask @a first leg;
+ask @b second leg;
+calc :( @a **2 + @b **2)
+set @h;
 say
-say hypotenuse: &hyp
+say hypotenuse: &@h

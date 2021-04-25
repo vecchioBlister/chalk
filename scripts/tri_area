@@ -1,7 +1,9 @@
 say ### triangle area calculator ###
 say
-ask h triangle height;
-ask b triangle base;
-let area be b * h /2;
+def h b a;
+ask @h triangle height;
+ask @b triangle base;
+calc @b * @h /2
+set @a;
 say
-say triangle area: &area
+say triangle area: &@a

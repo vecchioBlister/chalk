@@ -1,0 +1,12 @@
+say ### quadratic equation solver ###
+say ### ax2 + bx + c = 0
+say
+def a b c x1 x2;
+ask @a first coefficient;
+ask @b second coefficient;
+ask @c third coefficient;
+set @x1 to (- @b +:( @b **2-4* @a * @c ))/(2* @a );
+set @x2 to (- @b -:( @b **2-4* @a * @c ))/(2* @a );
+say
+say greater root is &@x1
+say smaller root is &@x2
