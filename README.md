@@ -65,6 +65,7 @@ Note that you can't delete the `ans` variable, and remember that all variable de
 - `load` imports saved variables from a chalk csv variables file.
 - `run` runs a script file, executing each line as a command.
 
+
 - `cls` clears the console screen.
 - `exit` closes chalk.
 - `help` displays the main help page; you can add the name of a command afterwards to print its specific help page.
