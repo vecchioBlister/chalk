@@ -25,7 +25,7 @@
 
 ## Syntax
 
-To input commands in chalk, you simply type the command, followed by the arguments, all separated by whitespaces.
+To input commands in chalk, you simply type the command, followed by the arguments, all separated by ` ` whitespaces.
 To learn more information about the specific syntax of each command, you can use `help`.
 Some commands, such as `help`, do not require arguments, but can accept some.
 
@@ -67,7 +67,7 @@ In order to use these shortcuts, you must use parentheses to specify the argumen
 	=:(2)
 calculates the square root of 2.
 
-> Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, `1+ a + b *8+6`.
+> Note: within expressions, you must separate variable names with ` ` whitespaces, to avoid ambiguity: for instance, `1+ a + b *8+6`.
 
 ---
 ### Algebra
@@ -155,7 +155,7 @@ When the variable is used in calculations, the value will be solved in real time
 The `var` command prints the list of currently stored variables.
 By default, they're ordered chronologically; you can order them alphabetically by adding `-a`.
 
-You can give as arguments the names of the variables you want to display, separated by whitespaces.
+You can give as arguments the names of the variables you want to display, separated by ` ` whitespaces.
 
 ---
 ### Manipulation
