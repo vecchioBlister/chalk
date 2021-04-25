@@ -16,6 +16,7 @@
 4. [Scripting](#scripting)
 5. [Useful commands](#useful-commands)
 
+
 ## Syntax
 
 To input commands in chalk, you simply type the command, followed by the arguments, all separated by whitespaces.
@@ -29,7 +30,9 @@ will not print in the console the line
 
 	a = 5
 
+
 ## Calculations
+
 
 ### calc
 
@@ -48,7 +51,9 @@ will print the result '9' without assigning it.
 
 You can also use variables and math (python module) constants in your calculations.
 
+
 ### Vectors and matrices
+
 
 ### Additional operations
 
@@ -63,9 +68,8 @@ calculates the square root of 2.
 
 ##### Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, '1+ a + b \*8+6'.
 
-## Variables
 
-These two commands allow you to store variables.
+## Variables
 
 ### Assignment
 
@@ -96,6 +100,7 @@ stores a new variable \<var> with the currently manipulated value.
 	set
 stores a new variable, with a random one-letter name that isn't being used, with the currently manipulated value.
 
+
 #### Lazy assignment
 
 You can assign expressions to variables, that will be evaluated when the variables are called, instead of when they're assigned.
@@ -108,12 +113,14 @@ will result in:
 
 When the variable is used in calculations, the value will be solved in real time.
 
+
 ### Print variables
 
 The 'var' command prints the list of currently stored variables.
 By default, they're ordered chronologically; you can order them alphabetically by adding '-a'.
 
 You can give as arguments the names of the variables you want to display, separated by whitespaces.
+
 
 ### Manipulation
 
@@ -122,12 +129,14 @@ Whenever you type a calculation (with the 'calc' command or its alias '='), the 
 
 The 'man' command lets you select the variable you want to manipulate. If you want to go back to 'ans', you can just type 'man' without any arguments.
 
+
 ### Deletion
 
 The 'del' command lets you delete one or more variables.
 If the currently manipulated variable is deleted, 'man' will automatically revert the manipulation to 'ans'.
 
 Note that you can't delete the 'ans' variable, and remember that all variable deletions are permanent.
+
 
 ### Saving and loading
 
@@ -154,7 +163,9 @@ To avoid errors, it is best to only load variable files created by chalk.
 
 The '-s' argument is used to force 'set' when importing, which will overwrite existing variables with conflicting names.
 
+
 ## Scripting
+
 
 ## Useful commands
 
