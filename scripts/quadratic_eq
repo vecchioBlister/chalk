@@ -17,5 +17,5 @@ set @x;
 # assigns tuple to @x
 
 say
-say solutions are &@x
+say solutions are @x = &@x
 # prints solutions

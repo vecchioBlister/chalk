@@ -15,5 +15,5 @@ set @h;
 # assigns value to variable
 
 say
-say hypotenuse: &@h
+say hypotenuse is @h = &@h
 # prints solution

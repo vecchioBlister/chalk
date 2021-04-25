@@ -193,13 +193,22 @@ It uses the `set` command for assignment.
 
 This command prints on the CLI the phrase that is given as argument.
 
-It allows also to print variable values, preceded by `&`.
+It allows to print variable values, preceded by `&`.
 For instance, given a variable `a` of value `5`:
 
 	say the result is &a
 will print
 
 	the result is 5
+
+
+It also allows to solve aliases, preceded by `@`.
+For example, if a variable `b` has an alias `a` and a value of `6`:
+
+	say @a = &@a
+will print
+
+	b = 6
 
 ### def
 

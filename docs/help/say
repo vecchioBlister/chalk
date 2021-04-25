@@ -1,2 +1,2 @@
 say <phrase>
-	(for scripting) prints the phrase, solves variable values with '&'.
+	(for scripting) prints the phrase, solves variable values with '&', aliases with '@'.

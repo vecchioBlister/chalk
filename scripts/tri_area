@@ -15,5 +15,5 @@ set @a;
 # assigns value to variable
 
 say
-say triangle area: &@a
+say triangle area is @a = &@a
 # prints solution

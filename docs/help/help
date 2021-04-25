@@ -39,7 +39,7 @@ save *<filename> *<var> *-d *-f
 	*-d deletes variables after they have been written.
 	*-f forces appending to the file if it already exists.
 say <phrase>
-	(for scripting) prints the phrase, solves variable values with '&'.
+	(for scripting) prints the phrase, solves variable values with '&', aliases with '@'.
 set <var> to <value>
 	forces <value> to variable <var>.
 var *<var> *-a

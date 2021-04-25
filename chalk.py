@@ -471,6 +471,8 @@ def sayCmd(command):
                     [word.lstrip("&")]
                     )
                 ) + " "
+        elif (word[0] == "@"): # evaluates that alias
+            echo += aliases[word.lstrip("@")] + " "
         else:
             echo += word + " "
 
