@@ -5,6 +5,7 @@ import math
 VERSION = "0dev"
 
 free_vars = set(("a", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"))
+used_vars = set()
 variables = dict([
     ("ans", 0)
 ])
@@ -204,6 +205,9 @@ def delCmd(command):
         if (var == man_var): print(manCmd([])) # if the variable was manipulated, man_var goes back to ans
         if (var in variables and var != "ans"):
             variables.pop(var) # removes variables
+            if (var in used_vars):
+                used_vars.remove(var) # removes from used_vars
+                free_vars.add(var) # puts in free_vars
             deleted_variables += var + " "
         elif (var == "ans"): errorMsg("del", "cannot delete 'ans' variable")
         else: errorMsg("del", f"{var} is not an assigned variable")
@@ -524,8 +528,9 @@ def setCmd(command):
             errorMsg("let/set", "cannot assign empty variable")
             return
 
-    if (var in free_vars): # removes var from free_vars when it is assigned
-        free_vars.remove(var)
+    if (var in free_vars):
+        free_vars.remove(var) # removes var from free_vars
+        used_vars.add(var) # puts it into used_vars
 
     variables[var] = value
     return f"{var} = {value}"
