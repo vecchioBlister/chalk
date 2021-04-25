@@ -252,6 +252,10 @@ def helpCmd(command):
             with open("./docs/help/del") as helpfile:
                 printHelp(helpfile)
             return
+        elif (command == "def"):
+            with open("./docs/help/def") as helpfile:
+                printHelp(helpfile)
+            return
         elif (command == "exit"):
             with open("./docs/help/exit") as helpfile:
                 printHelp(helpfile)

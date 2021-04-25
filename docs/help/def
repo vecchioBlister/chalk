@@ -1,0 +1,8 @@
+def *<var>
+	assigns aliases to the given <var>s.
+	If no <var> is given, prints current aliases.
+
+Aliases are called with @<alias>, and invoke the corresponding variable.
+Variable names cannot be manually assigned, as the names are given by the 'let' command.
+
+Aliases can be reassigned, calling 'def' with the same aliases once more.
