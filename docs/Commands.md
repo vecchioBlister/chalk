@@ -185,6 +185,8 @@ The syntax is very simple:
 where `<var>` is the variable name, and `<phrase>` is the text that will be presented to the user when the value is asked.
 By default, if no value is entered, `0` will be taken.
 
+It uses the `set` command for assignment.
+
 ---
 ### say
 
