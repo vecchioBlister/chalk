@@ -2,19 +2,38 @@
 
 ## Table of contents:
 
-1. [Calculations](#calculations)
-2. [Variables](#variables)
+1. [Syntax](#syntax)
+2. [Calculations](#calculations)
+	1. ['calc' command](#calc)
+	2. [Algebra (vectors and matrices)](#vectors-and-matrices)
+	3. [Additional operations](#additional-operations)
+3. [Variables](#variables)
 	1. [Assignment](#assignment)
 	2. [Display](#print-variables)
 	3. [Manipulation](#manipulation)
 	4. [Deletion](#deletion)
 	5. [Saving and loading](#saving-and-loading)
-3. [Scripting](#scripting)
-4. [Useful commands](#useful-commands)
+4. [Scripting](#scripting)
+5. [Useful commands](#useful-commands)
+
+## Syntax
+
+To input commands in chalk, you simply type the command, followed by the arguments, all separated by whitespaces.
+To learn more information about the specific syntax of each command, you can use 'help'.
+Some commands, such as 'help', do not require arguments, but can accept some.
+
+Many commands will output the result of the actions after you've executed them: if you wish to hide the output of some particular commands, you simply add ';' to the end of the line; for instance:
+
+	let a be 5;
+will not print in the console the line
+
+	a = 5
 
 ## Calculations
 
-The 'calc' command solves arithmetic expressions.
+### calc
+
+This command solves arithmetic expressions.
 You can also call it more quickly with '='.
 	
 	calc 5+4
@@ -28,6 +47,19 @@ You can also get results without storing the value, by calling 'calc' with '?':
 will print the result '9' without assigning it.
 
 You can also use variables and math (python module) constants in your calculations.
+
+### Vectors and matrices
+
+### Additional operations
+
+Here's symbolic shortcuts for some operations you might frequently use:
+- ':' square root
+- '!' factorial
+
+In order to use these shortcuts, you must use parentheses to specify the arguments. For instance:
+
+	=:(2)
+calculates the square root of 2.
 
 ##### Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, '1+ a + b \*8+6'.
 
