@@ -5,15 +5,17 @@
 1. [Syntax](#syntax)
 2. [Calculations](#calculations)
 	1. [`calc` command](#calc)
-	2. [Algebra (vectors and matrices)](#vectors-and-matrices)
-	3. [Additional operations](#additional-operations)
+	2. [Additional operations](#additional-operations)
+	3. [Algebra (vectors and matrices)](#vectors-and-matrices)
 3. [Variables](#variables)
 	1. [Assignment](#assignment)
-	2. [Display](#print-variables)
+	2. [Printing](#print-variables)
 	3. [Manipulation](#manipulation)
 	4. [Deletion](#deletion)
 	5. [Saving and loading](#saving-and-loading)
 4. [Scripting](#scripting)
+	1. [`ask` command](#ask)
+	2. [`say` command](#say)
 5. [Useful commands](#useful-commands)
 
 ## Syntax
@@ -49,9 +51,6 @@ will print the result `9` without assigning it.
 You can also use variables and math (python module) constants in your calculations.
 
 ---
-### Vectors and matrices
-
----
 ### Additional operations
 
 Here's symbolic shortcuts for some operations you might frequently use:
@@ -64,6 +63,10 @@ In order to use these shortcuts, you must use parentheses to specify the argumen
 calculates the square root of 2.
 
 > Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, `1+ a + b *8+6`.
+
+---
+### Vectors and matrices
+
 
 ## Variables
 
@@ -159,6 +162,40 @@ To avoid errors, it is best to only load variable files created by chalk.
 The `-s` argument is used to force `set` when importing, which will overwrite existing variables with conflicting names.
 
 ## Scripting
+
+chalk allows you to run scripts (recipes, lists of commands) to do calculations: they are useful to save formulas and expressions related to variables, as well as being able to share them with other users.
+
+##### The `run` command allows you to run script files in chalk.
+
+---
+You can create a scipt in any text editor, typing for each text line, a chalk command, as you would in the CLI.
+
+> It is good practice to put ';' at the end of commands of which you do **not** want the result printed.
+
+For scripting purpose, there exist some commands that will make it possilbe to easily create functions and calculators.
+
+### ask
+
+This command allows you to ask for a variable value, and automatically assign it to a name, that can later be used for calculations.
+The syntax is very simple:
+
+	ask <var> <phrase>
+
+where `<var>` is the variable name, and `<phrase>` is the text that will be presented to the user when the value is asked.
+By default, if no value is entered, `0` will be taken.
+
+---
+### say
+
+This command prints on the CLI the phrase that is given as argument.
+
+It allows also to print variable values, preceded by `&`.
+For instance, given a variable `a` of value `5`:
+
+	say the result is &a
+will print
+
+	the result is 5
 
 ## Useful commands
 
