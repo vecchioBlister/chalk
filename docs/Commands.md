@@ -66,7 +66,7 @@ In order to use these shortcuts, you must use parentheses to specify the argumen
 	=:(2)
 calculates the square root of 2.
 
-##### Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, `1+ a + b *8+6`.
+> Note: within expressions, you must separate variable names with whitespaces, to avoid ambiguity: for instance, `1+ a + b *8+6`.
 
 
 ## Variables
