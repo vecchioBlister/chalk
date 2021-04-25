@@ -10,7 +10,7 @@ Its key features are:
 
 ### The chalk repository
 
-The easiest way to get your hands on some chalk, since it's still in developement, is to clone this repository in its current state. There may be bugs and WIP features, but you'll definitely be on the bleeding edge.
+The easiest way to get your hands on some chalk, since it's still in development, is to clone this repository in its current state. There may be bugs and WIP features, but you'll definitely be on the bleeding edge.
 
 The main executable file is chalk.py; it contains all of the required functions and the CLI. It does **not** contain neither documentation, nor helpfiles, so it's recommended that you bring along all of the attached folders.
 
