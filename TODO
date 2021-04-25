@@ -4,7 +4,6 @@ say command (for scripts)
     help
 
 documentation
-    "!" for factorial
-    ":" for sqrt
-    ";" at the end of commands
+    algebra
+    numpy?
     scripting section
