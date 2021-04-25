@@ -19,7 +19,7 @@ Within [./docs/](https://github.com/LionSpeck/chalk/tree/main/docs) you'll find 
 The [./scripts/](https://github.com/LionSpeck/chalk/tree/main/scripts) folder contains some useful functions and script templates; feel free to check them out and edit them.
 The ./variables/ folder contains variable files, and is the default path for chalk's save-and-exit feature (try 'help exit' for more information).
 
-### Documentation files (./docs/)
+### Documentation files ([./docs/](https://github.com/LionSpeck/chalk/tree/main/docs))
 
 - [Interface](https://github.com/LionSpeck/chalk/blob/main/docs/Interface.md#chalk-documentation-the-command-line-interface)
 - [Commands](https://github.com/LionSpeck/chalk/blob/main/docs/Commands.md#chalk-documentation-commands)
