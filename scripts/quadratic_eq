@@ -1,12 +1,21 @@
 say ### quadratic equation solver ###
 say ### ax2 + bx + c = 0
 say
-def a b c x1 x2;
+
+def a b c x;
+# assigns the aliases a, b, c for the coefficients, x1, x2 for the solutions
+
 ask @a first coefficient;
 ask @b second coefficient;
 ask @c third coefficient;
-set @x1 to (- @b +:( @b **2-4* @a * @c ))/(2* @a );
-set @x2 to (- @b -:( @b **2-4* @a * @c ))/(2* @a );
+# asks for coefficients
+
+calc ((- @b +:( @b **2-4* @a * @c ))/(2* @a ),(- @b -:( @b **2-4* @a * @c ))/(2* @a ))
+# calculates solutions as a tuple
+
+set @x;
+# assigns tuple to @x
+
 say
-say greater root is &@x1
-say smaller root is &@x2
+say solutions are &@x
+# prints solutions
