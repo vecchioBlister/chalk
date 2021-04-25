@@ -497,6 +497,8 @@ def setCmd(command):
     # assigns variables overwriting
     if (len(command) == 0): # if no variable is given, a free one is assigned
         command.append(free_vars.pop())
+        used_vars.add(command[0]) # puts var into used_vars
+
 
     for word in command:
         if (
