@@ -14,8 +14,9 @@
 	4. [Deletion](#deletion)
 	5. [Saving and loading](#saving-and-loading)
 4. [Scripting](#scripting)
-	1. [`ask` command](#ask)
-	2. [`say` command](#say)
+	1. [`run` command](#the-run-command-allows-you-to-run-script-files-in-chalk)
+	2. [`ask` command](#ask)
+	3. [`say` command](#say)
 5. [Useful commands](#useful-commands)
 
 ## Syntax
