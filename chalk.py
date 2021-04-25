@@ -44,7 +44,7 @@ def calcCmd(command, man_assign=True):
     return
 
 def calculate(command):
-    operators = "+-*().,; /[]"
+    operators = "+-*().,; /[]!:"
 
     #if (type(command) == list):
     #    for i in range(len(command)): # turns every element in command list and makes it a string
@@ -91,6 +91,10 @@ def calculate(command):
         if (char.isalpha() and not char in operators):
             errorMsg("calc", f"{char} symbol / variable name ambiguity")
             return None
+        elif (char == ":"): # square root symbol
+            equation += "math.sqrt"
+        elif (char == "!"): # factorial symbol
+            equation += "math.factorial"
         else:
             #//print(i)
             equation += char
@@ -109,6 +113,12 @@ def calculate(command):
         errorMsg("calc", f"cannot understand operation. \n{error}")
         return None
     except TypeError as error:
+        errorMsg("calc", f"{error}")
+        return None
+    except NameError as error:
+        errorMsg("calc", f"{error}")
+        return None
+    except ValueError as error:
         errorMsg("calc", f"{error}")
         return None
 
