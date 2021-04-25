@@ -1,9 +1,19 @@
 say ### triangle area calculator ###
 say
+
 def h b a;
+# assigns the aliases h, b, a for height, base, area
+
 ask @h triangle height;
 ask @b triangle base;
+# asks for triangle height and base
+
 calc @b * @h /2
+# calculates area
+
 set @a;
+# assigns value to variable
+
 say
 say triangle area: &@a
+# prints solution

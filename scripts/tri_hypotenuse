@@ -1,9 +1,19 @@
 say ### triangle hypotenuse ###
 say
+
 def a b h;
-ask @a first leg;
-ask @b second leg;
+# assigns the aliases a, b for the triangle catheti, h for the hypotenuse
+
+ask @a first cathetus;
+ask @b second cathetus;
+# asks for the triangle catheti
+
 calc :( @a **2 + @b **2)
+# calculates the hypotenuse
+
 set @h;
+# assigns value to variable
+
 say
 say hypotenuse: &@h
+# prints solution
