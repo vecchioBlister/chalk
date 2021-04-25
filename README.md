@@ -6,9 +6,7 @@ Its key features are:
 - handy and powerful variable management
 - numpy algebra (coming soon)
 
-
 ## Getting started
-
 
 ### The chalk repository
 
@@ -21,17 +19,16 @@ Within [./docs/](https://github.com/LionSpeck/chalk/tree/main/docs) you'll find 
 The [./scripts/](https://github.com/LionSpeck/chalk/tree/main/scripts) folder contains some useful functions and script templates; feel free to check them out and edit them.
 The ./variables/ folder contains variable files, and is the default path for chalk's save-and-exit feature (try `help exit` for more information).
 
-
+---
 ### Documentation files ([./docs/](https://github.com/LionSpeck/chalk/tree/main/docs))
 
 - [Interface](https://github.com/LionSpeck/chalk/blob/main/docs/Interface.md#chalk-documentation-the-command-line-interface)
 - [Commands](https://github.com/LionSpeck/chalk/blob/main/docs/Commands.md#chalk-documentation-commands)
 
-
+---
 ### Basic operation
 
 In order to quickly evaluate expressions, you can type them preceded by `=`, or by the `calc` command. The result will be stored in the currently manipulated variable (`ans` by default), that you can see on the left of your command line. If you want an operation result, without it being stored, you can type your calculation preceded by `?`.
-
 
 #### Variables
 
@@ -41,21 +38,17 @@ One of the most useful tools of a calculator is its ability to store variables; 
 
 When typing operations with variables, you must separate with spaces every variable name, to avoid ambiguous expressions. For example: `1+ a + b *8+6`.
 
-
 #### Lazy assignment
 
 One of the coolest features of chalk is its ability to lazy-assign values to variables: what this means, is that the variable value will be calculated every time that variable is called, instead of when it is assigned. You can use this functionality with `let` and `set` commands, by preceding with `&` the value you want to store. For example, let's say you have two variables, `a` and `b`: by typing `let c be & a * b`, you will be creating a new variable, `c`, the value of which (`a * b`) will be resolved every time `c` is called, and will depend on the values of `a` and `b`.
-
 
 #### Print variables
 
 Whenever you want to print the list of currently assigned variables and their values, you can use the command `var`: without any argument, it will print the full list of variables; you can put as many variable names as you wish, to filter the output to the given ones only. The results are ordered, by default, chronologically; in both cases, you can add the optional argument `-a` to order the results alphabetically.
 
-
 #### Manipulation
 
 Variable manipulation is a key feature of chalk, and it allows you to have a variable always-at-hand, to store all of your results. Whenever you type a calculation (with the `calc` command or its alias `=`), the result is stored in the manipulated variable (`ans` by default). If you want to change the currently-manipulated variable, you can use the `man` command, followed by a variable of your choice. If you want to go back to `ans`, you can just type `man` without any arguments, to select `ans`.
-
 
 #### Deletion
 
@@ -65,7 +58,7 @@ To delete all variables, simply type `del *`.
 If the currently manipulated variable is deleted, `man` will automatically revert the manipulation to `ans`.
 Note that you can't delete the `ans` variable, and remember that all variable deletions are permanent.
 
-
+---
 ### Other useful commands
 
 - `save` writes the assigned variables in a csv file.
