@@ -173,16 +173,18 @@ def cmdParser(command):
         return
 
 def defCmd(command):
-    if (len(command) == 0):
-        errorMsg("def", "no function variables given")
-        return
+    if (len(command) == 0): # prints the aliases table
+        aliases_to_print = ""
+        for alias in aliases:
+            aliases_to_print += "@" + alias + "\t=\t" + aliases[alias] + "\n"
+        return aliases_to_print
 
     aliases_created = ""
 
     for var in command:
         new_var = letCmd([])[0]
         aliases[var] = new_var
-        aliases_created += var + "\t=\t" + new_var + "\n"
+        aliases_created += "@" + var + "\t=\t" + new_var + "\n"
     return aliases_created
 
 def delCmd(command):
