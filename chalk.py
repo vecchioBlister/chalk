@@ -71,14 +71,6 @@ def calculate(command):
 
     if (len(command) == 0): return 0 # if input is empty, returns 0
 
-    # older method
-    #equation = ""
-    #for char_pos in range(len(command)):
-    #    if (command[char_pos] in "+-*(),;/[]%!:$#"):
-    #        equation += " " + command[char_pos] + " "
-    #    else: equation += command[char_pos]
-
-    # improved method
     equation = [] # empty equation list
     word = "" # empty word
     for char_pos in range(len(command)):
@@ -102,11 +94,6 @@ def calculate(command):
                 else:
                     errorMsg("calc", "alias not found")
                     return
-
-        #if (equation[word] == "math.pi"): # replaces math.py variables
-        #    equation[word] = str(math.pi)
-        #elif (equation[word] == "math.e"):
-        #    equation[word] = str(math.e)
 
         if (len(equation[word]) == 1): # checks for custom operators
             if (equation[word] == ":"): # square root symbol
@@ -147,8 +134,6 @@ def calculate(command):
     if (equation == ""): equation = "0" # user input '=' results 0
 
     try:
-        #//print(equation) # debugging
-        #//print(eval(equation)) # debugging
         return eval(equation)
     except SyntaxError as error:
         errorMsg("calc", f"cannot understand operation. \n{error}")
