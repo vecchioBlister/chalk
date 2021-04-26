@@ -154,13 +154,16 @@ def calculate(command):
         errorMsg("calc", f"cannot understand operation. \n{error}")
         return None
     except TypeError as error:
-        errorMsg("calc", f"{error}")
+        errorMsg("calc", error)
         return None
     except NameError as error:
-        errorMsg("calc", f"{error}")
+        errorMsg("calc", error)
         return None
     except ValueError as error:
-        errorMsg("calc", f"{error}")
+        errorMsg("calc", error)
+        return None
+    except AttributeError as error:
+        errorMsg("calc", error)
         return None
 
 def CLI():
