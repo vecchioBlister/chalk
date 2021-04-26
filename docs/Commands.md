@@ -266,11 +266,11 @@ For instance:
 
 	def a b c
 creates three new variables, with *real* names assigned by the `let` command, having as aliases `a`, `b` and `c` respectively.
-Let's say that the names given by `let` were `h`, `T` and `g`: `def` will output
+Let's say that the names given by `let` were `h0`, `t4` and `g3`: `def` will output
 
-	@a    =    h
-	@b    =    T
-	@c    =    g
+	@a    =    h0
+	@b    =    t4
+	@c    =    g3
 and from then on, at every occurrence of the alias `@b`, the variable `T` will be called.
 
 ## Useful commands
