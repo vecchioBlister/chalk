@@ -393,7 +393,7 @@ def loadCmd(command):
                 errorMsg("load", f"'{filename}' is not a chalk variables csv file. Missing 'variable, value' header")
                 return
             for line in file:
-                var = line.strip().split(", ")
+                var = line.strip().split(", ", 1)
                 vars_to_load.append(var)
     except FileNotFoundError as error:
         errorMsg("load", f"'{filename}' not found")
@@ -500,18 +500,22 @@ def saveCmd(command):
             if (write_header is True): # writes header if not present already
                 file.write("variable, value\n")
             for var in vars_to_save:
-                if (type(variables.get(var)) != str): # if value is string, adds "&" for lazy assignments
-                    file.write(f"{var}, {variables.get(var)}\n")
-                else:
+                if (type(variables.get(var)) == str): # if value is string, adds "&" for lazy assignments
                     file.write(f"{var}, &{variables.get(var)}\n")
+                elif ("numpy" in str(type(variables.get(var)))): # if value is numpy array, writes "header"
+                    file.write(f"{var}, np.array({str(variables.get(var).tolist())})\n")
+                else:
+                    file.write(f"{var}, {variables.get(var)}\n")
     except FileNotFoundError: # creates file if it doesn't exist
         with open(filename, "x") as file:
             file.write("variable, value\n")
             for var in vars_to_save:
-                if (type(variables.get(var)) != str): # if value is string, adds "&" for lazy assignments
-                    file.write(f"{var}, {variables.get(var)}\n")
-                else:
+                if (type(variables.get(var)) == str): # if value is string, adds "&" for lazy assignments
                     file.write(f"{var}, &{variables.get(var)}\n")
+                elif ("numpy" in str(type(variables.get(var)))): # if value is numpy array, writes "header"
+                    file.write(f"{var}, np.array({str(variables.get(var).tolist())})\n")
+                else:
+                    file.write(f"{var}, {variables.get(var)}\n")
 
     if (delete_vars is True): # deletes variables if requested
         saved_vars += "(and deleted)"
