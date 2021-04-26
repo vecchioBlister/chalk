@@ -1,5 +1,5 @@
-import os
-import time
+from os import system, name
+from time import strftime
 import math
 import numpy as np
 
@@ -170,7 +170,7 @@ def CLI():
 
 def clsCmd(command):
     """clears console screen"""
-    os.system("cls" if os.name=="nt" else "clear") # clears console screen
+    system("cls" if name=="nt" else "clear") # clears console screen
     print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands")
     return
 
@@ -255,7 +255,7 @@ def exitCmd(command):
 
     if (len(command) != 0):
         if (command[0] == "-s"): # saves variables to a file
-            year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
+            year, month, day, hour, min = map(int, strftime("%Y %m %d %H %M").split())
             saveCmd([f"./variables/{year}-{month}-{day}_{hour}-{min} -f"])
 
     global state
@@ -449,7 +449,7 @@ def saveCmd(command):
     """saves variables to file"""
     if (len(command) == 0):
         print("save warning: no filename was given, current date and time will be used")
-        year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
+        year, month, day, hour, min = map(int, strftime("%Y %m %d %H %M").split())
         command = [f"./variables/{year}-{month}-{day}_{hour}-{min}"]
 
     vars_to_save = []
