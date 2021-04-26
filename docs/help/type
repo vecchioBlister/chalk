@@ -1,0 +1,5 @@
+type *<var>
+	prints <var> type.
+
+If no <var> is given, prints all assigned variables.
+You can give more than one <var> argument, separated by whitespaces.

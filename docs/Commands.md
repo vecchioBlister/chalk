@@ -198,6 +198,19 @@ To avoid errors, it is best to only load variable files created by chalk.
 
 The `-s` argument is used to force `set` when importing, which will overwrite existing variables with conflicting names.
 
+### Types
+
+Every variable has a type, which depends on the value stored inside.
+The most common types will be:
+- 'int'
+- 'float'
+- 'str' *(string)*
+- 'np.ndarray' *(array)*
+
+To know which type one (or more) variable is, you can use the command `type`.
+
+> Note: string types happen every time you lazy-assign a variable; the string **will be evaluated by calc** whenever that variable is called.
+
 ## Scripting
 
 chalk allows you to run scripts (recipes, lists of commands) to do calculations: they are useful to save formulas and expressions related to variables, as well as being able to share them with other users.

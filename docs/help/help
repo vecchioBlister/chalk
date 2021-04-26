@@ -42,6 +42,8 @@ say <phrase>
 	(for scripting) prints the phrase, solves variable values with '&', aliases with '@'.
 set <var> to <value>
 	forces <value> to variable <var>.
+type *<var>
+	prints <var> type.
 var *<var> *-a
 	prints <var> value.
 	*-a to print variables in alphabetical order.

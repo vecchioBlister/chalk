@@ -336,6 +336,10 @@ def helpCmd(command):
             with open("./docs/help/set") as helpfile:
                 printHelp(helpfile)
             return
+        elif (command == "type"):
+            with open("./docs/help/type") as helpfile:
+                printHelp(helpfile)
+            return
         elif (command == "var"):
             with open("./docs/help/var") as helpfile:
                 printHelp(helpfile)
@@ -669,6 +673,30 @@ def runCmd(command):
             if (output is not None):
                 print(output)
         else: cmdParser(line.rstrip(";"))
+
+def typeCmd(command):
+    # prints variables types
+    vars_to_print = []
+
+    if (len(command) == 0): # no arguments given, appends all variables
+        for var in variables:
+            vars_to_print.append(var)
+    else: # var arguments are given and appended
+        for var in command:
+            if (var[0] == "@"): # checks for aliases
+                var = aliases[var.lstrip("@")]
+            vars_to_print.append(var)
+
+    for var in vars_to_print:
+        if (var not in variables): print(f"{var} is not an assigned variable")
+        else:
+            var_type = str(type(variables[var])).lstrip("<class ").rstrip(">")
+            if (var_type[1] in "aeiou"): # uses "an" for types starting with vocal
+                print(f"\t{var}\tis an\t{var_type}")
+            else: # otherwise "a" for types starting with consonant
+                print(f"\t{var}\tis a\t{var_type}")
+
+    return
 
 if __name__ == "__main__":
     CLI()
