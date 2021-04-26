@@ -191,7 +191,7 @@ def cmdParser(command):
         return calcCmd(command)
     elif (command[0][0] == "?"): # calc without assign to man_var
         command[0] = command[0].lstrip("?") # strips "?" from command beginning
-        return calcCmd(command)
+        return calcCmd(command, False)
     elif (command[0][0] == "+" and command[0][1] == "="): # calc with quick operation
         command[0] = command[0].lstrip("+=") # strips quick operand from command beginning
         command[0] = man_var + "+" + command[0] # adds man_var and operand
