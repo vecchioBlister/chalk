@@ -67,8 +67,6 @@ In order to use these shortcuts, you must use parentheses to specify the argumen
 	=:(2)
 calculates the square root of 2.
 
-> Note: within expressions, you must separate variable names with ` ` whitespaces, to avoid ambiguity: for instance, `1+ a + b *8+6`.
-
 ---
 ### Algebra
 
@@ -85,9 +83,9 @@ To access a value inside a tuple / array, type the index within `[ ]` square bra
 	a = (1, 2)
 	> let a0 be a [0]
 	a0 = 1
-To know the length of a tuple / array, you can use the operator `$`, giving the object (of which you want to know the length) within `( )` brackets.
+To know the length of a tuple / array, you can use the operator `len`, giving the object (of which you want to know the length) within `( )` brackets.
 
-	> ?$( a )
+	> ?len(a)
 	2
 
 #### Tuples
@@ -142,10 +140,10 @@ stores a new variable, with a random one-letter name that isn't being used, with
 You can assign expressions to variables, that will be evaluated when the variables are called, instead of when they're assigned.
 To use lazy assignment, you can type `&` followed by your expression, which will be stored as a string as the value of that variable.
 
-	let a be &5+ b
+	let a be &5+b
 will result in:
 
-	a = 5+ b
+	a = 5+b
 
 When the variable is used in calculations, the value will be solved in real time.
 
@@ -183,7 +181,7 @@ The file will be formatted as csv, as:
 	variable, value
 	a, 0
 	b, 1
-	c, &b +4
+	c, &b+4
 
 If no filename is given, the current date and time will be used.
 
