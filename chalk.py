@@ -29,7 +29,7 @@ man_value = "" # currently manipulated variable value
 state = True # CLI "on" state
 
 def askCmd(command):
-    # asks the user for a value, given a variable name (useful for scripting)
+    """asks the user for a value, given a variable name (useful for scripting)"""
     if (len(command) == 0):
         errorMsg("ask", "no variable name was given")
         return
@@ -50,7 +50,7 @@ def askCmd(command):
     return setCmd([var, "be", value])
 
 def calcCmd(command, man_assign=True):
-    # calc command
+    """calc command"""
     if (man_var in variables):
         result = calculate(command) # calculates result
         #//print(result) # debugging
@@ -63,7 +63,7 @@ def calcCmd(command, man_assign=True):
     return
 
 def calculate(command):
-    # evaluates calculations
+    """evaluates calculations"""
     operators = "+-*(),; /[]%!:#" # allowed operators
 
     command = "".join(command) # turns command into a string
@@ -152,7 +152,7 @@ def calculate(command):
         return None
 
 def CLI():
-    # command line function
+    """command line function"""
     print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
 
     while (state is True):
@@ -169,13 +169,13 @@ def CLI():
                     print(result)
 
 def clsCmd(command):
-    # clears console screen
+    """clears console screen"""
     os.system("cls" if os.name=="nt" else "clear") # clears console screen
     print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands")
     return
 
 def cmdParser(command):
-    # parses input commands
+    """parses input commands"""
     command = command.split() # splits command given into a list
 
     if (command[0][0] == "="): # calc chortcut
@@ -195,6 +195,7 @@ def cmdParser(command):
         return
 
 def defCmd(command):
+    """assigns aliases"""
     if (len(command) == 0): # prints the aliases table
         aliases_to_print = ""
         for alias in aliases:
@@ -218,6 +219,7 @@ def defCmd(command):
     return aliases_created
 
 def delCmd(command):
+    """deletes variables"""
     deleted_variables = "variables deleted: "
 
     if (len(command) == 0): # if no argument is given
@@ -244,12 +246,12 @@ def delCmd(command):
     return deleted_variables
 
 def errorMsg(module, message):
-    # prints error messages
+    """prints error messages"""
     print(f"<!> {module} error: {message}")
     return
 
 def exitCmd(command):
-    #closes chalk by setting "state" to False
+    """closes chalk by setting "state" to False"""
 
     if (len(command) != 0):
         if (command[0] == "-s"): # saves variables to a file
@@ -261,7 +263,7 @@ def exitCmd(command):
     return "bye"
 
 def helpCmd(command):
-    # calls printHelp() with the chosen helpfile
+    """calls printHelp() with the chosen helpfile"""
     if (len(command) == 0): # prints the main help page (no argument given)
         with open("./docs/help/help") as helpfile:
             printHelp(helpfile)
@@ -338,7 +340,7 @@ def helpCmd(command):
         return
 
 def letCmd(command):
-    # assigns new variables, without overwriting
+    """assigns new variables, without overwriting"""
     if (len(command) == 0): # if no variable is given, calls setCmd() to assign a new one
         return setCmd(command)
 
@@ -363,7 +365,7 @@ def letCmd(command):
         return setCmd(command)
 
 def loadCmd(command):
-    # loads variables from file
+    """loads variables from file"""
     if (len(command) == 0):
         errorMsg("load", "no filename was given")
         return
@@ -405,7 +407,7 @@ def loadCmd(command):
     return loaded_vars
 
 def manCmd(command):
-    # selects the variable for manipulation
+    """selects the variable for manipulation"""
     global man_var
 
     if (len(command) == 0):
@@ -422,7 +424,7 @@ def manCmd(command):
     return f"[{var}] is now manipulated"
 
 def manVarUpd():
-    # updates the manipulated var string
+    """updates the manipulated var string"""
     global man_var
     global man_value
 
@@ -436,7 +438,7 @@ def manVarUpd():
     return
 
 def printHelp(helpfile):
-    # prints each line of helpfile, formatting the variables
+    """prints each line of helpfile, formatting the variables"""
     for line in helpfile:
         print(line.rstrip().format(
             VERSION = VERSION,
@@ -444,7 +446,7 @@ def printHelp(helpfile):
     return
 
 def saveCmd(command):
-    # saves variables to file
+    """saves variables to file"""
     if (len(command) == 0):
         print("save warning: no filename was given, current date and time will be used")
         year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
@@ -516,7 +518,7 @@ def saveCmd(command):
     return saved_vars
 
 def sayCmd(command):
-    # prints on screen all the arguments given
+    """prints on screen all the arguments given"""
     echo = ""
 
     for word in command:
@@ -534,7 +536,7 @@ def sayCmd(command):
     return echo
 
 def setCmd(command):
-    # assigns variables overwriting
+    """assigns variables overwriting"""
     if (len(command) == 0): # if no variable is given, a free one is assigned
         command.append(free_vars.pop())
         used_vars.add(command[0]) # puts var into used_vars
@@ -599,7 +601,7 @@ def setCmd(command):
     return f"{var}\t=\t{print_value}"
 
 def varCmd(command):
-    # prints variables values
+    """prints variables values"""
     vars_to_print = []
     alph_order = False
 
@@ -633,7 +635,7 @@ def varCmd(command):
     return
 
 def runCmd(command):
-    # runs given script file
+    """runs given script file"""
     if (len(command) == 0):
         errorMsg("run", "no script file was given")
         return
@@ -660,7 +662,7 @@ def runCmd(command):
         else: cmdParser(line.rstrip(";"))
 
 def typeCmd(command):
-    # prints variables types
+    """prints variables types"""
     vars_to_print = []
 
     if (len(command) == 0): # no arguments given, appends all variables
