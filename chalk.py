@@ -160,7 +160,7 @@ def CLI():
     print(f"### Welcome to chalk v{VERSION} ###\ntype 'help' for a list of commands") # welcome message
 
     while (state is True):
-        varManUpd()
+        manVarUpd()
         command = input(f"\n[{man_var}]({man_value})> ") # command input
         if (len(command) == 0 or command.split() == []): errorMsg("CLI", "no command was given")
         else:
@@ -421,6 +421,19 @@ def manCmd(command):
 
     return f"[{var}] is now manipulated"
 
+def manVarUpd():
+    # updates the manipulated var string
+    global man_var
+    global man_value
+
+    if (man_var in variables):
+        man_value = variables.get(man_var)
+    else:
+        errorMsg("varManUpd", f"CRITICAL the variable {man_var} doesn't exist")
+        return
+
+    return
+
 def printHelp(helpfile):
     # prints each line of helpfile, formatting the variables
     for line in helpfile:
@@ -600,19 +613,6 @@ def varCmd(command):
 
     return
 
-def varManUpd():
-    # updates the manipulated var string
-    global man_var
-    global man_value
-
-    if (man_var in variables):
-        man_value = variables.get(man_var)
-    else:
-        errorMsg("varManUpd", f"CRITICAL the variable {man_var} doesn't exist")
-        return
-
-    return
-
 def runCmd(command):
     # runs given script file
     if (len(command) == 0):
@@ -633,7 +633,7 @@ def runCmd(command):
         return
 
     for line in commands:
-        varManUpd()
+        manVarUpd()
         if (line[-1] != ";"): # check if command ends with ";"
             output = cmdParser(line)
             if (output is not None):
