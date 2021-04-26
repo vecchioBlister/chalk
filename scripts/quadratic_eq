@@ -10,7 +10,7 @@ ask @b second coefficient;
 ask @c third coefficient;
 # asks for coefficients
 
-calc ((- @b +:( @b **2-4* @a * @c ))/(2* @a ),(- @b -:( @b **2-4* @a * @c ))/(2* @a ))
+calc ((-@b + :(@b **2 - 4 * @a * @c)) / (2 * @a) , (-@b - :(@b **2 - 4 * @a * @c)) / (2 * @a))
 # calculates solutions as a tuple
 
 set @x;
