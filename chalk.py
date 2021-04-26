@@ -64,7 +64,7 @@ def calcCmd(command, man_assign=True):
 
 def calculate(command):
     """evaluates calculations"""
-    operators = "+-*(),; /[]%!:#" # allowed operators
+    operators = "+-*(),; /[]%!:#^" # allowed operators
 
     command = "".join(command) # turns command into a string
     command = command.strip() # removes whitespaces
@@ -102,6 +102,8 @@ def calculate(command):
                 equation[word] = "math.factorial"
             elif (equation[word] == "#"): # array symbol
                 equation[word] = "np.array"
+            elif (equation[word] == "^"): # power symbol
+                equation[word] = "**"
 
         if (equation[word] in variables): # replaces variables with their values
             try:

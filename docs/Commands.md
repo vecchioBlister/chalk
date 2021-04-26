@@ -60,6 +60,7 @@ You can also use variables and `math` (python module) constants in your calculat
 ### Additional operations
 
 Here's symbolic shortcuts for some operations you might frequently use:
+- `^` power *(equivalent to `**`)*
 - `:` square root *(equivalent to `math.sqrt`)*
 - `!` factorial *(equivalent to `math.factorial`)*
 
