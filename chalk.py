@@ -169,7 +169,7 @@ def CLI():
 
     while (state is True):
         manVarUpd()
-        command = input(f"\n[{man_var}]({man_value})> ") # command input
+        command = input(f"\n{man_value} <{man_var}> $ ") # command input
         if (len(command) == 0 or command.split() == []): errorMsg("CLI", "no command was given")
         else:
             if (command[-1] == ";"): # if command ends with ';' execute command without printing
