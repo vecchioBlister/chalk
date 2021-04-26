@@ -199,6 +199,13 @@ def defCmd(command):
     aliases_created = ""
 
     for var in command:
+        if(not any(char.isalpha() for char in var)): # check there's at least one letter
+            errorMsg("def", "cannot assign aliases that don't contain letters")
+            return aliases_created
+        for char in var: # check it doesn't contain symbols
+            if (not char.isalnum()):
+                errorMsg("def", f"aliases must be alphanumeric - '{char}'")
+                return
         new_var = letCmd([])[0]
         aliases[var] = new_var
         aliases_created += "@" + var + "\t=\t" + new_var + "\n"
@@ -519,7 +526,10 @@ def setCmd(command):
     if (var[0] == "@"): # checks for aliases
         var = aliases[var.lstrip("@")]
 
-    for char in var:
+    if(not any(char.isalpha() for char in var)): # check there's at least one letter
+        errorMsg("let/set", "variable names must contain at least one letter")
+        return
+    for char in var: # check it doesn't contain symbols
         if (not char.isalnum()):
             errorMsg("let/set", f"variable names must be alphanumeric - '{char}'")
             return
