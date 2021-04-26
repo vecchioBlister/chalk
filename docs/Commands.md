@@ -56,6 +56,22 @@ will print the result `9` without assigning it.
 
 You can also use variables and `math` (python module) constants in your calculations.
 
+#### Quick operands
+
+You can easily make additions, subtractions, multiplications and divisions to the manipulated variable with quick operands, by putting the desired operand before the `=` command.
+
+For example:
+
+	5 <ans> $ += 10
+	15 <ans> $
+and the same applies to arrays as well:
+
+	[[4 2]
+	 [8 6]] <ans> $ /=2
+
+	[[2 1]
+	 [4 3]] <ans> $
+
 ---
 ### Additional operations
 
@@ -81,13 +97,13 @@ Indices inside a tuple or an array, start from `0`, up to the length of the obje
 
 To access a value inside a tuple / array, type the index within `[ ]` square brackets; for example:
 
-	> let a be (1,2)
+	$ let a be (1,2)
 	a = (1, 2)
-	> let a0 be a [0]
+	$ let a0 be a [0]
 	a0 = 1
 To know the length of a tuple / array, you can use the operator `len`, giving the object (of which you want to know the length) within `( )` parentheses.
 
-	> ?len(a)
+	$ ?len(a)
 	2
 
 #### Tuples and lists

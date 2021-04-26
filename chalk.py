@@ -191,7 +191,23 @@ def cmdParser(command):
         return calcCmd(command)
     elif (command[0][0] == "?"): # calc without assign to man_var
         command[0] = command[0].lstrip("?") # strips "?" from command beginning
-        return calcCmd(command, False)
+        return calcCmd(command)
+    elif (command[0][0] == "+" and command[0][1] == "="): # calc with quick operation
+        command[0] = command[0].lstrip("+=") # strips quick operand from command beginning
+        command[0] = man_var + "+" + command[0] # adds man_var and operand
+        return calcCmd(command)
+    elif (command[0][0] == "-" and command[0][1] == "="):
+        command[0] = command[0].lstrip("-=")
+        command[0] = man_var + "-" + command[0]
+        return calcCmd(command)
+    elif (command[0][0] == "*" and command[0][1] == "="):
+        command[0] = command[0].lstrip("*=")
+        command[0] = man_var + "*" + command[0]
+        return calcCmd(command)
+    elif (command[0][0] == "/" and command[0][1] == "="):
+        command[0] = command[0].lstrip("/=")
+        command[0] = man_var + "/" + command[0]
+        return calcCmd(command)
 
     operator = command.pop(0) # sets operator var to the first keyword
 
