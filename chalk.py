@@ -61,77 +61,86 @@ def calcCmd(command, man_assign=True):
     return
 
 def calculate(command):
-    operators = "+-*().,; /[]%!:$#"
+    # evaluates calculations
+    operators = "+-*(),; /[]%!:#" # allowed operators
 
-    #if (type(command) == list):
-    #    for i in range(len(command)): # turns every element in command list and makes it a string
-    #        command[i] = str(command[i])
-    #else: command = list(str(command)) # if input is not list, makes it a list of string
-
-    if (type(command) is int):
-        command = str(command)
-    command = list(command)
+    command = "".join(command) # turns command into a string
+    command = command.strip() # removes whitespaces
 
     if (len(command) == 0): return 0 # if input is empty, returns 0
 
-    for word in range(len(command)):
-        if (len(command[word]) > 0):
-            if (command[word][0] == "@"): # checks for aliases
-                command[word] = aliases[command[word].lstrip("@")]
-        if (command[word] == "math.pi"): # replaces math.py variables
-            command[word] = str(math.pi)
-        elif (command[word] == "math.e"):
-            command[word] = str(math.e)
-        elif (command[word] in variables): # replaces long-name variables with their values
+    # older method
+    #equation = ""
+    #for char_pos in range(len(command)):
+    #    if (command[char_pos] in "+-*(),;/[]%!:$#"):
+    #        equation += " " + command[char_pos] + " "
+    #    else: equation += command[char_pos]
+
+    # improved method
+    equation = [] # empty equation list
+    word = "" # empty word
+    for char_pos in range(len(command)):
+        if (command[char_pos] in operators): # if char is an operator
+            equation.append(word) # appends previous word
+            equation.append(command[char_pos]) # appends operator
+            word = "" # starts new word
+        else: word += command[char_pos] # else adds char to word
+    equation.append(word) # appends last word to equation
+
+    #//print(equation) # debugging
+
+    for word in range(len(equation)):
+        # need to for-loop on pos because python sucks big dick
+        # and would not replace strings ¯\_(ツ)_/¯
+        if (len(equation[word]) > 0):
+            if (equation[word][0] == "@"): # checks for aliases
+                equation[word] = equation[word].lstrip("@")
+                if (equation[word] in aliases):
+                    equation[word] = aliases[equation[word]]
+                else:
+                    errorMsg("calc", "alias not found")
+                    return
+
+        #if (equation[word] == "math.pi"): # replaces math.py variables
+        #    equation[word] = str(math.pi)
+        #elif (equation[word] == "math.e"):
+        #    equation[word] = str(math.e)
+
+        if (len(equation[word]) == 1): # checks for custom operators
+            if (equation[word] == ":"): # square root symbol
+                equation[word] = "math.sqrt"
+            elif (equation[word] == "!"): # factorial symbol
+                equation[word] = "math.factorial"
+            elif (equation[word] == "#"): # array symbol
+                equation[word] = "np.array"
+
+        if (equation[word] in variables): # replaces variables with their values
             try:
-                command[word] = "(" + str(
-                    calculate(
-                        list(
+                equation[word] = str(
+                    calculate( # calc is necessary if var is lazy-assigned
+                        list( # calc accepts lists of strings
                             str(
-                                variables.get(command[word])
+                                variables.get(equation[word])
                                 )
                             )
                         )
-                    ).strip() + ")"
+                    ).strip()
             except RecursionError as error: # when a lazy var is assigned to itself
                 errorMsg("calc", "cannot calculate a variable with self assignment")
                 print(error)
                 return None
-            #if (type(command[i]) == list):
-            #    if (len(command) == 1): command[i] = command[i][0] # if item is a list with one element, takes first
-            #    else:
-            #        errorMsg("calc", "cannot multiply for an array")
-            if (command[word] is None): return None # in case of calculate() error
-            command[word] = str(command[word])
+            if (equation[word] is None): return None # in case of calculate() error
 
-    command = "".join(str(word) for word in command) # concatenates command back into a string
-    #//print(command)
-    equation = ""
-    for char in command:
-        if (char.isalpha() and not char in operators):
-            errorMsg("calc", f"'{char}' symbol / variable name ambiguity")
-            return None
-        elif (char == ":"): # square root symbol
-            equation += "math.sqrt"
-        elif (char == "!"): # factorial symbol
-            equation += "math.factorial"
-        elif (char == "$"): # length symbol
-            equation += "len"
-        elif (char == "#"): # array symbol
-            equation += "np.array"
-        else:
-            #//print(i)
-            equation += char
+        #//print("word: " + equation[word]) # debugging
 
-    #//print(equation)
-    #equation = "".join(str(j) for j in equation) # concatenates equation back into a string
-    #equation = equation.format_map(variables) # replaces variables with their values
-    equation = equation.strip(" ") # strips whitespaces from equation
+    equation = "".join(str(word) for word in equation) # concatenates equation back into a string
+
+    #//print("eq: " + equation) # debugging
 
     if (equation == ""): equation = "0" # user input '=' results 0
 
     try:
-        #//print(equation)
+        #//print(equation) # debugging
         return eval(equation)
     except SyntaxError as error:
         errorMsg("calc", f"cannot understand operation. \n{error}")

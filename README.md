@@ -38,11 +38,9 @@ One of the most useful tools of a calculator is its ability to store variables; 
 - `let` is the most useful command, as it allows you to create a new variable, without the risk of replacing an existing value. By typing `let a be 7`, you will assign 7 to the new variable `a`. If you currently have a value stored in your manipulated variable, and want to save it in another variable, you can simply type `let b` to create a new variable `b` that will have that value. Or, if you can't think of a variable name, you can just type `let`, and chalk will provide one for you.
 - `set` is the brother of `let`, and will have the exact same functionality, except for checking whether that variable already exists: `set` will overwrite an existing variable in case the name provided already exists.
 
-When typing operations with variables, you must separate with spaces every variable name, to avoid ambiguous expressions. For example: `1+ a + b *8+6`.
-
 #### Lazy assignment
 
-One of the coolest features of chalk is its ability to lazy-assign values to variables: what this means, is that the variable value will be calculated every time that variable is called, instead of when it is assigned. You can use this functionality with `let` and `set` commands, by preceding with `&` the value you want to store. For example, let's say you have two variables, `a` and `b`: by typing `let c be & a * b`, you will be creating a new variable, `c`, the value of which (`a * b`) will be resolved every time `c` is called, and will depend on the values of `a` and `b`.
+One of the coolest features of chalk is its ability to lazy-assign values to variables: what this means, is that the variable value will be calculated every time that variable is called, instead of when it is assigned. You can use this functionality with `let` and `set` commands, by preceding with `&` the value you want to store. For example, let's say you have two variables, `a` and `b`: by typing `let c be &a*b`, you will be creating a new variable, `c`, the value of which (`a*b`) will be resolved every time `c` is called, and will depend on the values of `a` and `b`.
 
 #### Print variables
 
