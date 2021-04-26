@@ -1,5 +1,6 @@
 from os import system, name
 from time import strftime
+from traceback import print_exc
 import math
 import numpy as np
 
@@ -121,9 +122,9 @@ def calculate(command):
                             )
                         )
                     ).strip()
-            except RecursionError as error: # when a lazy var is assigned to itself
+            except RecursionError: # when a lazy var is assigned to itself
                 errorMsg("calc", "cannot calculate a variable with self assignment")
-                print(error)
+                print_exc()
                 return None
             if (equation[word] is None): return None # in case of calculate() error
 
@@ -137,20 +138,25 @@ def calculate(command):
 
     try:
         return eval(equation)
-    except SyntaxError as error:
-        errorMsg("calc", f"cannot understand operation. \n{error}")
+    except SyntaxError:
+        errorMsg("calc", f"syntax error")
+        print_exc()
         return None
-    except TypeError as error:
-        errorMsg("calc", error)
+    except TypeError:
+        errorMsg("calc", "type error")
+        print_exc()
         return None
-    except NameError as error:
-        errorMsg("calc", error)
+    except NameError:
+        errorMsg("calc", "name error")
+        print_exc()
         return None
-    except ValueError as error:
-        errorMsg("calc", error)
+    except ValueError:
+        errorMsg("calc", "value error")
+        print_exc()
         return None
-    except AttributeError as error:
-        errorMsg("calc", error)
+    except AttributeError:
+        errorMsg("calc", "attribute error")
+        print_exc()
         return None
 
 def CLI():
@@ -191,9 +197,9 @@ def cmdParser(command):
 
     try:
         return globals()[operator + "Cmd"](command)
-    except KeyError as error:
+    except KeyError:
         errorMsg("cmdParser", f"command '{operator}' exception")
-        print(error)
+        print_exc()
         return
 
 def defCmd(command):
@@ -336,9 +342,9 @@ def helpCmd(command):
         else:
             errorMsg("help", f"'{command}' help does not exist")
             return
-    except FileNotFoundError as error:
+    except FileNotFoundError:
         errorMsg("help", "help file not found, ./docs/help/ folder may be missing")
-        print(error)
+        print_exc()
         return
 
 def letCmd(command):
@@ -391,9 +397,9 @@ def loadCmd(command):
             for line in file:
                 var = line.strip().split(", ", 1)
                 vars_to_load.append(var)
-    except FileNotFoundError as error:
+    except FileNotFoundError:
         errorMsg("load", f"'{filename}' not found")
-        print(error)
+        print_exc()
         return
 
     if (force_set is True):
@@ -650,9 +656,9 @@ def runCmd(command):
             for line in script:
                 if (line[0] != "#" and len(line.strip()) != 0): # ignores comments and empty lines
                     commands.append(line.strip())
-    except FileNotFoundError as error:
+    except FileNotFoundError:
         errorMsg("run", "script file not found")
-        print(error)
+        print_exc()
         return
 
     for line in commands:
