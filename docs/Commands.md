@@ -8,7 +8,7 @@
 	2. [Additional operations](#additional-operations)
 	3. [Algebra (tuples, vectors and matrices)](#algebra)
 		1. [Indices and length](#indices-and-length)
-		2. [Tuples](#tuples)
+		2. [Tuples](#tuples-and-lists)
 		3. [Arrays](#arrays)
 3. [Variables](#variables)
 	1. [Assignment](#assignment)
@@ -89,7 +89,7 @@ To know the length of a tuple / array, you can use the operator `len`, giving th
 	> ?len(a)
 	2
 
-#### Tuples
+#### Tuples and lists
 
 Tuples are, in a way, lists of floats, which are "grouped" together in `( )` brackets. They are useful to store in one variable multiple values, like coefficients, conjugate square roots, etc.
 
@@ -97,6 +97,8 @@ Operations like subtraction and division don't work with tuples, but other opera
 - `+` adds items to the tuple; for instance: `(1, 2) + 3 ==> (1, 2, 3)` and `(1, 2) + (1, 4) ==> (1, 2, 1, 4)`.
 - `*` multiplies the number of values inside the tuple; for example: `(1, 2) * 3 ==> (1, 2, 1, 2, 1, 2)`.
 Most of other operations are not allowed, and will simply output an error.
+
+Lists work a lot like tuples, and are denoted by `[ ]` square brackets. They behave in much of the same way, but their use is not recommended. For algebraic operations, arrays have many more features and should be used instead.
 
 #### Arrays
 
@@ -203,14 +205,15 @@ The `-s` argument is used to force `set` when importing, which will overwrite ex
 
 Every variable has a type, which depends on the value stored inside.
 The most common types will be:
-- 'int'
-- 'float'
-- 'str' *(string)*
-- 'np.ndarray' *(array)*
+- `'int'`
+- `'float'`
+- `'str'` *(string)*
+- `'tuple'`
+- `'np.ndarray'` *(array)*
 
 To know which type one (or more) variable is, you can use the command `type`.
 
-> Note: string types happen every time you lazy-assign a variable; the string **will be evaluated by calc** whenever that variable is called.
+> Note: string types appear every time you lazy-assign a variable; the string **will be evaluated by calc** whenever that variable is called.
 
 ## Scripting
 
