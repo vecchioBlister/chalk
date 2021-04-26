@@ -50,11 +50,13 @@ def askCmd(command):
     return setCmd([var, "be", value])
 
 def calcCmd(command, man_assign=True):
+    # calc command
     if (man_var in variables):
-        result = calculate(command)
+        result = calculate(command) # calculates result
+        #//print(result) # debugging
         if (result is None): return
-        elif (man_assign is False): print(result)
-        else: variables[man_var] = result
+        elif (man_assign is False): print(result) # if called with "?" only prints
+        else: variables[man_var] = result # otherwise assigns
     else: # gives an error
         errorMsg("calc", f"'{man_var}' is not a valid variable (man)")
         return
@@ -141,6 +143,7 @@ def calculate(command):
 
     try:
         #//print(equation) # debugging
+        #//print(eval(equation)) # debugging
         return eval(equation)
     except SyntaxError as error:
         errorMsg("calc", f"cannot understand operation. \n{error}")
@@ -428,6 +431,7 @@ def manVarUpd():
 
     if (man_var in variables):
         man_value = variables.get(man_var)
+        #//print(man_value) # debugging
     else:
         errorMsg("varManUpd", f"CRITICAL the variable {man_var} doesn't exist")
         return
