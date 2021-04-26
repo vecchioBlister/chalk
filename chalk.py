@@ -206,7 +206,8 @@ def defCmd(command):
             if (not char.isalnum()):
                 errorMsg("def", f"aliases must be alphanumeric - '{char}'")
                 return
-        new_var = letCmd([])[0]
+        new_var = letCmd([]).split()[0]
+
         aliases[var] = new_var
         aliases_created += "@" + var + "\t=\t" + new_var + "\n"
     return aliases_created
