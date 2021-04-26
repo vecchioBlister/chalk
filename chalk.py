@@ -118,11 +118,16 @@ def calculate(command):
 
         if (equation[word] in variables): # replaces variables with their values
             try:
-                equation[word] = str(
-                    calculate( # calc is necessary if var is lazy-assigned
-                        list( # calc accepts lists of strings
-                            str(
-                                variables.get(equation[word])
+                if ("numpy" in str(type(variables.get(equation[word])))):
+                    equation[word] = "np.array(" + str(
+                        variables.get(equation[word]).tolist()
+                    ) + ")"
+                else:
+                    equation[word] = str(
+                        calculate( # calc is necessary if var is lazy-assigned
+                            list( # calc accepts lists of strings
+                                str(
+                                    variables.get(equation[word])
                                 )
                             )
                         )
