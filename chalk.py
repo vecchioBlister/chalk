@@ -593,7 +593,14 @@ def setCmd(command):
         used_vars.add(var) # puts it into used_vars
 
     variables[var] = value
-    return f"{var} = {value}"
+
+    print_value = ""
+    for char in str(value):
+        if (char == "\n"):
+            print_value += "\n\t\t"
+        else: print_value += char
+
+    return f"{var}\t=\t{print_value}"
 
 def varCmd(command):
     # prints variables values
@@ -618,7 +625,14 @@ def varCmd(command):
 
     for var in vars_to_print:
         if (var not in variables): print(f"{var} is not an assigned variable")
-        else: print(f"\t{var}\t=\t{variables.get(var)}")
+        else:
+            value = str(variables.get(var))
+            print_value = ""
+            for char in value:
+                if (char == "\n"):
+                    print_value += "\n\t\t\t"
+                else: print_value += char
+            print(f"\t{var}\t=\t{print_value}")
 
     return
 
