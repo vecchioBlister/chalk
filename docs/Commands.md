@@ -9,7 +9,7 @@
 	3. [Algebra (tuples, vectors and matrices)](#algebra)
 		1. [Indices and length](#indices-and-length)
 		2. [Tuples](#tuples-and-lists)
-		3. [Arrays](#arrays)
+		3. [Vectors (arrays)](#arrays)
 3. [Variables](#variables)
 	1. [Assignment](#assignment)
 	2. [Printing](#print-variables)
@@ -84,14 +84,14 @@ To access a value inside a tuple / array, type the index within `[ ]` square bra
 	a = (1, 2)
 	> let a0 be a [0]
 	a0 = 1
-To know the length of a tuple / array, you can use the operator `len`, giving the object (of which you want to know the length) within `( )` brackets.
+To know the length of a tuple / array, you can use the operator `len`, giving the object (of which you want to know the length) within `( )` parentheses.
 
 	> ?len(a)
 	2
 
 #### Tuples and lists
 
-Tuples are, in a way, lists of floats, which are "grouped" together in `( )` brackets. They are useful to store in one variable multiple values, like coefficients, conjugate square roots, etc.
+Tuples are, in a way, lists of floats, which are "grouped" together in `( )` parentheses. They are useful to store in one variable multiple values, like coefficients, conjugate square roots, etc.
 
 Operations like subtraction and division don't work with tuples, but other operands do:
 - `+` adds items to the tuple; for instance: `(1, 2) + 3 ==> (1, 2, 3)` and `(1, 2) + (1, 4) ==> (1, 2, 1, 4)`.
@@ -104,9 +104,30 @@ Lists work a lot like tuples, and are denoted by `[ ]` square brackets. They beh
 
 Arrays are very useful algebraic tools: they're lists of values, within `[ ]` square brackets.
 
+To create arrays, you can use the operator `#` *(equivalent to `np.array`)* with the notation `([])`, as follows:
+
+	let a be #([1,2,3])
+which will create an array `[1, 2, 3]`.
+
+> Note: the `( )` parentheses denote the function of creating the array, whereas the `[ ]` square brackets denote the array of values.
+
+This type of value is very powerful, and handled, on the backend, by the Python module `numpy`.
+All of the operations and transformations available by numpy, are fully supported by chalk.
+
+> Note: `numpy` has been imported as `np`, so all the module's operations and methods can be called with either name.
+
+For more information on `numpy`:
+- [official quickstart guide *(recommended)*](https://numpy.org/doc/stable/user/quickstart.html)
+- [w3schools guide *(recommended)*](https://www.w3schools.com/python/numpy/numpy_intro.asp)
+- [official manual](https://numpy.org/doc/stable/)
+- [official reference](https://numpy.org/doc/stable/reference/)
+
 #### Matrices
 
+Matrices in `numpy` are handled as *arrays of arrays*, as in a collection of row- (or column-) vectors.
+This way of storing matrices may seem counter-intuitive, but is actually really handy.
 
+You can find more information in the `numpy` documentation.
 
 ## Variables
 

@@ -4,7 +4,8 @@ Its key features are:
 - quick Pythonic calculations
 - easy-to-understand commands
 - handy and powerful variable management
-- numpy algebra (coming soon)
+- numpy algebra
+- scripting
 
 ## Getting started
 
