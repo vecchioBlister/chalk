@@ -76,14 +76,17 @@ and the same applies to arrays as well:
 ### Additional operations
 
 Here's symbolic shortcuts for some operations you might frequently use:
-- `^` power *(equivalent to `**`)*
+- `^` scientific notation *(equivalent to `*10**`)*
 - `:` square root *(equivalent to `math.sqrt`)*
 - `!` factorial *(equivalent to `math.factorial`)*
 
-In order to use these shortcuts, you must use parentheses to specify the arguments. For instance:
+In order to use these shortcuts, you must use parentheses to specify the arguments (except for `^`). For instance:
 
 	=:(2)
 calculates the square root of 2.
+
+	=a^-11
+calculates a*10**-11
 
 ---
 ### Algebra

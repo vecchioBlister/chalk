@@ -103,8 +103,8 @@ def calculate(command):
                 equation[word] = "math.factorial"
             elif (equation[word] == "#"): # array symbol
                 equation[word] = "np.array"
-            elif (equation[word] == "^"): # power symbol
-                equation[word] = "**"
+            elif (equation[word] == "^"): # scientific notation symbol
+                equation[word] = "*10**"
 
         if (equation[word] in variables): # replaces variables with their values
             try:
