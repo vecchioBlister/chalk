@@ -28,9 +28,12 @@ man_var = "ans" # currently manipulated variable
 man_value = "" # currently manipulated variable value
 
 state = True # CLI "on" state
+script_interrupted = False # script interrupt
 
 def askCmd(command):
     """asks the user for a value, given a variable name (useful for scripting)"""
+    global script_interrupted
+
     if (len(command) == 0):
         errorMsg("ask", "no variable name was given")
         return
@@ -44,7 +47,11 @@ def askCmd(command):
     for word in command: # assembles input phrase with the other arguments
         input_phrase += word + " "
 
-    value = input(input_phrase + f"[{var}]: ")
+    try:
+        value = input(input_phrase + f"[{var}]: ")
+    except KeyboardInterrupt:
+        script_interrupted = True
+        return
 
     if (value == ""): value = "0"
 
@@ -666,6 +673,9 @@ def varCmd(command):
 
 def runCmd(command):
     """runs given script file"""
+    global script_interrupted
+    script_interrupted = False
+
     if (len(command) == 0):
         errorMsg("run", "no script file was given")
         return
@@ -684,12 +694,18 @@ def runCmd(command):
         return
 
     for line in commands:
-        manVarUpd()
-        if (line[-1] != ";"): # check if command ends with ";"
-            output = cmdParser(line)
-            if (output is not None):
-                print(output)
-        else: cmdParser(line.rstrip(";"))
+        if (script_interrupted is False):
+            manVarUpd()
+            if (line[-1] != ";"): # check if command ends with ";"
+                output = cmdParser(line)
+                if (output is not None):
+                    print(output)
+            else: cmdParser(line.rstrip(";"))
+        else:
+            errorMsg("run", "script interrupted by user command")
+            return
+
+    return
 
 def typeCmd(command):
     """prints variables types"""
