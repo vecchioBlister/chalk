@@ -19,9 +19,9 @@
 	6. [Types](#types)
 4. [Scripting](#scripting)
 	1. [`run` command](#the-run-command-allows-you-to-run-script-files-in-chalk)
-	2. [`ask` command](#ask)
-	3. [`say` command](#say)
-	4. [`def` command and aliases](#def)
+	2. [`def` command and aliases](#def)
+	3. [`ask` command](#ask)
+	4. [`say` command](#say)
 5. [Useful commands](#useful-commands)
 
 ## Syntax
@@ -54,7 +54,7 @@ You can also get results without storing the value, by calling `calc` with `?`:
 	?5+4
 will print the result `9` without assigning it.
 
-You can also use variables and `math` (python module) constants in your calculations.
+You can also use variables and `math` (python module) constants and functions in your calculations.
 
 #### Quick operands
 
@@ -102,7 +102,7 @@ To access a value inside a tuple / array, type the index within `[ ]` square bra
 
 	$ let a be (1,2)
 	a = (1, 2)
-	$ let a0 be a [0]
+	$ let a0 be a[0]
 	a0 = 1
 To know the length of a tuple / array, you can use the operator `len`, giving the object (of which you want to know the length) within `( )` parentheses.
 
@@ -116,6 +116,7 @@ Tuples are, in a way, lists of floats, which are "grouped" together in `( )` par
 Operations like subtraction and division don't work with tuples, but other operands do:
 - `+` adds items to the tuple; for instance: `(1, 2) + 3 ==> (1, 2, 3)` and `(1, 2) + (1, 4) ==> (1, 2, 1, 4)`.
 - `*` multiplies the number of values inside the tuple; for example: `(1, 2) * 3 ==> (1, 2, 1, 2, 1, 2)`.
+
 Most of other operations are not allowed, and will simply output an error.
 
 Lists work a lot like tuples, and are denoted by `[ ]` square brackets. They behave in much of the same way, but their use is not recommended. For algebraic operations, arrays have many more features and should be used instead.
@@ -269,6 +270,23 @@ You can create a scipt in any text editor, typing for each text line, a chalk co
 
 For scripting purpose, there exist some commands that will make it possilbe to easily create functions and calculators.
 
+---
+### def
+
+This command lets you to give temporary names to variables, calles aliases, that can be parsed by preceding them with `@`.
+This feature is especially useful in scripting, as it allows for the use of the same names, without overwriting any of the user variables.
+For instance:
+
+	def a b c
+creates three new variables, with *real* names assigned by the `let` command, having as aliases `radius`, `area` and `depth` respectively.
+Let's say that the names given by `let` were `h0`, `t4` and `g3`: `def` will output
+
+	@radius   =    h0
+	@area     =    t4
+	@depth    =    g3
+and from then on, at every occurrence of the alias `@area`, the variable `t4` will be called.
+
+---
 ### ask
 
 This command allows you to ask for a variable value, and automatically assign it to a name, that can later be used for calculations.
@@ -302,21 +320,6 @@ For example, if a variable `b` has an alias `a` and a value of `6`:
 will print
 
 	b = 6
-
-### def
-
-This command lets you to give temporary names to variables, calles aliases, that can be parsed by preceding them with `@`.
-This feature is especially useful in scripting, as it allows for the use of the same names, without overwriting any of the user variables.
-For instance:
-
-	def a b c
-creates three new variables, with *real* names assigned by the `let` command, having as aliases `a`, `b` and `c` respectively.
-Let's say that the names given by `let` were `h0`, `t4` and `g3`: `def` will output
-
-	@a    =    h0
-	@b    =    t4
-	@c    =    g3
-and from then on, at every occurrence of the alias `@b`, the variable `T` will be called.
 
 ## Useful commands
 
