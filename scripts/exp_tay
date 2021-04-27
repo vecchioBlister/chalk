@@ -1,0 +1,24 @@
+say ### exponential taylor expansion (5th deg) ###
+say ### e ** x (as x --> 0)
+say
+
+def x ex diff;
+# assigns the aliases @x, @ex, @diff for x, the exponential and the difference (with math.exp())
+
+ask @x x;
+# asks for @x
+
+calc 1 + @x + (@x **2 / !(2)) + (@x **3 / !(3)) + (@x **4 / !(4)) + (@x **5 / !(5))
+set @ex;
+# calculates the exponential taylor's expansion up to the 5th order, assigns it to @ex
+
+calc (@ex, abs(@ex - math.exp(@x)))
+# calculates the tuple (@ex, @diff)
+
+set @diff to abs(@ex - math.exp(@x));
+# assigns @diff to a variable
+
+say
+say e ** @x (as @x --> 0) = ( @ex ) &@ex
+say the difference with math.exp( @x ) is ( @diff ) &@diff
+# prints solution and difference
