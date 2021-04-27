@@ -165,7 +165,11 @@ def CLI():
 
     while (state is True):
         manVarUpd()
-        command = input(f"\n{man_value} <{man_var}> $ ") # command input
+        try:
+            command = input(f"\n{man_value} <{man_var}> $ ") # command input
+        except KeyboardInterrupt:
+            print(exitCmd([]))
+            return
         if (len(command) == 0 or command.split() == []): errorMsg("CLI", "no command was given")
         else:
             if (command[-1] == ";"): # if command ends with ';' execute command without printing
@@ -175,6 +179,8 @@ def CLI():
                 result = cmdParser(command)
                 if (result != None):
                     print(result)
+
+    return
 
 def clsCmd(command):
     """clears console screen"""
