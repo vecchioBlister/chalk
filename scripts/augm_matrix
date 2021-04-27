@@ -1,0 +1,19 @@
+say ### augment matrix with vector ###
+say
+
+def matrix vector augmentedM;
+# assigns the aliases
+
+ask @matrix matrix;
+ask @vector vector;
+# asks for matrix and vector
+
+calc np.c_[@matrix,@vector]
+# calculates augmented matrix
+
+set @augmentedM;
+# assigns value to variable
+
+say
+say augmented matrix is @augmentedM
+# prints solution
