@@ -1,0 +1,19 @@
+say ### parabolic dish surface calculator ###
+say
+
+def r d s;
+# assigns the aliases r, d, s for radius, depth, surface
+
+ask @r dish radius (of the rim plane);
+ask @d dish depth (from the vertex to the rim plane);
+# asks for dish radius and depth
+
+calc ((math.pi * @r) / (6 * @d **2)) * (:(@r **2 + 4 * @d **2) **3 - @r **3)
+# calculates surface
+
+set @s;
+# assigns value to variable
+
+say
+say parabolic dish surface is @s = &@s
+# prints solution
