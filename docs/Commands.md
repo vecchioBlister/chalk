@@ -277,7 +277,7 @@ This command lets you to give temporary names to variables, calles aliases, that
 This feature is especially useful in scripting, as it allows for the use of the same names, without overwriting any of the user variables.
 For instance:
 
-	def a b c
+	def radius area depth
 creates three new variables, with *real* names assigned by the `let` command, having as aliases `radius`, `area` and `depth` respectively.
 Let's say that the names given by `let` were `h0`, `t4` and `g3`: `def` will output
 
