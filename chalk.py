@@ -72,7 +72,7 @@ def calcCmd(command, man_assign=True):
 
 def calculate(command):
     """evaluates calculations"""
-    operators = "+-*(),; /[]%!:#^" # allowed operators
+    operators = "+-*(),; /[]%!:#^'" # allowed operators
 
     command = "".join(command) # turns command into a string
     command = command.strip() # removes whitespaces
@@ -112,6 +112,8 @@ def calculate(command):
                 equation[word] = "np.array"
             elif (equation[word] == "^"): # scientific notation symbol
                 equation[word] = "*10**"
+            elif (equation[word] == "'"): # scientific notation symbol
+                equation[word] = "np.transpose"
 
         if (equation[word] in variables): # replaces variables with their values
             try:

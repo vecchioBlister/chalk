@@ -10,7 +10,8 @@ Variables should be separated by whitespaces, to avoid ambiguity.
 Additional operations:
 - '^' scientific notation (*10**)
 - ':' square root (math.sqrt)
-= '!' factorial (math.factorial)
+- '!' factorial (math.factorial)
+- ''' transpose matrix (np.transpose)
 
 You can use quick operands to affect the manipulated variable:
 '+=', '-=', '*=', '/='
