@@ -167,6 +167,10 @@ def calculate(command):
         errorMsg("calc", "attribute error")
         print_exc()
         return None
+    except ZeroDivisionError:
+        errorMsg("calc", "zero division error")
+        print_exc()
+        return None
 
 def CLI():
     """command line function"""
