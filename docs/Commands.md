@@ -273,7 +273,7 @@ For scripting purpose, there exist some commands that will make it possilbe to e
 ---
 ### def
 
-This command lets you to give temporary names to variables, calles aliases, that can be parsed by preceding them with `@`.
+This command lets you to give temporary names to variables, called aliases, that can be parsed by preceding them with `@`.
 This feature is especially useful in scripting, as it allows for the use of the same names, without overwriting any of the user variables.
 For instance:
 
