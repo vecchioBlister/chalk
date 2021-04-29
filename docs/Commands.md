@@ -279,7 +279,9 @@ For instance:
 
 	def radius area depth
 creates three new variables, with *real* names assigned by the `let` command, having as aliases `radius`, `area` and `depth` respectively.
-Let's say that the names given by `let` were `h0`, `t4` and `g3`: `def` will output
+Let's say that the names given by `let` were `h0`, `t4` and `g3`:
+
+`def` will output
 
 	@radius   =    h0
 	@area     =    t4
