@@ -1,0 +1,28 @@
+say ### prolate ellipsoid surface ###
+say ### general eq: (x/a)**2 + (y/a)**2 + (z/b)**2 = 1
+say ### b > a
+say
+
+def a b alpha surface;
+# assigns the aliases @a, @b, @alpha for the two radii and the angular eccentricity
+
+ask @a horizontal transverse radius (a);
+ask @b vertical conjugate radius (b);
+# asks for radii
+
+calc math.acos(@a/@b)
+# calculates angular eccentricity
+
+set @alpha;
+# assigns to @alpha
+
+calc 2 * math.pi * (@a**2 + ((@a * @b * @alpha) / math.sin(@alpha)))
+# calculates surface
+
+set @surface;
+# assigns to @surface
+
+say
+say prolate ellipsoid surface is @surface = &@surface
+say angular eccentricity is @alpha = &@alpha
+# prints solution
