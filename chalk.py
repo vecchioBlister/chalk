@@ -658,7 +658,7 @@ def ticCmd(command):
     return
 
 def tocCmd(command):
-    return time() - tic_toc_time
+    return "time elapsed: " + str(time() - tic_toc_time)
 
 def varCmd(command):
     """prints variables values"""
