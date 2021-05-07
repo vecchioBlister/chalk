@@ -368,6 +368,14 @@ def helpCmd(command):
             with open("./docs/help/set") as helpfile:
                 printHelp(helpfile)
             return
+        elif (command == "tic"):
+            with open("./docs/help/tic") as helpfile:
+                printHelp(helpfile)
+            return
+        elif (command == "toc"):
+            with open("./docs/help/toc") as helpfile:
+                printHelp(helpfile)
+            return
         elif (command == "type"):
             with open("./docs/help/type") as helpfile:
                 printHelp(helpfile)

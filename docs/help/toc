@@ -1,0 +1,2 @@
+toc
+	returns the time passed since the 'tic' timer was started.

@@ -42,6 +42,10 @@ say <phrase>
 	(for scripting) prints the phrase, solves variable values with '&', aliases with '@'.
 set <var> to <value>
 	forces <value> to variable <var>.
+tic
+	starts an internal timer.
+toc
+	returns the time passed since the 'tic' timer was started.
 type *<var>
 	prints <var> type.
 var *<var> *-a
