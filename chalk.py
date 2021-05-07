@@ -1,5 +1,5 @@
 from os import system, name
-from time import strftime
+from time import strftime, time
 from traceback import print_exc
 import math
 import numpy as np
@@ -29,6 +29,8 @@ man_value = "" # currently manipulated variable value
 
 state = True # CLI "on" state
 script_interrupted = False # script interrupt
+
+tic_toc_time = time()
 
 def askCmd(command):
     """asks the user for a value, given a variable name (useful for scripting)"""
@@ -642,6 +644,13 @@ def setCmd(command):
         else: print_value += char
 
     return f"{var}\t=\t{print_value}"
+
+def ticCmd(command):
+    tic_toc_time = time()
+    return
+
+def tocCmd(command):
+    return time() - tic_toc_time
 
 def varCmd(command):
     """prints variables values"""
