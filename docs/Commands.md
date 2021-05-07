@@ -329,3 +329,4 @@ will print
 - `cls` clears the console screen.
 - `exit` closes chalk.
 - `help` displays the main help page; you can add the name of a command afterwards to print its specific help page.
+- `tic` starts a timer, `toc` returns the time passed since the last timer was started.
