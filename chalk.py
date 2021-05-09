@@ -654,10 +654,12 @@ def setCmd(command):
     return f"{var}\t=\t{print_value}"
 
 def ticCmd(command):
+    global tic_toc_time
     tic_toc_time = time()
     return
 
 def tocCmd(command):
+    global tic_toc_time
     return "time elapsed: " + str(time() - tic_toc_time)
 
 def varCmd(command):
