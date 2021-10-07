@@ -1,0 +1,2 @@
+foreach <var> <equation>
+	applies the equation to all variables specified.

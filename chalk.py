@@ -344,6 +344,10 @@ def helpCmd(command):
 			with open("./docs/help/exit") as helpfile:
 				printHelp(helpfile)
 			return
+		elif (command == "foreach"):
+			with open("./docs/help/foreach") as helpfile:
+				printHelp(helpfile)
+			return
 		elif (command == "let"):
 			with open("./docs/help/let") as helpfile:
 				printHelp(helpfile)

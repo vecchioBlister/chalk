@@ -23,6 +23,8 @@ del <var>
 exit *-s
 	closes chalk.
 	*-s saves the variables in a file.
+foreach <var> <equation>
+	applies the equation to all variables specified.
 help *<command>
 	prints this help page or a specific <command> help page.
 let <var> be <value>
