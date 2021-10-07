@@ -558,15 +558,19 @@ def saveCmd(command):
 				else:
 					file.write(f"{var}, {variables.get(var)}\n")
 	except FileNotFoundError: # creates file if it doesn't exist
-		with open(filename, "x") as file:
-			file.write("variable, value\n")
-			for var in vars_to_save:
-				if (type(variables.get(var)) == str): # if value is string, adds "&" for lazy assignments
-					file.write(f"{var}, &{variables.get(var)}\n")
-				elif ("numpy" in str(type(variables.get(var)))): # if value is numpy array, writes "header"
-					file.write(f"{var}, np.array({str(variables.get(var).tolist())})\n")
-				else:
-					file.write(f"{var}, {variables.get(var)}\n")
+		try:
+			with open(filename, "x") as file:
+				file.write("variable, value\n")
+				for var in vars_to_save:
+					if (type(variables.get(var)) == str): # if value is string, adds "&" for lazy assignments
+						file.write(f"{var}, &{variables.get(var)}\n")
+					elif ("numpy" in str(type(variables.get(var)))): # if value is numpy array, writes "header"
+						file.write(f"{var}, np.array({str(variables.get(var).tolist())})\n")
+					else:
+						file.write(f"{var}, {variables.get(var)}\n")
+		except FileNotFoundError: # if file is actually not existing
+			errorMsg("save", f"'{filename}' can't be written to, check the path; save aborted")
+			return
 
 	if (delete_vars is True): # deletes variables if requested
 		saved_vars += "(and deleted)"
