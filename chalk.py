@@ -632,12 +632,12 @@ def setCmd(command):
 		return
 	else:
 		command.pop(1)
-		if (command[1][0] == "&"):
+		if (command[1][0] == "&"): # lazy assignment
 			value = ""
 			command[1] = command[1].lstrip("&")
-			for char in range(1, len(command)):
-				if (command[char] != ""):
-					value += str(command[char]) + " "
+			for word in range(1, len(command)):
+				if (command[word] != ""):
+					value += str(command[word]) + " "
 				#value = " ".join(command[i])
 			value = value.rstrip()
 			variables[var] = value
