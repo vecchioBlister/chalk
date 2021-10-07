@@ -4,7 +4,7 @@ from traceback import print_exc
 import math
 import numpy as np
 
-VERSION = "1.0.0-beta"
+VERSION = "1.1.0-beta"
 
 free_vars = set((
 	"a0", "b0", "c0", "d0", "e0", "f0", "g0", "h0", "i0", "j0", "k0", "l0", "m0", "n0", "o0", "p0", "q0", "r0", "s0", "t0", "u0", "v0", "w0", "x0", "y0", "z0",
@@ -761,6 +761,55 @@ def typeCmd(command):
 				print(f"\t{var}\tis an\t{var_type}")
 			else: # otherwise "a" for types starting with consonant
 				print(f"\t{var}\tis a\t{var_type}")
+
+	return
+
+def foreachCmd(command):
+	"""executes calculation to all variables given"""
+	operators = "+-*/" # allowed operators
+	vars_to_set = []
+
+	if (len(command) == 0): # if no argument is given
+		errorMsg("foreach", "no arguments given")
+		return
+
+	arg_is_var = True
+	calculation = ""
+	for arg in command:
+		if (arg_is_var):
+			if (arg[0] in operators):
+				arg_is_var = False
+				calculation += arg
+				continue
+			if (arg[0] == "@"): # checks for aliases
+				arg = aliases[arg.lstrip("@")]
+			vars_to_set.append(arg)
+		else:
+			calculation += arg
+
+	if (len(vars_to_set) == 0):
+		errorMsg("foreach", "no variable was given")
+		return
+
+	for var in vars_to_set:
+		if var not in variables:
+			errorMsg("foreach", f"variable {var} does not exist")
+			vars_to_set.remove(var)
+
+	if (arg_is_var or len(calculation) == 0):
+		errorMsg("foreach", "no calculation was given")
+		return
+	elif (calculation[0] in operators):
+		operator = calculation[0]
+		calculation = calculation[1:]
+	else:
+		errorMsg("foreach", "no operator found in calculation")
+		return
+
+	final_values = ""
+	for var in vars_to_set:
+		value = calculate(f"{var} {operator} {calculation}")
+		print(setCmd([var, "be", str(value)]))
 
 	return
 
