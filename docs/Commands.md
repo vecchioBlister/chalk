@@ -42,7 +42,7 @@ will not print in the console the line
 ### calc
 
 This command solves arithmetic expressions.
-You can also call it more quickly with `=`.
+You can call it more quickly with `=`.
 	
 	calc 5+4
 
@@ -56,7 +56,7 @@ You can also get results without storing the value, by calling `calc` with `?`:
 	?5+4
 will print the result `9` without assigning it.
 
-You can also use variables and `math` (python module) constants and functions in your calculations.
+Additionally, you can use variables and `math` (python module) constants and functions in your calculations.
 
 #### Quick operands
 
