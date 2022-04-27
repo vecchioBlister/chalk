@@ -4,7 +4,7 @@ from traceback import print_exc
 import math
 import numpy as np
 
-VERSION = "1.1.0-beta"
+VERSION = "1.1.1-beta"
 
 free_vars = set((
 	"a0", "b0", "c0", "d0", "e0", "f0", "g0", "h0", "i0", "j0", "k0", "l0", "m0", "n0", "o0", "p0", "q0", "r0", "s0", "t0", "u0", "v0", "w0", "x0", "y0", "z0",
@@ -95,7 +95,7 @@ def calculate(command):
 
 	for word in range(len(equation)):
 		# need to for-loop on pos because python sucks big dick
-		# and would not replace strings ¯\_(ツ)_/¯
+		# and would not replace strings ¯\_(^^)_/¯
 		if (len(equation[word]) > 0):
 			if (equation[word][0] == "@"): # checks for aliases
 				equation[word] = equation[word].lstrip("@")
@@ -116,6 +116,8 @@ def calculate(command):
 				equation[word] = "*10**"
 			elif (equation[word] == "'"): # scientific notation symbol
 				equation[word] = "np.transpose"
+			elif (equation[word] == "%"): # scientific notation symbol
+				equation[word] = "*0.01*"
 
 		if (equation[word] in variables): # replaces variables with their values
 			try:

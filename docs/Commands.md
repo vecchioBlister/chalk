@@ -80,14 +80,18 @@ Here's symbolic shortcuts for some operations you might frequently use:
 - `:` square root *(equivalent to `math.sqrt`)*
 - `!` factorial *(equivalent to `math.factorial`)*
 - `'` transposition of a matrix *(equivalent to `np.transpose`)*
+- `%` percentage calculation *(equivalent to `*0.01*`)*
 
-In order to use these shortcuts, you must use parentheses to specify the arguments (except for `^`). For instance:
+In order to use some of these shortcuts, you must use parentheses to specify the arguments (except for `^` and `%`). For instance:
 
 	=:(2)
 calculates the square root of 2.
 
 	=a^-11
 calculates a*10**-11
+
+	=b-30%b
+calculates b - 30% of b.
 
 ---
 ### Algebra
