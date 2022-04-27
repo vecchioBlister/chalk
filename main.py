@@ -66,7 +66,9 @@ def calcCmd(command, man_assign=True):
 		#//print(result) # debugging
 		if (result is None): return
 		elif (man_assign is False): print(result) # if called with "?" only prints
-		else: variables[man_var] = result # otherwise assigns
+		else: # otherwise assigns
+			variables["old"] = variables[man_var] # saving the old result
+			variables[man_var] = result
 	else: # gives an error
 		errorMsg("calc", f"'{man_var}' is not a valid variable (man)")
 		return

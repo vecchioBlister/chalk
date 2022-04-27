@@ -49,6 +49,8 @@ You can also call it more quickly with `=`.
 	=5+4
 will store `9` in the currently manipulated variable.
 
+The previous value of the manipulated variable will be saved in a variable called 'old'.
+
 You can also get results without storing the value, by calling `calc` with `?`:
 
 	?5+4
@@ -210,6 +212,7 @@ You can give as arguments the names of the variables you want to display, separa
 
 Variable manipulation is a key feature of chalk which allows you to have a variable always-at-hand, to store all of your results.
 Whenever you type a calculation (with the `calc` command or its alias `=`), the result is stored in the manipulated variable (`ans` by default).
+Each time a new value is stored in the manipulated variable (through the `calc` command), its previous value will be saved in a variable called `old`.
 
 The `man` command lets you select the variable you want to manipulate. If you want to go back to `ans`, you can just type `man` without any arguments.
 
