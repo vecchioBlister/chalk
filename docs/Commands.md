@@ -49,7 +49,7 @@ You can call it more quickly with `=`.
 	=5+4
 will store `9` in the currently manipulated variable.
 
-The previous value of the manipulated variable will be saved in a variable called 'old'.
+The previous value of the manipulated variable will be saved in a variable called `old`.
 
 You can also get results without storing the value, by calling `calc` with `?`:
 
