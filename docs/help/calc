@@ -12,6 +12,7 @@ Additional operations:
 - ':' square root (math.sqrt)
 - '!' factorial (math.factorial)
 - ''' transpose matrix (np.transpose)
+- '%' percentage calculation (*0.01*)
 
 You can use quick operands to affect the manipulated variable:
 '+=', '-=', '*=', '/='
