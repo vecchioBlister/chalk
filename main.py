@@ -817,7 +817,6 @@ def foreachCmd(command):
 		errorMsg("foreach", "no operator found in calculation")
 		return
 
-	final_values = ""
 	for var in vars_to_set:
 		value = calculate(f"{var} {operator} {calculation}")
 		print(setCmd([var, "be", str(value)]))
