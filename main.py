@@ -4,7 +4,7 @@ from traceback import print_exc
 import math
 import numpy as np
 
-VERSION = "1.1.1-beta"
+VERSION = "1.1.2-beta"
 
 free_vars = set((
 	"a0", "b0", "c0", "d0", "e0", "f0", "g0", "h0", "i0", "j0", "k0", "l0", "m0", "n0", "o0", "p0", "q0", "r0", "s0", "t0", "u0", "v0", "w0", "x0", "y0", "z0",
@@ -185,7 +185,7 @@ def CLI():
 	while (state is True):
 		manVarUpd()
 		try:
-			command = input(f"\n{man_value} <{man_var}> $ ") # command input
+			command = input(f"\n================\n{man_value} <{man_var}> $ ") # command input
 		except KeyboardInterrupt:
 			print(exitCmd([]))
 			return
@@ -640,17 +640,20 @@ def setCmd(command):
 		return
 	else:
 		command.pop(1)
-		if (command[1][0] == "&"): # lazy assignment
-			value = ""
-			command[1] = command[1].lstrip("&")
-			for word in range(1, len(command)):
-				if (command[word] != ""):
-					value += str(command[word]) + " "
-				#value = " ".join(command[i])
-			value = value.rstrip()
-			variables[var] = value
-			return f"(lazy) {var} = {value}"
-		value = calculate(command[1 : None])
+		try:
+			if (command[1][0] == "&"): # lazy assignment
+				value = ""
+				command[1] = command[1].lstrip("&")
+				for word in range(1, len(command)):
+					if (command[word] != ""):
+						value += str(command[word]) + " "
+					#value = " ".join(command[i])
+				value = value.rstrip()
+				variables[var] = value
+				return f"(lazy) {var} = {value}"
+			value = calculate(command[1 : None])
+		except:
+			value = None
 		if (value is None):
 			errorMsg("let/set", "cannot assign empty variable")
 			return
@@ -774,7 +777,7 @@ def typeCmd(command):
 
 def foreachCmd(command):
 	"""executes calculation to all variables given"""
-	operators = "+-*/" # allowed operators
+	operators = "+-*/&" # allowed operators
 	vars_to_set = []
 
 	if (len(command) == 0): # if no argument is given
@@ -808,16 +811,24 @@ def foreachCmd(command):
 		errorMsg("foreach", "no calculation was given")
 		return
 	elif (calculation[0] in operators):
+		if (calculation[0] == "&"):
+			force_lazy = True
+			calculation = calculation[1:]
+		else:
+			force_lazy = False
 		operator = calculation[0]
 		calculation = calculation[1:]
 	else:
 		errorMsg("foreach", "no operator found in calculation")
 		return
 
-	final_values = ""
 	for var in vars_to_set:
 		value = calculate(f"{var} {operator} {calculation}")
-		print(setCmd([var, "be", str(value)]))
+		var_type = str(type(variables[var])).lstrip("<class ").rstrip(">") # checks for lazy assignments
+		if (var_type == "\'str\'" or force_lazy):
+			print(setCmd([var, "to", f"&{variables[var]}{operator}{calculation}"])) # preserves old lazy assignment
+		else:
+			print(setCmd([var, "to", str(value)]))
 
 	return
 

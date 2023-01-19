@@ -1,2 +1,4 @@
 foreach <var> <equation>
 	applies the equation to all variables specified.
+
+If <equation> is preceded by '&', lazy assignment will be used for all calculations.
