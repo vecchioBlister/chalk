@@ -4,7 +4,7 @@ from traceback import print_exc
 import math
 import numpy as np
 
-VERSION = "1.1.2-beta"
+VERSION = "1.1.3-beta"
 
 free_vars = set((
 	"a0", "b0", "c0", "d0", "e0", "f0", "g0", "h0", "i0", "j0", "k0", "l0", "m0", "n0", "o0", "p0", "q0", "r0", "s0", "t0", "u0", "v0", "w0", "x0", "y0", "z0",
