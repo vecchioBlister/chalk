@@ -4,7 +4,7 @@ from traceback import print_exc
 import math
 import numpy as np
 
-VERSION = "1.1.1-beta"
+VERSION = "1.1.2-beta"
 
 free_vars = set((
 	"a0", "b0", "c0", "d0", "e0", "f0", "g0", "h0", "i0", "j0", "k0", "l0", "m0", "n0", "o0", "p0", "q0", "r0", "s0", "t0", "u0", "v0", "w0", "x0", "y0", "z0",
@@ -640,17 +640,20 @@ def setCmd(command):
 		return
 	else:
 		command.pop(1)
-		if (command[1][0] == "&"): # lazy assignment
-			value = ""
-			command[1] = command[1].lstrip("&")
-			for word in range(1, len(command)):
-				if (command[word] != ""):
-					value += str(command[word]) + " "
-				#value = " ".join(command[i])
-			value = value.rstrip()
-			variables[var] = value
-			return f"(lazy) {var} = {value}"
-		value = calculate(command[1 : None])
+		try:
+			if (command[1][0] == "&"): # lazy assignment
+				value = ""
+				command[1] = command[1].lstrip("&")
+				for word in range(1, len(command)):
+					if (command[word] != ""):
+						value += str(command[word]) + " "
+					#value = " ".join(command[i])
+				value = value.rstrip()
+				variables[var] = value
+				return f"(lazy) {var} = {value}"
+			value = calculate(command[1 : None])
+		except:
+			value = None
 		if (value is None):
 			errorMsg("let/set", "cannot assign empty variable")
 			return
