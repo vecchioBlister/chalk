@@ -161,7 +161,10 @@ You can find more information in the `numpy` documentation.
 ---
 ### foreach
 
-The `foreach` command allows you to execute the same operation onto multiple variables.
+The `foreach` command allows you to execute the same operation onto multiple variables, following the syntax:
+
+	foreach <var> <equation>
+
 For example, given the variables `a = 5`, `b = 4` and `c = &a+b`:
 
 	foreach a b c +5
@@ -172,6 +175,8 @@ will do the calculation `+5` to `a`, `b` and `c`, resulting in:
 	c       =       a+b+5
 
 Note that foreach will preserve the lazy assignment, while adding the operation at the end.
+
+You can add `&` at the beginning of the equation, to use lazy assignment on all variables.
 
 ## Variables
 
