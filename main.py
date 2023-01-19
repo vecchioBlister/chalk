@@ -185,7 +185,7 @@ def CLI():
 	while (state is True):
 		manVarUpd()
 		try:
-			command = input(f"\n{man_value} <{man_var}> $ ") # command input
+			command = input(f"\n================\n{man_value} <{man_var}> $ ") # command input
 		except KeyboardInterrupt:
 			print(exitCmd([]))
 			return
