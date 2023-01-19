@@ -819,7 +819,11 @@ def foreachCmd(command):
 
 	for var in vars_to_set:
 		value = calculate(f"{var} {operator} {calculation}")
-		print(setCmd([var, "be", str(value)]))
+		var_type = str(type(variables[var])).lstrip("<class ").rstrip(">") # checks for lazy assignments
+		if (var_type == "\'str\'"):
+			print(setCmd([var, "to", f"&{variables[var]}{operator}{calculation}"])) # preserves old lazy assignment
+		else:
+			print(setCmd([var, "to", str(value)]))
 
 	return
 
