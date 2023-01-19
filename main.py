@@ -304,8 +304,7 @@ def exitCmd(command):
 
 	if (len(command) != 0):
 		if (command[0] == "-s"): # saves variables to a file
-			year, month, day, hour, min = map(int, strftime("%Y %m %d %H %M").split())
-			saveCmd([f"./variables/{year}-{month}-{day}_{hour}-{min} -f"])
+			saveCmd([])
 
 	global state
 	state = False
@@ -514,8 +513,8 @@ def saveCmd(command):
 	"""saves variables to file"""
 	if (len(command) == 0):
 		print("save warning: no filename was given, current date and time will be used")
-		year, month, day, hour, min = map(int, strftime("%Y %m %d %H %M").split())
-		command = [f"./variables/{year}-{month}-{day}_{hour}-{min}"]
+		year, month, day, hour, min, sec = map(int, strftime("%Y %m %d %H %M %S").split())
+		command = [f"./{year}-{month}-{day}_{hour}-{min}-{sec}"]
 
 	vars_to_save = []
 	delete_vars = False
