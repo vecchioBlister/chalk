@@ -10,6 +10,7 @@
 		1. [Indices and length](#indices-and-length)
 		2. [Tuples](#tuples-and-lists)
 		3. [Vectors (arrays)](#arrays)
+	4. [`foreach` command](#foreach)
 3. [Variables](#variables)
 	1. [Assignment](#assignment)
 	2. [Printing](#print-variables)
@@ -156,6 +157,21 @@ Matrices in `numpy` are handled as *arrays of arrays*, as in a collection of row
 This way of storing matrices may seem counter-intuitive, but is actually really handy.
 
 You can find more information in the `numpy` documentation.
+
+---
+### foreach
+
+The `foreach` command allows you to execute the same operation onto multiple variables.
+For example, given the variables `a = 5`, `b = 4` and `c = &a+b`:
+
+	foreach a b c +5
+will do the calculation `+5` to `a`, `b` and `c`, resulting in:
+
+	a       =       10
+	b       =       9
+	c       =       a+b+5
+
+Note that foreach will preserve the lazy assignment, while adding the operation at the end.
 
 ## Variables
 
