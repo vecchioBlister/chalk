@@ -777,7 +777,7 @@ def typeCmd(command):
 
 def foreachCmd(command):
 	"""executes calculation to all variables given"""
-	operators = "+-*/" # allowed operators
+	operators = "+-*/&" # allowed operators
 	vars_to_set = []
 
 	if (len(command) == 0): # if no argument is given
@@ -811,6 +811,11 @@ def foreachCmd(command):
 		errorMsg("foreach", "no calculation was given")
 		return
 	elif (calculation[0] in operators):
+		if (calculation[0] == "&"):
+			force_lazy = True
+			calculation = calculation[1:]
+		else:
+			force_lazy = False
 		operator = calculation[0]
 		calculation = calculation[1:]
 	else:
@@ -820,7 +825,7 @@ def foreachCmd(command):
 	for var in vars_to_set:
 		value = calculate(f"{var} {operator} {calculation}")
 		var_type = str(type(variables[var])).lstrip("<class ").rstrip(">") # checks for lazy assignments
-		if (var_type == "\'str\'"):
+		if (var_type == "\'str\'" or force_lazy):
 			print(setCmd([var, "to", f"&{variables[var]}{operator}{calculation}"])) # preserves old lazy assignment
 		else:
 			print(setCmd([var, "to", str(value)]))
